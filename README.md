@@ -89,7 +89,7 @@ CHORRO AGUA/
 ├── public/                      # Assets estáticos y logos
 ├── src/
 │   ├── components/
-│   │   ├── SwissPresentationDeck.tsx   # Slide deck principal de 10 diapositivas
+│   │   ├── SwissPresentationDeck.tsx   # Slide deck principal de 11 diapositivas (incluye PWJ vs AWJ)
 │   │   ├── WaterjetHead3D.tsx          # Visor 3D fotorrealista en Three.js
 │   │   ├── AWJSimulator40.tsx          # Simulador de corte y gemelo digital CNC
 │   │   ├── HeadDiagramInteractive.tsx  # Corte transversal del cabezal y Venturi

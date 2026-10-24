@@ -30,7 +30,7 @@ interface SwissPresentationDeckProps {
 
 export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPresentationDeckProps) {
   const [currentSlide, setCurrentSlide] = useState<number>(1);
-  const totalSlides = 10;
+  const totalSlides = 11;
 
   // 15-20 min defense timer
   const [timerSeconds, setTimerSeconds] = useState<number>(0);
@@ -196,7 +196,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
         <div className="fixed inset-0 z-50 bg-[#0F172A]/40 backdrop-blur-sm flex justify-center items-start pt-16 px-4">
           <div className="bg-white rounded-xl shadow-swiss-lg border border-[#E2E8F0] p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-4 border-b border-[#E2E8F0]">
-              <h3 className="text-base font-bold text-[#0F172A]">Índice de la Defensa Técnica (10 Slides)</h3>
+              <h3 className="text-base font-bold text-[#0F172A]">Índice de la Defensa Técnica (11 Slides)</h3>
               <button 
                 onClick={() => setShowDrawer(false)}
                 className="text-xs font-mono text-[#64748B] hover:text-[#0F172A] px-2 py-1 rounded bg-[#F1F5F9]"
@@ -208,14 +208,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               {[
                 { id: 1, title: '01. Portada Institucional UTN FRP', type: 'Dark Canvas' },
                 { id: 2, title: '02. Principio Físico y Métricas UHP', type: 'Layout A (Big Metrics)' },
-                { id: 3, title: '03. Cabezal de Corte & Efecto Venturi', type: 'Layout C (Graphic/Metric Split)' },
-                { id: 4, title: '04. Cadena de Transformación Hidráulica', type: 'Layout D (Timeline)' },
-                { id: 5, title: '05. Comparativa Técnica vs Láser y Plasma', type: 'Layout B (3 Columns)' },
-                { id: 6, title: '06. Cinemática Activa y Conicidad θ = 0°', type: 'Layout A (Big Metric + 5 Ejes)' },
-                { id: 7, title: '07. Espectro de Materiales Industriales', type: 'Layout B (3 Columns)' },
-                { id: 8, title: '08. Calidades Q1-Q5 y Defectología', type: 'Layout C (Graphic/Metric Split)' },
-                { id: 9, title: '09. Industria 4.0 & Ecosistema Ciberfísico', type: 'Layout D (Timeline)' },
-                { id: 10, title: '10. Conclusiones y Preguntas Tribunal', type: 'Dark Canvas' },
+                { id: 3, title: '03. Génesis: Chorro Puro (PWJ) vs Abrasivo (AWJ)', type: 'Layout B (3 Columns)' },
+                { id: 4, title: '04. Cabezal de Corte & Efecto Venturi', type: 'Layout C (Graphic/Metric Split)' },
+                { id: 5, title: '05. Cadena de Transformación Hidráulica', type: 'Layout D (Timeline)' },
+                { id: 6, title: '06. Comparativa Técnica vs Láser y Plasma', type: 'Layout B (3 Columns)' },
+                { id: 7, title: '07. Cinemática Activa y Conicidad θ = 0°', type: 'Layout A (Big Metric + 5 Ejes)' },
+                { id: 8, title: '08. Espectro de Materiales Industriales', type: 'Layout B (3 Columns)' },
+                { id: 9, title: '09. Calidades Q1-Q5 y Defectología', type: 'Layout C (Graphic/Metric Split)' },
+                { id: 10, title: '10. Industria 4.0 & Ecosistema Ciberfísico', type: 'Layout D (Timeline)' },
+                { id: 11, title: '11. Conclusiones y Preguntas Tribunal', type: 'Dark Canvas' },
               ].map((s) => (
                 <button
                   key={s.id}
@@ -421,7 +422,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 3: [LIGHT] Layout C: Graphic & Metric Split — Cabezal AWJ & Venturi */}
+          {/* SLIDE 3: [LIGHT] Layout B: 3-Column Feature Cards — PWJ vs AWJ 4.0        */}
           {/* ========================================================================= */}
           {currentSlide === 3 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
@@ -429,7 +430,125 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    02 • Arquitectura Hidrodinámica
+                    02 • Génesis y Evolución Operativa
+                  </span>
+                  <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
+                    Chorro de Agua Pura (PWJ) vs Chorro Abrasivo (AWJ 4.0)
+                  </h2>
+                </div>
+                <span className="text-xs font-mono text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">
+                  Expositor: Diego
+                </span>
+              </div>
+
+              {/* 3-Column Feature Cards (Layout B) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto py-4">
+                {/* Column 1: PWJ */}
+                <div className="p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-4">
+                  <div className="border-b border-[#E2E8F0] pb-3">
+                    <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Fundamento Hidrodinámico</span>
+                    <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Agua Pura (PWJ)</h3>
+                  </div>
+                  <div className="space-y-2 text-sm text-[#475569]">
+                    <div className="flex justify-between font-mono">
+                      <span>Orificio Joya:</span>
+                      <strong>Ø 0,08 a 0,20 mm</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Carga Abrasiva:</span>
+                      <strong className="text-emerald-700">0,00 kg/min (Cero)</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Velocidad Avance:</span>
+                      <strong>10 a 50 m/min</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Sangría Kerf:</span>
+                      <strong>0,10 a 0,25 mm</strong>
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
+                    <strong className="text-[#0F172A]">Materiales Blandos:</strong> Asepsia total (alimentos, goma, espumas). El agua pura rebota en metales duros.
+                  </p>
+                </div>
+
+                {/* Column 2: AWJ */}
+                <div className="p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-4">
+                  <div className="border-b border-[#E2E8F0] pb-3">
+                    <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Micro-Erosión Supersónica</span>
+                    <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Chorro Abrasivo (AWJ)</h3>
+                  </div>
+                  <div className="space-y-2 text-sm text-[#475569]">
+                    <div className="flex justify-between font-mono">
+                      <span>Tubo ROCTEC:</span>
+                      <strong>Ø 0,76 a 1,02 mm</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Flujo Granate:</span>
+                      <strong>1,1 M part/s (Malla 80)</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Espesor Macizo:</span>
+                      <strong className="text-emerald-700">&gt;250 mm metales</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span>Aporte Térmico:</span>
+                      <strong className="text-[#EA580C]">ZAC = 0,00 mm</strong>
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
+                    <strong className="text-[#0F172A]">Salto Cuántico:</strong> El agua acelera al mineral a Mach 3, capaz de cortar aceros, titanio y blindajes.
+                  </p>
+                </div>
+
+                {/* Column 3: Justificación del Proyecto UTN */}
+                <div className="p-6 rounded-xl bg-[#FFF7ED] border-2 border-[#EA580C] space-y-4 shadow-swiss">
+                  <div className="border-b border-[#FDBA74] pb-3">
+                    <span className="text-xs font-mono font-bold text-[#EA580C] uppercase">Justificación Mecatrónica</span>
+                    <h3 className="text-xl font-black text-[#0F172A] mt-0.5">¿Por Qué AWJ 4.0?</h3>
+                  </div>
+                  <div className="space-y-2 text-sm text-[#9A3412]">
+                    <div className="flex justify-between font-mono">
+                      <span className="text-[#0F172A]">Herencia Total:</span>
+                      <strong className="text-[#0F172A]">AWJ contiene al PWJ</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span className="text-[#0F172A]">Reto 5 Ejes:</span>
+                      <strong className="text-[#EA580C]">Conicidad θ = 0,00°</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span className="text-[#0F172A]">Industria Real:</span>
+                      <strong className="text-[#0F172A]">Sector Metalmecánico</strong>
+                    </div>
+                    <div className="flex justify-between font-mono">
+                      <span className="text-[#0F172A]">Ecosistema 4.0:</span>
+                      <strong className="text-[#0F172A]">IoT y Lazo Cerrado</strong>
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#9A3412] pt-2 border-t border-[#FDBA74] font-medium">
+                    <strong className="text-[#0F172A]">Defensa ante Tribunal:</strong> Partimos del principio hidrodinámico del PWJ, pero el AWJ 4.0 es el estado del arte exigido en ingeniería mecatrónica.
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Takeaway */}
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <span>Versatilidad de Celda: Una máquina AWJ 4.0 corta juntas en modo PWJ o placas de blindaje en modo AWJ sin cambiar de mesa.</span>
+                <span className="text-[#EA580C] font-bold">Dualidad Operativa 100% Funcional</span>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* SLIDE 4: [LIGHT] Layout C: Graphic & Metric Split — Cabezal AWJ & Venturi */}
+          {/* ========================================================================= */}
+          {currentSlide === 4 && (
+            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+              {/* Header */}
+              <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
+                <div>
+                  <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
+                    03 • Arquitectura Hidrodinámica
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Cabezal de Corte AWJ y Efecto Venturi
@@ -544,15 +663,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 4: [LIGHT] Layout D: Horizontal Process Timeline — Cadena UHP       */}
+          {/* SLIDE 5: [LIGHT] Layout D: Horizontal Process Timeline — Cadena UHP       */}
           {/* ========================================================================= */}
-          {currentSlide === 4 && (
+          {currentSlide === 5 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    03 • Cinemática y Cadena Hidrodinámica
+                    04 • Cinemática y Cadena Hidrodinámica
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Cadena de Transformación Energética
@@ -635,15 +754,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 5: [LIGHT] Layout B: 3-Column Feature Cards — AWJ vs Térmicos       */}
+          {/* SLIDE 6: [LIGHT] Layout B: 3-Column Feature Cards — AWJ vs Térmicos       */}
           {/* ========================================================================= */}
-          {currentSlide === 5 && (
+          {currentSlide === 6 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    04 • Análisis Comparativo de Tecnologías
+                    05 • Análisis Comparativo de Tecnologías
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Chorro de Agua vs Procesos Térmicos
@@ -741,15 +860,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 6: [LIGHT] Layout A: Big Metric & Cinemática — Compensación 5 Ejes  */}
+          {/* SLIDE 7: [LIGHT] Layout A: Big Metric & Cinemática — Compensación 5 Ejes  */}
           {/* ========================================================================= */}
-          {currentSlide === 6 && (
+          {currentSlide === 7 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    05 • Cinemática Multieje y Control CNC
+                    06 • Cinemática Multieje y Control CNC
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Compensación Activa de Conicidad (Tilt-A-Jet)
@@ -864,15 +983,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 7: [LIGHT] Layout B: 3-Column Feature Cards — Materiales Críticos  */}
+          {/* SLIDE 8: [LIGHT] Layout B: 3-Column Feature Cards — Materiales Críticos  */}
           {/* ========================================================================= */}
-          {currentSlide === 7 && (
+          {currentSlide === 8 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    06 • Versatilidad Metalúrgica
+                    07 • Versatilidad Metalúrgica
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Espectro de Materiales Industriales Críticos
@@ -958,15 +1077,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 8: [LIGHT] Layout C: Graphic/Metric Split — Calidades Q1-Q5 y Defectos*/}
+          {/* SLIDE 9: [LIGHT] Layout C: Graphic/Metric Split — Calidades Q1-Q5 y Defectos*/}
           {/* ========================================================================= */}
-          {currentSlide === 8 && (
+          {currentSlide === 9 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    07 • Control de Calidad y Solución de Defectos
+                    08 • Control de Calidad y Solución de Defectos
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Niveles de Acabado (Q1 a Q5) y Defectología
@@ -1069,15 +1188,15 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 9: [LIGHT] Layout D: Horizontal Process Timeline — Industria 4.0   */}
+          {/* SLIDE 10: [LIGHT] Layout D: Horizontal Process Timeline — Industria 4.0   */}
           {/* ========================================================================= */}
-          {currentSlide === 9 && (
+          {currentSlide === 10 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
-                    08 • Integración Ciberfísica y Sustentabilidad
+                    09 • Integración Ciberfísica y Sustentabilidad
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     AWJ en la Industria 4.0: Ecosistema Autónomo
@@ -1160,9 +1279,9 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           )}
 
           {/* ========================================================================= */}
-          {/* SLIDE 10: [DARK CANVAS #2] Closing / Q&A Slide                            */}
+          {/* SLIDE 11: [DARK CANVAS #2] Closing / Q&A Slide                            */}
           {/* ========================================================================= */}
-          {currentSlide === 10 && (
+          {currentSlide === 11 && (
             <div className="h-full w-full rounded-2xl bg-[#0F172A] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-lg border border-slate-800 relative overflow-hidden">
               <div className="absolute inset-0 bg-technical-grid opacity-10 pointer-events-none" />
 
@@ -1170,7 +1289,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               <div className="relative z-10 flex justify-between items-start border-b border-slate-800 pb-6">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase block">
-                    Defensa de Proyecto Final • Conclusión
+                    10 • Defensa de Proyecto Final • Conclusión
                   </span>
                   <span className="text-sm text-slate-400 block mt-0.5">
                     UTN Facultad Regional Paraná • Tecnicatura Universitaria en Mecatrónica
