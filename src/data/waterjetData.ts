@@ -141,17 +141,17 @@ export interface WaterjetVariant {
 
 export const WATERJET_VARIANTS: WaterjetVariant[] = [
   {
-    name: 'AWJ con Cabezal 5 Ejes (Dynamic XD / Tilt-A-Jet)',
+    name: 'AWJ con Cabezal 5 Ejes (Cinemática Multieje)',
     category: 'Corte Abrasivo de Alta Precisión',
-    architecture: 'Muñeca articulada CNC de 5 ejes con compensación en tiempo real del ángulo de sangría y jet lag.',
+    architecture: 'Muñeca articulada CNC de 5 ejes con compensación en tiempo real del ángulo de sangría y retardo del chorro.',
     maxPressure: 'Hasta 6.500 bar (94.000 PSI)',
     efficiency: 'Máxima precisión: anulación del 100% de la conicidad en la pieza útil.',
     typicalMaterials: 'Todos los metales: Titanio Ti-6Al-4V, Inconel 718, Acero Inoxidable 316L, Hardox 500, Cobre C11000.',
     kerfAndTaper: 'Sangría 0,75 a 1,02 mm • Conicidad: θ = 0,00° (Pared a 90,0° exactos)',
     pros: [
       'Elimina por completo el mecanizado posterior de fresado',
-      'Paredes a 90,00° exactos volcando el taper al desecho (scrap)',
-      'Compensación anticipativa Look-Ahead en esquinas cerradas',
+      'Paredes a 90,00° exactos volcando la conicidad al desecho (chatarra)',
+      'Compensación anticipativa predictiva en esquinas cerradas',
       'Capacidad de biselado en V, Y y chaflanes de soldadura hasta ±60°'
     ],
     cons: [
@@ -180,7 +180,7 @@ export const WATERJET_VARIANTS: WaterjetVariant[] = [
     bestUseCases: 'Calderería, piezas estructurales para soldar, bridas estándar.'
   },
   {
-    name: 'Corte con Agua Pura (PWJ - Pure Waterjet)',
+    name: 'Corte con Agua Pura (PWJ - Chorro Hidrodinámico Puro)',
     category: 'Corte Hidrodinámico sin Abrasivo',
     architecture: 'Haz supersónico colimado de agua pura a través de micro-orificio (Ø 0,08 a 0,20 mm) sin cámara de mezcla.',
     maxPressure: '3.800 a 6.200 bar (55.000 a 90.000 PSI)',
@@ -203,9 +203,9 @@ export const WATERJET_VARIANTS: WaterjetVariant[] = [
     category: 'Generación de Presión UHP Lineal',
     architecture: 'Circuito de aceite hidráulico a 200 bar que acciona pistón diferencial 20:1 con carreras largas y baja frecuencia.',
     maxPressure: 'Hasta 6.200 a 6.500 bar (90.000 a 94.000 PSI)',
-    efficiency: 'Eficiencia global 65% – 72% (requiere chiller para disipación térmica en el aceite).',
+    efficiency: 'Eficiencia global 65% – 72% (requiere enfriador para disipación térmica en el aceite).',
     typicalMaterials: 'Optimizado para alimentar múltiples cabezales y grandes espesores de metal (>100 mm).',
-    kerfAndTaper: 'Salida de presión estabilizada mediante acumulador de pulsos (Attenuator)',
+    kerfAndTaper: 'Salida de presión estabilizada mediante acumulador y atenuador de pulsos',
     pros: [
       'Alcanza las máximas presiones de la industria (6.500 bar / HyperJet)',
       'Excelente confiabilidad en turnos continuos de trabajo pesado',
@@ -215,10 +215,10 @@ export const WATERJET_VARIANTS: WaterjetVariant[] = [
       'Menor rendimiento energético que la servobomba directa',
       'Requiere circuito hidráulico intermedio de aceite y enfriador mayor'
     ],
-    bestUseCases: 'Talleres de corte pesado (Job Shops), múltiples cabezales, espesores superiores a 80 mm.'
+    bestUseCases: 'Talleres de corte industrial pesado, múltiples cabezales, espesores superiores a 80 mm.'
   },
   {
-    name: 'Servobomba de Accionamiento Directo (Direct Drive)',
+    name: 'Servobomba de Accionamiento Directo (Triplex)',
     category: 'Generación de Presión UHP Electromecánica',
     architecture: 'Servomotor con variador de frecuencia (VFD) conectado a cigüeñal mecánico con 3 pistones cerámicos (triplex).',
     maxPressure: '4.100 a 6.900 bar (60.000 a 100.000 PSI)',
@@ -333,16 +333,16 @@ export const DEFECTS_CATALOG: DefectItem[] = [
   {
     id: 'taper',
     name: 'Conicidad en la Pared',
-    alias: 'Kerf Taper (Conicidad Natural del Chorro)',
+    alias: 'Conicidad Natural del Chorro',
     visualDesc: 'Diferencia de ancho entre la cara superior de entrada (W_top) y la cara inferior de salida (W_bottom), dejando la pared inclinada con un ángulo θ_t.',
     cause: 'El chorro pierde energía cinética por fricción y choque al profundizar en el espesor, o por desgaste cónico del tubo mezclador.',
-    mechatronicFix: 'Compensación 5 ejes en tiempo real (Flow Dynamic XD / OMAX Tilt-A-Jet) volcando el taper al scrap; reducir velocidad de avance o cambiar consumibles.',
+    mechatronicFix: 'Compensación 5 ejes en tiempo real volcando la conicidad hacia el desecho; reducir velocidad de avance o cambiar consumibles.',
     diagramType: 'taper'
   },
   {
     id: 'draglines',
-    name: 'Marcas de Estriado ("Drag Lines")',
-    alias: 'Striations / Striation Drag Angle',
+    name: 'Marcas de Estriado Angular',
+    alias: 'Estrías por Retardo del Chorro',
     visualDesc: 'Líneas curvas o estrías pronunciadas hacia atrás en el tercio inferior del corte, dejando una superficie rugosa y áspera.',
     cause: 'Velocidad de avance (Vf) demasiado rápida para el espesor del material; la base del chorro se retrasa respecto a la boquilla superior.',
     mechatronicFix: 'Bajar velocidad de avance (seleccionar calidad Q3 a Q5), aumentar la presión hidráulica UHP o incrementar el caudal de abrasivo.',
@@ -350,20 +350,20 @@ export const DEFECTS_CATALOG: DefectItem[] = [
   },
   {
     id: 'incomplete',
-    name: 'Corte Incompleto / No Perfora',
-    alias: 'Uncut Material / Piercing Failure',
+    name: 'Corte Incompleto / Fallo de Perforación',
+    alias: 'Material No Cortado / Fallo de Penetración',
     visualDesc: 'El chorro no llega a atravesar la chapa, rebotando en el fondo o dejando la pieza unida por puentes metálicos.',
     cause: 'Presión UHP insuficiente de la bomba, abrasivo húmedo que apelmaza la tolva, o tubo focalizador obstruido.',
-    mechatronicFix: 'Verificar la bomba intensificadora/direct drive, purgar la línea de granate con aire seco, comprobar el vacío Venturi y secar el abrasivo.',
+    mechatronicFix: 'Verificar la bomba intensificadora o servobomba directa, purgar la línea de granate con aire seco, comprobar el vacío Venturi y secar el abrasivo.',
     diagramType: 'incomplete'
   },
   {
     id: 'jetlag',
     name: 'Desviación del Corte en Esquinas',
-    alias: 'Corner Washout / Inercia del Chorro',
+    alias: 'Inercia y Retardo del Chorro',
     visualDesc: 'Sub-corte en el vértice interior de una esquina a 90° o ensanchamiento irregular de la sangría en cambios bruscos de dirección.',
     cause: 'Inercia de la columna inferior del chorro que continúa su trayectoria previa mientras el cabezal superior ya dobló la esquina.',
-    mechatronicFix: 'Algoritmo CNC "Corner Pass" con Look-Ahead que desacelera anticipadamente antes del vértice e inclina el cabezal 5 ejes para verticalizar el chorro.',
+    mechatronicFix: 'Algoritmo CNC de control predictivo que desacelera anticipadamente antes del vértice e inclina el cabezal 5 ejes para verticalizar el chorro.',
     diagramType: 'jetlag'
   },
   {

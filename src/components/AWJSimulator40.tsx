@@ -201,7 +201,7 @@ export default function AWJSimulator40() {
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>{fiveAxisActive ? '5 Ejes Dynamic XD: ACTIVO (0° Conicidad)' : '3 Ejes Estándar (Conicidad Natural)'}</span>
+            <span>{fiveAxisActive ? 'Cinemática 5 Ejes: ACTIVA (0° Conicidad)' : 'Cabezal Convencional (Conicidad Natural)'}</span>
           </button>
         </div>
       </div>
@@ -209,7 +209,7 @@ export default function AWJSimulator40() {
       {/* Demo Preset Buttons for Quick Testing */}
       <div className="mb-6 bg-slate-950/80 p-3 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
         <span className="font-mono text-slate-400 flex items-center gap-1.5">
-          <Gauge className="w-3.5 h-3.5 text-amber-400" /> Presets de Demostración para la Exposición:
+          <Gauge className="w-3.5 h-3.5 text-amber-400" /> Configuraciones de Demostración para la Exposición:
         </span>
         <div className="flex flex-wrap gap-2">
           <button
@@ -228,7 +228,7 @@ export default function AWJSimulator40() {
             onClick={() => applyPreset('copper')}
             className="px-2.5 py-1 rounded bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-slate-700 transition"
           >
-            ⚡ Cobre Busbar 25mm (Reflectivo)
+            ⚡ Cobre Electrolítico 25mm (Reflectivo)
           </button>
           <button
             onClick={() => applyPreset('aluminum')}

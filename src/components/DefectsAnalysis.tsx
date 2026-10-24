@@ -276,12 +276,12 @@ export default function DefectsAnalysis() {
                   <g>
                     <rect x="155" y="-10" width="40" height="25" fill="#0f172a" stroke="#EF4444" strokeWidth="1.5" />
                     <text x="175" y="7" fill="#EF4444" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                      SOD &gt; 4,5 mm (Lejos)
+                      Distancia &gt; 4,5 mm (Lejos)
                     </text>
                     <path d="M 150,50 Q 160,50 160,65" fill="none" stroke="#EF4444" strokeWidth="2" />
                     <path d="M 200,50 Q 190,50 190,65" fill="none" stroke="#EF4444" strokeWidth="2" />
                     <text x="175" y="195" fill="#EF4444" fontSize="9" fontFamily="monospace" textAnchor="middle">
-                      Niebla periférica erosiona arista (Roll-over)
+                      Niebla periférica erosiona arista (Redondeo de Borde)
                     </text>
                   </g>
                 )}
@@ -300,7 +300,7 @@ export default function DefectsAnalysis() {
                     <path d="M 240,150 Q 220,110 220,100" fill="none" stroke="#10B981" strokeWidth="2.5" strokeDasharray="3 2" />
                     <circle cx="240" cy="150" r="4" fill="#F59E0B" />
                     <text x="245" y="155" fill="#F59E0B" fontSize="9" fontFamily="monospace">
-                      Piercing en Scrap (UltraPierce)
+                      Perforación en Chatarra (Asistida por Vacío)
                     </text>
                     <text x="175" y="105" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Perímetro libre de marcas
@@ -311,7 +311,7 @@ export default function DefectsAnalysis() {
                     <circle cx="175" cy="100" r="45" fill="#0f172a" stroke="#00F0FF" strokeWidth="2" />
                     <circle cx="220" cy="100" r="8" fill="#EF4444" fillOpacity="0.5" stroke="#EF4444" strokeWidth="2" />
                     <text x="235" y="95" fill="#EF4444" fontSize="9" fontFamily="monospace">
-                      Cráter Blowout directo en la pieza
+                      Cráter de perforación directo en la pieza
                     </text>
                   </g>
                 )}

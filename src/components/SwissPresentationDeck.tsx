@@ -463,7 +463,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       <strong>10 a 50 m/min</strong>
                     </div>
                     <div className="flex justify-between font-mono">
-                      <span>Sangría Kerf:</span>
+                      <span>Ancho de Sangría:</span>
                       <strong>0,10 a 0,25 mm</strong>
                     </div>
                   </div>
@@ -642,7 +642,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
 
                   <div className="p-4 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]">
                     <span className="text-xs font-mono font-bold text-[#EA580C] uppercase block">
-                      Distancia de Trabajo (SOD)
+                      Distancia de Trabajo de la Boquilla
                     </span>
                     <span className="text-2xl font-black text-[#EA580C] font-mono block mt-1">
                       1,5 mm constante
@@ -657,7 +657,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               {/* Bottom bar */}
               <div className="text-xs font-mono text-[#64748B] flex justify-between items-center border-t border-[#E2E8F0] pt-3">
                 <span>Concentración típica: 10% abrasivo en masa por volumen de agua</span>
-                <span className="text-[#EA580C] font-bold">Kerf estándar: 0,80 a 1,10 mm</span>
+                <span className="text-[#EA580C] font-bold">Ancho de sangría: 0,80 a 1,10 mm</span>
               </div>
             </div>
           )}
@@ -871,7 +871,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     06 • Cinemática Multieje y Control CNC
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
-                    Compensación Activa de Conicidad (Tilt-A-Jet)
+                    Compensación Activa de Conicidad en 5 Ejes
                   </h2>
                 </div>
                 <span className="text-xs font-mono text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">
@@ -891,7 +891,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       θ = 0,00°
                     </div>
                     <p className="text-base text-[#1E293B] font-medium pt-3">
-                      <strong className="text-[#0F172A]">Paredes 100% Perpendiculares:</strong> El cabezal articulado absorbe la conicidad natural y la desvía hacia el material de scrap.
+                      <strong className="text-[#0F172A]">Paredes 100% Perpendiculares:</strong> El cabezal articulado absorbe la conicidad natural y la desvía hacia el material de descarte (chatarra).
                     </p>
                   </div>
 
@@ -969,14 +969,14 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                   </div>
 
                   <div className="text-xs font-mono text-[#64748B]">
-                    Algoritmo: Dynamic XD / Tilt-A-Jet calcula la inclinación polar A/C a 1.000 Hz en lazo cerrado.
+                    Algoritmo Cinemático: Calcula la inclinación polar en ejes A y C a 1.000 Hz en lazo cerrado.
                   </div>
                 </div>
               </div>
 
               {/* Bottom bar */}
               <div className="text-xs font-mono text-[#64748B] flex justify-between items-center border-t border-[#E2E8F0] pt-3">
-                <span>Look-Ahead CNC: Regulación continua de avance para eliminar el desvío en vértices a 90°</span>
+                <span>Control Predictivo CNC: Regulación anticipada de avance para eliminar el desvío en vértices a 90°</span>
                 <span className="text-[#EA580C] font-bold">Tolerancia dimensional: ±0,05 mm</span>
               </div>
             </div>
@@ -1017,7 +1017,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     </div>
                     <div className="flex justify-between font-mono">
                       <span>Capa Frágil:</span>
-                      <strong className="text-emerald-700">Cero Alpha-Case</strong>
+                      <strong className="text-emerald-700">Sin Capa Frágil (Fase Alfa)</strong>
                     </div>
                   </div>
                   <p className="text-xs text-[#334155] pt-2 border-t border-[#E2E8F0]">
@@ -1042,7 +1042,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     </div>
                   </div>
                   <p className="text-xs text-[#334155] pt-2 border-t border-[#E2E8F0]">
-                    <strong className="text-[#0F172A]">Busbars y Baterías VE:</strong> El haz de agua corta sin reflejos y no des-templa el temple T6.
+                    <strong className="text-[#0F172A]">Barras Colectoras y Baterías VE:</strong> El haz de agua corta sin reflejos y no des-templa el temple T6.
                   </p>
                 </div>
 
@@ -1070,7 +1070,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
 
               {/* Bottom Takeaway */}
               <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74] text-xs font-mono text-[#9A3412] flex justify-between items-center">
-                <span>Composites y Sándwiches: Fibra de carbono, kevlar y caucho sin delaminación mediante piercing suave UltraPierce.</span>
+                <span>Composites y Sándwiches: Fibra de carbono, kevlar y caucho sin delaminación mediante perforación suave asistida por vacío.</span>
                 <span className="text-[#EA580C] font-bold">1 Única Máquina para Todo</span>
               </div>
             </div>
@@ -1139,7 +1139,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       </span>
                     </div>
                     <p className="text-xs text-[#475569]">
-                      {selectedQuality === 1 && 'Máxima velocidad de avance con estrías visibles en el 60% inferior. Para scrap o corte preliminar.'}
+                      {selectedQuality === 1 && 'Máxima velocidad de avance con estrías visibles en el 60% inferior. Para descarte o corte preliminar de separación rápida.'}
                       {selectedQuality === 2 && 'Estrías leves. Excelente balance para piezas que irán directamente unidas por soldadura.'}
                       {selectedQuality === 3 && 'Acabado mate parejo sin rebaba inferior. Estándar para bridas y soportes mecatrónicos.'}
                       {selectedQuality === 4 && 'Alta calidad visual y dimensional sin estriado detectable al tacto. Para engranajes y piezas de precisión.'}
@@ -1152,28 +1152,28 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 <div className="lg:col-span-6 space-y-3 font-sans">
                   <div className="p-3.5 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0]">
                     <span className="text-xs font-mono font-bold text-[#EA580C] uppercase block">
-                      Defecto 1: Desviación en Esquinas (Jet Lag)
+                      Defecto 1: Desviación y Retardo del Chorro en Esquinas
                     </span>
                     <p className="text-xs text-[#334155] mt-1">
-                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Algoritmo CAM Corner Pass con Look-Ahead que desacelera e inclina el cabezal para verticalizar la columna de agua.
+                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Algoritmo CAM de compensación en esquinas con control predictivo que desacelera e inclina el cabezal para verticalizar el chorro.
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0]">
                     <span className="text-xs font-mono font-bold text-[#EA580C] uppercase block">
-                      Defecto 2: Redondeo Superior (Roll-Over)
+                      Defecto 2: Redondeo del Borde Superior
                     </span>
                     <p className="text-xs text-[#334155] mt-1">
-                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Palpador capacitivo Terrain Follower mantiene la distancia boquilla-chapa (SOD) fija en 1,5 mm.
+                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Palpador capacitivo seguidor de terreno mantiene la distancia entre boquilla y chapa en 1,5 mm.
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0]">
                     <span className="text-xs font-mono font-bold text-[#EA580C] uppercase block">
-                      Defecto 3: Cráter de Perforación (Piercing Blowout)
+                      Defecto 3: Cráter de Perforación Inicial
                     </span>
                     <p className="text-xs text-[#334155] mt-1">
-                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Perforación dinámica UltraPierce con entrada tangencial Lead-in fuera del contorno útil.
+                      <strong className="text-[#0F172A]">Solución Mecatrónica:</strong> Perforación dinámica asistida con entrada tangencial fuera del contorno útil.
                     </p>
                   </div>
                 </div>
@@ -1215,7 +1215,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     <span className="text-xs font-mono font-bold text-[#64748B] block">PILAR 01</span>
                     <h3 className="text-lg font-bold text-[#0F172A] mt-1">Telemetría IoT</h3>
                     <div className="text-xl font-bold text-[#0F172A] font-mono mt-2">
-                      Cloud Sensor
+                      Telemetría en la Nube
                     </div>
                   </div>
                   <p className="text-sm text-[#475569] mt-4">
@@ -1227,7 +1227,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 <div className="p-5 rounded-xl bg-[#F8F9FA] border-t-4 border-[#EA580C] border-x border-b border-[#E2E8F0] flex flex-col justify-between">
                   <div>
                     <span className="text-xs font-mono font-bold text-[#EA580C] block">PILAR 02</span>
-                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Nesting Algorítmico</h3>
+                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Anidamiento (Nesting)</h3>
                     <div className="text-xl font-bold text-[#EA580C] font-mono mt-2">
                       &gt;92% Rendimiento
                     </div>
@@ -1241,9 +1241,9 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 <div className="p-5 rounded-xl bg-[#F8F9FA] border-t-4 border-[#0F172A] border-x border-b border-[#E2E8F0] flex flex-col justify-between">
                   <div>
                     <span className="text-xs font-mono font-bold text-[#64748B] block">PILAR 03</span>
-                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Lights-Out Cutting</h3>
+                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Manufactura Desatendida</h3>
                     <div className="text-xl font-bold text-[#0F172A] font-mono mt-2">
-                      100% Desatendido
+                      100% Autónoma
                     </div>
                   </div>
                   <p className="text-sm text-[#475569] mt-4">

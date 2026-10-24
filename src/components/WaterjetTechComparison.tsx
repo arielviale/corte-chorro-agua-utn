@@ -16,7 +16,7 @@ import { WATERJET_VARIANTS, INTER_TECH_COMPARISON, SO_WHAT_SYNTHESIS } from '../
 
 export default function WaterjetTechComparison() {
   const [selectedVariantName, setSelectedVariantName] = useState<string>(
-    'AWJ con Cabezal 5 Ejes (Dynamic XD / Tilt-A-Jet)'
+    'AWJ con Cabezal 5 Ejes (Cinemática Multieje)'
   );
 
   const selectedVariant = WATERJET_VARIANTS.find((v) => v.name === selectedVariantName) || WATERJET_VARIANTS[0];
@@ -38,7 +38,7 @@ export default function WaterjetTechComparison() {
             Comparativa Técnica de Configuraciones de Chorro de Agua
           </h2>
           <p className="text-xs text-slate-400 mt-1">
-            Análisis de subsistemas del proceso: AWJ vs PWJ, Cinemática de 5 Ejes vs 3 Ejes, y Bombas Intensificadoras vs Servobombas Direct Drive.
+            Análisis de subsistemas del proceso: Chorro Abrasivo (AWJ) vs Chorro Puro (PWJ), Cinemática de 5 Ejes vs 3 Ejes, y Bombas Intensificadoras vs Servobombas de Accionamiento Directo.
           </p>
         </div>
       </div>
@@ -350,7 +350,7 @@ export default function WaterjetTechComparison() {
             Conclusión de Ingeniería Mecatrónica en Chorro de Agua:
           </strong>
           <p className="leading-relaxed">
-            La integración de la cinemática de 5 ejes (como en los sistemas <strong>Flow Dynamic XD</strong> o <strong>OMAX Tilt-A-Jet</strong>) convierte al corte por chorro de agua abrasivo en un proceso de mecanizado de precisión final. Al inclinar la boquilla unos pocos grados para anular la conicidad natural en la pieza y desacelerar anticipadamente en las esquinas mediante algoritmos <em>Look-Ahead</em> para compensar el retardo de cola (<em>Jet Lag</em>), se eliminan por completo las operaciones secundarias de fresado, conservando las propiedades metalúrgicas intactas en frío (<strong>ZAC = 0,00 mm</strong>).
+            La integración de la cinemática de 5 ejes convierte al corte por chorro de agua abrasivo en un proceso de mecanizado de precisión final. Al inclinar la boquilla unos pocos grados para anular la conicidad natural en la pieza y desacelerar anticipadamente en las esquinas mediante algoritmos de control predictivo para compensar el retardo angular del chorro, se eliminan por completo las operaciones secundarias de fresado, conservando las propiedades metalúrgicas intactas en frío (<strong>ZAC = 0,00 mm</strong>).
           </p>
         </div>
       </div>
