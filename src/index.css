@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8F9FA] text-[#0F172A] antialiased overflow-x-hidden selection:bg-[#EA580C] selection:text-white;
+  }
+}
+
+/* Precision Swiss Engineering Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Subtle Technical Drawing Grid (Light) */
+.bg-technical-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+/* Precision Industrial Highlights */
+.border-industrial-orange {
+  border-color: #EA580C;
+}
+
+.text-industrial-orange {
+  color: #EA580C;
+}
+
+/* Print Styles for PDF Academic Report Generation */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10.5pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hide screen elements */
+  header,
+  footer,
+  .no-print,
+  .print-hide,
+  .bg-grid-pattern,
+  .bg-dot-pattern,
+  .screen-only {
+    display: none !important;
+  }
+
+  /* Ensure all academic section contents are forced visible */
+  .academic-section-content,
+  .academic-section-body {
+    display: block !important;
+  }
+
+  /* Container adjustments for clean paper display */
+  .academic-main-card {
+    background: #ffffff !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Reset all dark backgrounds */
+  div, section, article {
+    box-shadow: none !important;
+  }
+
+  .bg-\[\#0B0F19\],
+  .bg-\[\#060911\],
+  .bg-slate-950,
+  .bg-slate-900,
+  .bg-slate-900\/90,
+  .bg-slate-950\/70,
+  .bg-slate-950\/80,
+  .bg-cyan-950\/40,
+  .bg-cyan-950\/50,
+  .bg-cyan-950\/60,
+  .bg-cyan-950\/80,
+  .bg-emerald-950\/60,
+  .bg-amber-950\/60 {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Text colors for paper readability */
+  .text-white,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400 {
+    color: #1e293b !important;
+  }
+
+  .text-cyan-400,
+  .text-cyan-300 {
+    color: #0284c7 !important;
+    font-weight: 700 !important;
+  }
+
+  .text-amber-400,
+  .text-amber-300 {
+    color: #b45309 !important;
+    font-weight: 700 !important;
+  }
+
+  .text-emerald-400,
+  .text-emerald-300 {
+    color: #047857 !important;
+    font-weight: 700 !important;
+  }
+
+  .text-purple-300,
+  .text-purple-400 {
+    color: #6b21a8 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Tables formatting for print */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 8px 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  th, td {
+    border: 1px solid #94a3b8 !important;
+    padding: 5px 8px !important;
+    color: #0f172a !important;
+    font-size: 8.5pt !important;
+    background-color: transparent !important;
+  }
+
+  th {
+    background-color: #e2e8f0 !important;
+    font-weight: bold !important;
+    color: #0f172a !important;
+  }
+
+  /* Page breaks */
+  .page-break-after-always {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .page-break-before-always {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .page-break-inside-avoid,
+  .academic-accordion-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 12px !important;
+  }
+}
+
