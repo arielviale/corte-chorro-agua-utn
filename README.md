@@ -23,7 +23,7 @@
 
 ## 🎯 Visión General del Proyecto
 
-Esta plataforma interactiva y slide deck técnico fue desarrollada para la defensa académica del proyecto de graduación en **Mecatrónica**. El sistema aborda en profundidad el proceso de **Corte por Chorro de Agua Abrasivo (AWJ - *Abrasive Waterjet Cutting*)**, analizando su comportamiento fluidodinámico, modelado matemático de sangría (*Kerf*), compensación cinemática multieje y su convergencia con los pilares de la **Industria 4.0**.
+Esta plataforma interactiva y slide deck técnico fue desarrollada para la defensa académica en **Mecatrónica**. El sistema aborda en profundidad el proceso de **Corte por Chorro de Agua Abrasivo (AWJ - *Abrasive Waterjet Cutting*)**, analizando su comportamiento fluidodinámico, modelado matemático de sangría (*Kerf*), compensación cinemática multieje y su convergencia con los pilares de la **Industria 4.0**.
 
 Frente a los métodos de separación térmicos tradicionales (Láser de Fibra, Plasma de Alta Definición y Oxicorte), el corte por chorro de agua abrasivo constituye el único proceso de separación que opera bajo un régimen **100% en frío por micro-erosión mecánica**, preservando inalterada la microestructura cristalina de aleaciones críticas sin crear tensiones residuales ni bordes martensíticos.
 

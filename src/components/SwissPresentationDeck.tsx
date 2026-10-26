@@ -19,7 +19,9 @@ import {
   ShieldCheck,
   Zap,
   Activity,
-  Box
+  Box,
+  Eye,
+  X
 } from 'lucide-react';
 import SplineScene from './SplineScene';
 import WaterjetHead3D from './WaterjetHead3D';
@@ -40,6 +42,18 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
 
   // 3D Spline integration on Title Slide
   const [showCover3D, setShowCover3D] = useState<boolean>(false);
+
+  // Real cutting photography inspection modal state
+  const [previewImage, setPreviewImage] = useState<{
+    src: string;
+    title: string;
+    subtitle: string;
+    badge: string;
+    specs: { label: string; value: string }[];
+  } | null>(null);
+
+  // Slide 2 (Slide ID 3) view mode toggle: Infographic vs 3-Column Cards
+  const [slide2ViewMode, setSlide2ViewMode] = useState<'infographic' | 'cards'>('infographic');
 
   // Slide 6 interactive taper compensation toggle
   const [isTaperCompActive, setIsTaperCompActive] = useState<boolean>(true);
@@ -94,6 +108,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
         setCurrentSlide(totalSlides);
       } else if (e.key === 'Escape') {
         setShowDrawer(false);
+        setPreviewImage(null);
       }
     };
 
@@ -409,14 +424,37 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 </div>
               </div>
 
-              {/* Bottom Takeaway Fragment */}
-              <div className="p-4 rounded-xl bg-[#FFF7ED] border border-[#FDBA74] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                <div className="text-sm text-[#9A3412] font-medium">
-                  <strong className="font-bold text-[#0F172A]">Mecanismo Dual:</strong> Micro-corte por cizalladura en metales dúctiles y micro-fractura en materiales frágiles.
+              {/* Bottom Takeaway Fragment with Real Photo Preview Button */}
+              <div className="p-4 rounded-xl bg-[#FFF7ED] border border-[#FDBA74] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div className="text-sm text-[#9A3412] font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#EA580C] shrink-0" />
+                  <span>
+                    <strong className="font-bold text-[#0F172A]">Mecanismo Dual:</strong> Micro-corte por cizalladura en metales dúctiles y micro-fractura en materiales frágiles.
+                  </span>
                 </div>
-                <span className="text-xs font-mono text-[#EA580C] font-bold">
-                  Barton Garnet Malla 80 • 1,1 M part/s
-                </span>
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="text-xs font-mono text-[#EA580C] font-bold hidden md:inline">
+                    Barton Garnet Malla 80 • 1,1 M part/s
+                  </span>
+                  <button
+                    onClick={() => setPreviewImage({
+                      src: '/images/awj_metal_cutting.jpg',
+                      title: 'Operación Real AWJ: Placa de Acero Inoxidable 80 mm',
+                      subtitle: 'Registro fotográfico de celda industrial con chorro supersónico Mach 3',
+                      badge: 'Fotografía Industrial Real',
+                      specs: [
+                        { label: 'Espesor Macizo', value: '80 mm Acero Inoxidable' },
+                        { label: 'Presión Hidráulica', value: '6.480 bar (94.000 PSI)' },
+                        { label: 'Velocidad Chorro', value: '1.050 m/s (Mach 3.06)' },
+                        { label: 'Temperatura Pieza', value: 'Ambiente (ZAC = 0,00 mm)' }
+                      ]
+                    })}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#EA580C] text-[#EA580C] hover:bg-[#EA580C] hover:text-white transition-colors text-xs font-mono font-bold shadow-sm"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Ver Registro Real</span>
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -426,110 +464,289 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           {/* ========================================================================= */}
           {currentSlide === 3 && (
             <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
-              {/* Header */}
-              <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
+              {/* Header with View Switcher */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#E2E8F0] pb-4 gap-3">
                 <div>
                   <span className="text-xs font-mono font-bold tracking-wider text-[#EA580C] uppercase">
                     02 • Génesis y Evolución Operativa
                   </span>
-                  <h2 className="text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F172A] tracking-tight mt-1 font-display">
                     Chorro de Agua Pura (PWJ) vs Chorro Abrasivo (AWJ 4.0)
                   </h2>
                 </div>
-                <span className="text-xs font-mono text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded">
-                  Expositor: Diego
-                </span>
-              </div>
 
-              {/* 3-Column Feature Cards (Layout B) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto py-4">
-                {/* Column 1: PWJ */}
-                <div className="p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-4">
-                  <div className="border-b border-[#E2E8F0] pb-3">
-                    <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Fundamento Hidrodinámico</span>
-                    <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Agua Pura (PWJ)</h3>
+                <div className="flex items-center gap-3">
+                  {/* View Mode Switcher */}
+                  <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-xl border border-[#CBD5E1]">
+                    <button
+                      onClick={() => setSlide2ViewMode('infographic')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                        slide2ViewMode === 'infographic'
+                          ? 'bg-[#EA580C] text-white shadow-sm'
+                          : 'text-[#475569] hover:text-[#0F172A]'
+                      }`}
+                    >
+                      <Layers className="w-3.5 h-3.5" />
+                      <span>Esquema Infográfico</span>
+                    </button>
+                    <button
+                      onClick={() => setSlide2ViewMode('cards')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                        slide2ViewMode === 'cards'
+                          ? 'bg-[#0F172A] text-white shadow-sm'
+                          : 'text-[#475569] hover:text-[#0F172A]'
+                      }`}
+                    >
+                      <Sliders className="w-3.5 h-3.5" />
+                      <span>Fichas y Métricas</span>
+                    </button>
                   </div>
-                  <div className="space-y-2 text-sm text-[#475569]">
-                    <div className="flex justify-between font-mono">
-                      <span>Orificio Joya:</span>
-                      <strong>Ø 0,08 a 0,20 mm</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Carga Abrasiva:</span>
-                      <strong className="text-emerald-700">0,00 kg/min (Cero)</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Velocidad Avance:</span>
-                      <strong>10 a 50 m/min</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Ancho de Sangría:</span>
-                      <strong>0,10 a 0,25 mm</strong>
-                    </div>
-                  </div>
-                  <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
-                    <strong className="text-[#0F172A]">Materiales Blandos:</strong> Asepsia total (alimentos, goma, espumas). El agua pura rebota en metales duros.
-                  </p>
-                </div>
 
-                {/* Column 2: AWJ */}
-                <div className="p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-4">
-                  <div className="border-b border-[#E2E8F0] pb-3">
-                    <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Micro-Erosión Supersónica</span>
-                    <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Chorro Abrasivo (AWJ)</h3>
-                  </div>
-                  <div className="space-y-2 text-sm text-[#475569]">
-                    <div className="flex justify-between font-mono">
-                      <span>Tubo ROCTEC:</span>
-                      <strong>Ø 0,76 a 1,02 mm</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Flujo Granate:</span>
-                      <strong>1,1 M part/s (Malla 80)</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Espesor Macizo:</span>
-                      <strong className="text-emerald-700">&gt;250 mm metales</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span>Aporte Térmico:</span>
-                      <strong className="text-[#EA580C]">ZAC = 0,00 mm</strong>
-                    </div>
-                  </div>
-                  <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
-                    <strong className="text-[#0F172A]">Salto Cuántico:</strong> El agua acelera al mineral a Mach 3, capaz de cortar aceros, titanio y blindajes.
-                  </p>
-                </div>
-
-                {/* Column 3: Justificación del Proyecto UTN */}
-                <div className="p-6 rounded-xl bg-[#FFF7ED] border-2 border-[#EA580C] space-y-4 shadow-swiss">
-                  <div className="border-b border-[#FDBA74] pb-3">
-                    <span className="text-xs font-mono font-bold text-[#EA580C] uppercase">Justificación Mecatrónica</span>
-                    <h3 className="text-xl font-black text-[#0F172A] mt-0.5">¿Por Qué AWJ 4.0?</h3>
-                  </div>
-                  <div className="space-y-2 text-sm text-[#9A3412]">
-                    <div className="flex justify-between font-mono">
-                      <span className="text-[#0F172A]">Herencia Total:</span>
-                      <strong className="text-[#0F172A]">AWJ contiene al PWJ</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span className="text-[#0F172A]">Reto 5 Ejes:</span>
-                      <strong className="text-[#EA580C]">Conicidad θ = 0,00°</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span className="text-[#0F172A]">Industria Real:</span>
-                      <strong className="text-[#0F172A]">Sector Metalmecánico</strong>
-                    </div>
-                    <div className="flex justify-between font-mono">
-                      <span className="text-[#0F172A]">Ecosistema 4.0:</span>
-                      <strong className="text-[#0F172A]">IoT y Lazo Cerrado</strong>
-                    </div>
-                  </div>
-                  <p className="text-xs text-[#9A3412] pt-2 border-t border-[#FDBA74] font-medium">
-                    <strong className="text-[#0F172A]">Defensa ante Tribunal:</strong> Partimos del principio hidrodinámico del PWJ, pero el AWJ 4.0 es el estado del arte exigido en ingeniería mecatrónica.
-                  </p>
+                  <span className="text-xs font-mono text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded hidden lg:inline">
+                    Expositor: Diego
+                  </span>
                 </div>
               </div>
+
+              {/* VIEW 1: HERO INFOGRAPHIC COMPARISON */}
+              {slide2ViewMode === 'infographic' ? (
+                <div className="my-auto py-2 flex flex-col items-center gap-3">
+                  <div 
+                    onClick={() => setPreviewImage({
+                      src: '/images/corte_agua_vs_abrasivo.jpg',
+                      title: 'Dos Tipos Principales de Proceso de Corte por Chorro de Agua',
+                      subtitle: 'Comparativa de boquilla hidrodinámica, mecanismo de corte y materiales ideales',
+                      badge: 'Infografía Oficial de Corte',
+                      specs: [
+                        { label: 'Corte Agua Pura (PWJ)', value: 'Agua pura a 6.000 bar • Orificio Joya Ø 0,12 mm' },
+                        { label: 'Corte Abrasivo (AWJ)', value: 'Agua + Granate Almandino Malla 80 a Mach 3.06' },
+                        { label: 'Sustratos PWJ', value: 'Espumas, gomas, textiles, cuero, alimentos, papel' },
+                        { label: 'Sustratos AWJ', value: 'Aceros, titanio, vidrio, cerámicas, blindajes macizos' }
+                      ]
+                    })}
+                    className="relative rounded-2xl overflow-hidden border-2 border-[#CBD5E1] shadow-swiss hover:shadow-xl transition-all group cursor-pointer bg-white max-h-[58vh] flex items-center justify-center w-full max-w-5xl"
+                  >
+                    <img 
+                      src="/images/corte_agua_vs_abrasivo.jpg" 
+                      alt="Dos tipos principales de proceso de corte por chorro de agua: Agua Pura vs Con Abrasivo" 
+                      className="w-full h-auto max-h-[58vh] object-contain group-hover:scale-[1.01] transition-transform duration-300 select-none"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center pointer-events-none">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/85 backdrop-blur-sm text-white px-4 py-2 rounded-xl flex items-center gap-2 text-xs font-mono font-bold shadow-xl border border-white/20">
+                        <Maximize2 className="w-4 h-4 text-[#EA580C]" />
+                        <span>Hacer clic para ampliar en alta resolución [HD]</span>
+                      </div>
+                    </div>
+                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm border border-[#CBD5E1] px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-[#0F172A] shadow-sm flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5 text-[#EA580C]" />
+                      <span>Zoom Interactivo</span>
+                    </div>
+                  </div>
+
+                  <div className="w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-[#64748B] px-2 gap-2">
+                    <span className="flex items-center gap-1.5 text-[#0F172A] font-semibold">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      PWJ: Corte aséptico sin residuo mineral • AWJ: Micro-corte ciberfísico en metales duros (&gt;250 mm)
+                    </span>
+                    <button
+                      onClick={() => setSlide2ViewMode('cards')}
+                      className="text-[#EA580C] hover:underline font-bold flex items-center gap-1"
+                    >
+                      <span>Ver parámetros numéricos detallados</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* VIEW 2: 3-COLUMN METRIC CARDS */
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto py-4">
+                  {/* Column 1: PWJ */}
+                  <div className="p-5 sm:p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-3.5 flex flex-col justify-between">
+                    <div>
+                      <div className="border-b border-[#E2E8F0] pb-2.5 mb-3">
+                        <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Fundamento Hidrodinámico</span>
+                        <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Agua Pura (PWJ)</h3>
+                      </div>
+
+                      {/* Real Photo Embed 1: PWJ */}
+                      <div 
+                        onClick={() => setPreviewImage({
+                          src: '/images/pwj_pure_waterjet.jpg',
+                          title: 'Corte por Chorro de Agua Pura (PWJ)',
+                          subtitle: 'Micro-orificio joya a 6.000 bar en celda experimental',
+                          badge: 'PWJ Real • Sin Abrasivo',
+                          specs: [
+                            { label: 'Presión Hidráulica', value: '6.000 bar (87.000 PSI)' },
+                            { label: 'Diámetro Chorro', value: 'Ø 0,12 mm' },
+                            { label: 'Aporte Térmico', value: 'ZAC = 0,00 mm' },
+                            { label: 'Material Cortado', value: 'Polímeros / Goma / Alimentos' }
+                          ]
+                        })}
+                        className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
+                      >
+                        <img 
+                          src="/images/pwj_pure_waterjet.jpg" 
+                          alt="Chorro de Agua Pura (PWJ)" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="absolute bottom-1.5 left-2 text-[10px] font-mono font-bold text-white bg-slate-900/90 px-2 py-0.5 rounded border border-white/20">
+                          FOTO REAL • Ø 0,12 mm
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 text-sm text-[#475569]">
+                        <div className="flex justify-between font-mono">
+                          <span>Orificio Joya:</span>
+                          <strong>Ø 0,08 a 0,20 mm</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Carga Abrasiva:</span>
+                          <strong className="text-emerald-700">0,00 kg/min (Cero)</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Velocidad Avance:</span>
+                          <strong>10 a 50 m/min</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Ancho de Sangría:</span>
+                          <strong>0,10 a 0,25 mm</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
+                      <strong className="text-[#0F172A]">Materiales Blandos:</strong> Asepsia total (alimentos, goma, espumas). El agua pura rebota en metales duros.
+                    </p>
+                  </div>
+
+                  {/* Column 2: AWJ */}
+                  <div className="p-5 sm:p-6 rounded-xl bg-[#F8F9FA] border border-[#E2E8F0] space-y-3.5 flex flex-col justify-between">
+                    <div>
+                      <div className="border-b border-[#E2E8F0] pb-2.5 mb-3">
+                        <span className="text-xs font-mono font-semibold text-[#64748B] uppercase">Micro-Erosión Supersónica</span>
+                        <h3 className="text-xl font-bold text-[#0F172A] mt-0.5">Chorro Abrasivo (AWJ)</h3>
+                      </div>
+
+                      {/* Real Photo Embed 2: AWJ */}
+                      <div 
+                        onClick={() => setPreviewImage({
+                          src: '/images/awj_metal_cutting.jpg',
+                          title: 'Corte Abrasivo Supersónico AWJ 4.0',
+                          subtitle: 'Cabezal industrial CNC cortando bloque macizo de acero de 80 mm',
+                          badge: 'AWJ Real • Mach 3.06',
+                          specs: [
+                            { label: 'Presión Hidráulica', value: '6.480 bar (HyperJet)' },
+                            { label: 'Velocidad de Impacto', value: '1.050 m/s (Mach 3.06)' },
+                            { label: 'Tubo Mezclador', value: 'ROCTEC 500 (Ø 0,76 mm)' },
+                            { label: 'Abrasivo', value: 'Granate Almandino Barton Malla 80' }
+                          ]
+                        })}
+                        className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
+                      >
+                        <img 
+                          src="/images/awj_metal_cutting.jpg" 
+                          alt="Chorro de Agua Abrasivo (AWJ)" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="absolute bottom-1.5 left-2 text-[10px] font-mono font-bold text-white bg-[#EA580C] px-2 py-0.5 rounded border border-orange-300/30">
+                          FOTO REAL • 80 mm Acero
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 text-sm text-[#475569]">
+                        <div className="flex justify-between font-mono">
+                          <span>Tubo ROCTEC:</span>
+                          <strong>Ø 0,76 a 1,02 mm</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Flujo Granate:</span>
+                          <strong>1,1 M part/s (Malla 80)</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Espesor Macizo:</span>
+                          <strong className="text-emerald-700">&gt;250 mm metales</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span>Aporte Térmico:</span>
+                          <strong className="text-[#EA580C]">ZAC = 0,00 mm</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-[#64748B] pt-2 border-t border-[#E2E8F0]">
+                      <strong className="text-[#0F172A]">Salto Cuántico:</strong> El agua acelera al mineral a Mach 3, capaz de cortar aceros, titanio y blindajes.
+                    </p>
+                  </div>
+
+                  {/* Column 3: Justificación del Proyecto UTN */}
+                  <div className="p-5 sm:p-6 rounded-xl bg-[#FFF7ED] border-2 border-[#EA580C] space-y-3.5 shadow-swiss flex flex-col justify-between">
+                    <div>
+                      <div className="border-b border-[#FDBA74] pb-2.5 mb-3">
+                        <span className="text-xs font-mono font-bold text-[#EA580C] uppercase">Justificación Mecatrónica</span>
+                        <h3 className="text-xl font-black text-[#0F172A] mt-0.5">¿Por Qué AWJ 4.0?</h3>
+                      </div>
+
+                      {/* Interactive Thumbnail trigger for 5-Axis Real Photo */}
+                      <div 
+                        onClick={() => setPreviewImage({
+                          src: '/images/awj_5axis_tilt.jpg',
+                          title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
+                          subtitle: 'Compensación mecatrónica activa de conicidad en pieza aeroespacial',
+                          badge: 'Reto Mecatrónico UTN',
+                          specs: [
+                            { label: 'Ejes Cinemáticos', value: 'X, Y, Z, A, C (Interpolados)' },
+                            { label: 'Conicidad Lograda', value: 'θ = 0,00° (Cero error)' },
+                            { label: 'Control CNC', value: 'Lazo Cerrado IoT / Beckhoff' },
+                            { label: 'Nivel Tecnológico', value: 'Industria 4.0 Cyber-Physical' }
+                          ]
+                        })}
+                        className="relative rounded-lg overflow-hidden border border-[#FDBA74] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
+                      >
+                        <img 
+                          src="/images/awj_5axis_tilt.jpg" 
+                          alt="Cinemática 5 Ejes AWJ" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="absolute bottom-1.5 left-2 text-[10px] font-mono font-bold text-white bg-black/80 px-2 py-0.5 rounded border border-orange-400/40">
+                          RETO: CABEZAL 5 EJES
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 text-sm text-[#9A3412]">
+                        <div className="flex justify-between font-mono">
+                          <span className="text-[#0F172A]">Herencia Total:</span>
+                          <strong className="text-[#0F172A]">AWJ contiene al PWJ</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span className="text-[#0F172A]">Reto 5 Ejes:</span>
+                          <strong className="text-[#EA580C]">Conicidad θ = 0,00°</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span className="text-[#0F172A]">Industria Real:</span>
+                          <strong className="text-[#0F172A]">Sector Metalmecánico</strong>
+                        </div>
+                        <div className="flex justify-between font-mono">
+                          <span className="text-[#0F172A]">Ecosistema 4.0:</span>
+                          <strong className="text-[#0F172A]">IoT y Lazo Cerrado</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-[#9A3412] pt-2 border-t border-[#FDBA74] font-medium">
+                      <strong className="text-[#0F172A]">Defensa ante Tribunal:</strong> Partimos del principio del PWJ, pero el AWJ 4.0 es el estado del arte exigido en mecatrónica.
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Bottom Takeaway */}
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -851,6 +1068,43 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 </div>
               </div>
 
+              {/* Metallurgical Macro-Evidence Banner */}
+              <div 
+                onClick={() => setPreviewImage({
+                  src: '/images/waterjet_zac_metallurgy.jpg',
+                  title: 'Evidencia Metalográfica: ZAC 0,00 mm vs Corte Térmico',
+                  subtitle: 'Ensayo macroscópico y microscopía óptica de bordes de corte en placa de acero 25 mm',
+                  badge: 'Ensayo Metalúrgico UTN',
+                  specs: [
+                    { label: 'Corte AWJ (Chorro)', value: 'ZAC = 0,00 mm • Microestructura intacta' },
+                    { label: 'Corte Térmico (Plasma)', value: 'ZAC > 3,5 mm • Fusión y microfisuras' },
+                    { label: 'Rugosidad Superficial', value: 'Ra 1,6 µm (AWJ Q5) vs Ra 12,5 µm' },
+                    { label: 'Tensiones Residuales', value: 'Nulas en AWJ (Propiedades intactas)' }
+                  ]
+                })}
+                className="p-3 rounded-xl bg-[#F8F9FA] border border-[#CBD5E1] flex flex-col sm:flex-row items-center gap-3.5 cursor-pointer hover:border-[#EA580C] hover:bg-white transition-all group shadow-sm"
+              >
+                <div className="w-full sm:w-44 h-16 rounded-lg overflow-hidden border border-[#E2E8F0] relative shrink-0 bg-slate-900">
+                  <img src="/images/waterjet_zac_metallurgy.jpg" alt="Ensayo Metalográfico ZAC" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <span className="absolute bottom-1 left-1 text-[9px] font-mono bg-black/80 text-white px-1.5 py-0.5 rounded font-bold">
+                    PROBETA ZAC REAL
+                  </span>
+                </div>
+                <div className="flex-1 text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono font-bold text-[#EA580C] uppercase text-[11px]">Evidencia Experimental en Laboratorio:</span>
+                    <span className="bg-emerald-100 text-emerald-800 font-mono text-[10px] px-1.5 py-0.2 rounded font-bold">ZAC = 0,00 mm</span>
+                  </div>
+                  <p className="text-[#334155] mt-0.5 leading-snug">
+                    Micrografía óptica de probeta: El AWJ preserva el 100% de la red de granos sin descarburación periférica ni martensita templada (defensa académica ante tribunal).
+                  </p>
+                </div>
+                <div className="shrink-0 flex items-center gap-1 text-xs font-mono font-bold text-[#EA580C] group-hover:translate-x-1 transition-transform">
+                  <span>Inspeccionar Ensayo</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+
               {/* Bottom Takeaway */}
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] flex justify-between items-center">
                 <span>Criterio Técnico: Si el costo de la alteración térmica supera el costo operativo del granate → <strong>AWJ es insustituible</strong>.</span>
@@ -939,30 +1193,66 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                   </div>
 
                   {/* Visual Simulation Representation */}
-                  <div className="bg-white p-6 rounded-lg border border-[#E2E8F0] flex flex-col items-center justify-center min-h-[160px] text-center space-y-3">
+                  <div className="bg-white p-4 rounded-lg border border-[#E2E8F0] flex flex-col justify-center text-center space-y-3">
                     {isTaperCompActive ? (
-                      <div className="space-y-2">
-                        <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-300 px-3 py-1 rounded text-xs font-mono font-bold">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          COMPENSACIÓN DINÁMICA ACTIVADA (5 EJES)
+                      <div className="space-y-3">
+                        <div 
+                          onClick={() => setPreviewImage({
+                            src: '/images/awj_5axis_tilt.jpg',
+                            title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
+                            subtitle: 'Articulación mecatrónica activa para anular la conicidad y el arrastre de estela',
+                            badge: 'Cinemática 5 Ejes en Vivo',
+                            specs: [
+                              { label: 'Ejes Articulados', value: 'X, Y, Z + A (inclinación) y C (rotación)' },
+                              { label: 'Rango Inclinación', value: 'Hasta ±60° en dinámica continua' },
+                              { label: 'Conicidad θ', value: '0,00° (Paredes 100% perpendiculares)' },
+                              { label: 'Control CNC', value: 'Interpolación cinemática continua' }
+                            ]
+                          })}
+                          className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-44 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
+                        >
+                          <img 
+                            src="/images/awj_5axis_tilt.jpg" 
+                            alt="Cabezal 5 Ejes en Acción" 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Maximize2 className="w-3.5 h-3.5" />
+                          </div>
+                          <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end text-white text-left">
+                            <div>
+                              <span className="text-[10px] font-mono font-bold bg-[#EA580C] px-2 py-0.5 rounded inline-block mb-1">
+                                OMAX TILT-A-JET DYNAMIC XD • REGISTRO REAL
+                              </span>
+                              <p className="text-xs font-medium drop-shadow-sm">Cabezal 5 ejes inclinándose para anular la conicidad natural en pieza aeroespacial.</p>
+                            </div>
+                            <span className="text-xs font-mono font-bold text-emerald-400 bg-black/70 px-2 py-0.5 rounded border border-emerald-400/30 shrink-0">
+                              θ = 0,00°
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-sm text-[#1E293B] max-w-md mx-auto">
-                          El cabezal se inclina dinámicamente según el espesor y la velocidad de avance. La cara útil queda a <strong className="text-[#0F172A]">90,00° exactos</strong>.
-                        </p>
-                        <div className="font-mono text-xs text-[#EA580C] font-bold">
-                          Conicidad = 0,00° • Retardo del chorro = 0,00 mm en la arista útil
+
+                        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 bg-[#F8F9FA] p-2.5 rounded-lg border border-[#E2E8F0] text-xs">
+                          <div className="inline-flex items-center gap-1.5 text-emerald-800 font-mono font-bold">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                            <span>COMPENSACIÓN DINÁMICA ACTIVADA</span>
+                          </div>
+                          <span className="font-mono text-[#EA580C] font-bold">
+                            Conicidad = 0,00° • Arista 90° exacta
+                          </span>
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-2">
+                      <div className="space-y-3 py-6">
                         <div className="inline-flex items-center gap-2 bg-rose-50 text-rose-800 border border-rose-300 px-3 py-1 rounded text-xs font-mono font-bold">
                           CONICIDAD NATURAL EN "V" (CORTE 2D CONVENCIONAL)
                         </div>
                         <p className="text-sm text-[#64748B] max-w-md mx-auto">
-                          Al perder energía cinética en el fondo de la sangría, el chorro se ensancha produciendo un desvío de 1° a 3° en la pared.
+                          Al perder energía cinética en el fondo de la sangría, el chorro se ensancha produciendo un desvío de 1° a 3° en la pared útil.
                         </p>
                         <div className="font-mono text-xs text-rose-600 font-bold">
-                          Error angular de conicidad: 1,5° a 2,8°
+                          Error angular de conicidad: 1,5° a 2,8° • Pieza requiere rectificado posterior
                         </div>
                       </div>
                     )}
@@ -1395,6 +1685,60 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           <ChevronRight className="w-4 h-4" />
         </button>
       </footer>
+
+      {/* High-Resolution Real Cutting Inspection Modal */}
+      {previewImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          onClick={() => setPreviewImage(null)}
+        >
+          <div 
+            className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#CBD5E1] flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-4 sm:p-5 border-b border-[#E2E8F0] flex justify-between items-center bg-[#F8F9FA]">
+              <div>
+                <span className="text-xs font-mono font-bold text-[#EA580C] uppercase tracking-wider block">
+                  {previewImage.badge}
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mt-0.5 font-display">
+                  {previewImage.title}
+                </h3>
+                <p className="text-xs text-[#64748B] mt-0.5">
+                  {previewImage.subtitle}
+                </p>
+              </div>
+              <button 
+                onClick={() => setPreviewImage(null)}
+                className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#64748B] hover:text-[#0F172A] hover:bg-slate-100 transition-colors"
+                title="Cerrar [Esc]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal High-Res Photographic Container */}
+            <div className="relative bg-slate-950 flex items-center justify-center overflow-hidden max-h-[58vh]">
+              <img 
+                src={previewImage.src} 
+                alt={previewImage.title} 
+                className="w-full h-auto max-h-[58vh] object-contain select-none"
+              />
+            </div>
+
+            {/* Modal Telemetry Specs Grid */}
+            <div className="p-4 sm:p-5 bg-white border-t border-[#E2E8F0] grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {previewImage.specs.map((spec, i) => (
+                <div key={i} className="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#64748B] block">{spec.label}</span>
+                  <span className="text-xs font-mono font-bold text-[#0F172A] mt-0.5 block truncate" title={spec.value}>{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
