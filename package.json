@@ -12,6 +12,7 @@
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^2.0.111",
     "@types/three": "^0.186.0",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
