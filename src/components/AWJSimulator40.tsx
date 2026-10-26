@@ -11,7 +11,10 @@ import {
   HelpCircle,
   FileSpreadsheet,
   CheckCircle,
-  Sparkles
+  Sparkles,
+  Maximize2,
+  Eye,
+  X
 } from 'lucide-react';
 import { MATERIALS, QUALITY_LEVELS } from '../data/waterjetData';
 
@@ -25,6 +28,16 @@ export default function AWJSimulator40() {
   const [qualityIndex, setQualityIndex] = useState<number>(3);
   const [fiveAxisActive, setFiveAxisActive] = useState<boolean>(true);
   const [pumpType, setPumpType] = useState<'intensifier' | 'direct'>('intensifier');
+
+  // Visualizer view mode: real photographic samples vs CAD vector scheme
+  const [simViewMode, setSimViewMode] = useState<'real' | 'cad'>('real');
+  const [simModalImage, setSimModalImage] = useState<{
+    src: string;
+    title: string;
+    subtitle: string;
+    badge: string;
+    specs: { label: string; value: string }[];
+  } | null>(null);
 
   const selectedMaterial = useMemo(
     () => MATERIALS.find((m) => m.id === materialId) || MATERIALS[0],
@@ -480,102 +493,272 @@ export default function AWJSimulator40() {
             </div>
           </div>
 
-          {/* Real-Time Kerf & Jet Lag SVG Cross-Section Visualizer */}
-          <div className="bg-[#060911] border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
-            <div className="flex justify-between items-center text-xs font-mono text-slate-400 mb-2">
+          {/* Real-Time Kerf & Jet Lag Visualizer (Photographic & CAD Modes) */}
+          <div className="bg-[#060911] border border-slate-800 rounded-xl p-4 flex flex-col justify-between space-y-3">
+            {/* Header with View Toggle */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs font-mono text-slate-400 gap-2 border-b border-slate-800/80 pb-3">
               <span className="flex items-center gap-1.5 text-cyan-300 font-semibold">
                 <Activity className="w-3.5 h-3.5" />
-                Visualización Gráfica del Frente de Corte y Deformación (Kerf Geometry)
+                Frente de Corte y Deformación (Kerf Geometry & Jet Lag)
               </span>
-              <span className="text-amber-400 font-mono">
-                Jet Lag L_lag: {metrics.jetLagMm} mm
-              </span>
+
+              {/* View Mode Toggle Buttons */}
+              <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800">
+                <button
+                  onClick={() => setSimViewMode('real')}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                    simViewMode === 'real'
+                      ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Eye className="w-3 h-3" />
+                  <span>Probetas Reales (Ensayos)</span>
+                </button>
+                <button
+                  onClick={() => setSimViewMode('cad')}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                    simViewMode === 'cad'
+                      ? 'bg-slate-800 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Layers className="w-3 h-3" />
+                  <span>Esquema CAD Vectorial</span>
+                </button>
+              </div>
             </div>
 
-            {/* SVG Visualizer */}
-            <div className="w-full h-52 bg-slate-950/80 rounded-lg border border-slate-900 flex items-center justify-center p-2">
-              <svg viewBox="0 0 520 180" className="w-full h-full">
-                {/* Background Grid */}
-                <line x1="20" y1="40" x2="500" y2="40" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="20" y1="140" x2="500" y2="140" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
-
-                {/* Left Side: Front View (Kerf Taper) */}
-                <g transform="translate(45, 0)">
-                  <text x="75" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                    VISTA FRONTAL: CONICIDAD (TAPER)
-                  </text>
-                  {/* Upper Material Surface */}
-                  <rect x="0" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
-                  <rect x="85" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
-
-                  {/* Cut Slot Kerf Polygon */}
-                  <polygon
-                    points={`65,40 ${65 + (fiveAxisActive ? 20 : 20)},40 ${85 - (fiveAxisActive ? 0 : 6)},140 ${65 + (fiveAxisActive ? 0 : 6)},140`}
-                    fill="#00F0FF"
-                    fillOpacity="0.25"
-                    stroke="#00F0FF"
-                    strokeWidth="1.5"
+            {/* VIEW 1: REAL METALLURGICAL PHOTOGRAPHIC SPECIMENS */}
+            {simViewMode === 'real' ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {/* Specimen 1: Kerf Taper & Conicity */}
+                <div 
+                  onClick={() => setSimModalImage({
+                    src: '/images/kerf_taper_real.jpg',
+                    title: 'Ensayo Metrológico: Sangría y Conicidad Real (Kerf Taper)',
+                    subtitle: 'Medición de sangría con calibre micrométrico Mitutoyo en probeta de acero inoxidable',
+                    badge: 'Probeta de Laboratorio Metalúrgico',
+                    specs: [
+                      { label: 'Sangría Superior (W_top)', value: `${metrics.topKerfMm} mm` },
+                      { label: 'Sangría Inferior (W_bottom)', value: `${metrics.bottomKerfMm} mm` },
+                      { label: 'Ángulo Conicidad θ', value: fiveAxisActive ? '0,00° (Compensado 5 Ejes)' : `${metrics.effectiveTaperDeg}° (Natural)` },
+                      { label: 'Material Probeta', value: `${selectedMaterial.name} (h = ${thicknessMm} mm)` }
+                    ]
+                  })}
+                  className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 h-52 group cursor-pointer hover:border-cyan-400 transition-all shadow-md"
+                >
+                  <img 
+                    src="/images/kerf_taper_real.jpg" 
+                    alt="Probeta real de sangría y conicidad" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+                  
+                  {/* Top Badges */}
+                  <div className="absolute top-2 left-2 right-2 flex justify-between items-center">
+                    <span className="text-[10px] font-mono font-bold bg-slate-900/90 text-cyan-300 border border-cyan-500/40 px-2 py-0.5 rounded backdrop-blur-sm">
+                      VISTA FRONTAL: CONICIDAD
+                    </span>
+                    <div className="bg-black/60 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
 
-                  {/* Dimension Annotations */}
-                  <text x="75" y="56" fill="#00F0FF" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
-                    W_top: {metrics.topKerfMm} mm
-                  </text>
-                  <text x="75" y="132" fill="#38bdf8" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
-                    W_bottom: {metrics.bottomKerfMm} mm
-                  </text>
+                  {/* Bottom Telemetry Overlay */}
+                  <div className="absolute bottom-2 left-2 right-2 text-left">
+                    <div className="flex justify-between items-center text-xs font-mono font-bold text-white mb-0.5">
+                      <span>W_top: {metrics.topKerfMm} mm</span>
+                      <span className="text-cyan-400">W_bot: {metrics.bottomKerfMm} mm</span>
+                    </div>
+                    <div className="flex justify-between items-center text-[10px] font-mono">
+                      <span className={fiveAxisActive ? 'text-emerald-400 font-bold' : 'text-amber-400'}>
+                        {fiveAxisActive ? '✓ Pared recta 90,00°' : `θ conicidad: ${metrics.effectiveTaperDeg}°`}
+                      </span>
+                      <span className="text-slate-400 text-[9px]">Click para ampliar [HD]</span>
+                    </div>
+                  </div>
+                </div>
 
-                  {/* 5 Axis Status Label */}
-                  <text x="75" y="162" fill={fiveAxisActive ? '#10B981' : '#F59E0B'} fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                    {fiveAxisActive ? 'Pared Recta a 90,00°' : `Conicidad: ${metrics.effectiveTaperDeg}°`}
-                  </text>
-                </g>
-
-                {/* Right Side: Side View (Stream / Jet Lag Curve) */}
-                <g transform="translate(265, 0)">
-                  <text x="105" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                    VISTA LATERAL: RETARDO DE COLA (JET LAG)
-                  </text>
-
-                  {/* CNC Travel Vector Arrow (Clear separation below title) */}
-                  <line x1="30" y1="32" x2="175" y2="32" stroke="#EA580C" strokeWidth="1.5" />
-                  <text x="102" y="27" fill="#EA580C" fontSize="8.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                    Avance CNC ({metrics.feedRateMmMin} mm/min) ──►
-                  </text>
-
-                  {/* Metal Block */}
-                  <rect x="20" y="40" width="170" height="100" fill="#1e293b" stroke="#334155" strokeWidth="1" />
-
-                  {/* Curved Stream Lag Front Line */}
-                  <path
-                    d={`M 140,40 Q 135,90 ${140 - Math.min(60, Number(metrics.jetLagMm) * 8)},140`}
-                    fill="none"
-                    stroke="#00F0FF"
-                    strokeWidth="3"
-                    strokeLinecap="round"
+                {/* Specimen 2: Jet Lag Drag Striations */}
+                <div 
+                  onClick={() => setSimModalImage({
+                    src: '/images/jet_lag_striations_real.jpg',
+                    title: 'Ensayo Físico: Retardo de Cola y Estriaciones (Jet Lag)',
+                    subtitle: 'Registro macrográfico de la cara lateral de corte mostrando la pérdida de energía cinética',
+                    badge: 'Probeta de Laboratorio Metalúrgico',
+                    specs: [
+                      { label: 'Retardo de Cola (L_lag)', value: `${metrics.jetLagMm} mm` },
+                      { label: 'Avance CNC (Vf)', value: `${metrics.feedRateMmMin} mm/min` },
+                      { label: 'Rugosidad Fondo (Ra)', value: `${metrics.estimatedRaUm} µm (Calidad Q${qualityIndex})` },
+                      { label: 'Espesor Macizo', value: `${thicknessMm} mm macizo` }
+                    ]
+                  })}
+                  className="relative rounded-lg overflow-hidden border border-slate-800 bg-slate-950 h-52 group cursor-pointer hover:border-amber-400 transition-all shadow-md"
+                >
+                  <img 
+                    src="/images/jet_lag_striations_real.jpg" 
+                    alt="Probeta real de retardo de cola y estriaciones" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+                  
+                  {/* Top Badges */}
+                  <div className="absolute top-2 left-2 right-2 flex justify-between items-center">
+                    <span className="text-[10px] font-mono font-bold bg-slate-900/90 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded backdrop-blur-sm">
+                      VISTA LATERAL: RETARDO DE COLA
+                    </span>
+                    <div className="bg-black/60 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
 
-                  {/* Vertical Reference Line */}
-                  <line x1="140" y1="40" x2="140" y2="140" stroke="#64748b" strokeWidth="1" strokeDasharray="3 3" />
+                  {/* Bottom Telemetry Overlay */}
+                  <div className="absolute bottom-2 left-2 right-2 text-left">
+                    <div className="flex justify-between items-center text-xs font-mono font-bold text-white mb-0.5">
+                      <span>L_lag: <strong className="text-amber-400">{metrics.jetLagMm} mm</strong></span>
+                      <span className="text-slate-300">Vf: {metrics.feedRateMmMin} mm/min</span>
+                    </div>
+                    <div className="flex justify-between items-center text-[10px] font-mono">
+                      <span className="text-cyan-300">
+                        Ra fondo: {metrics.estimatedRaUm} µm (Q{qualityIndex})
+                      </span>
+                      <span className="text-slate-400 text-[9px]">Click para ampliar [HD]</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* VIEW 2: CAD PARAMETRIC VECTOR SCHEME */
+              <div className="w-full h-52 bg-slate-950/80 rounded-lg border border-slate-900 flex items-center justify-center p-2">
+                <svg viewBox="0 0 520 180" className="w-full h-full">
+                  {/* Background Grid */}
+                  <line x1="20" y1="40" x2="500" y2="40" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="20" y1="140" x2="500" y2="140" stroke="#1e293b" strokeWidth="1" strokeDasharray="4 4" />
 
-                  {/* Lag Distance Annotation */}
-                  <line
-                    x1={140 - Math.min(60, Number(metrics.jetLagMm) * 8)}
-                    y1="148"
-                    x2="140"
-                    y2="148"
-                    stroke="#EA580C"
-                    strokeWidth="1.5"
-                  />
-                  <text x={140 - Math.min(60, Number(metrics.jetLagMm) * 4)} y="164" fill="#EA580C" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                    L_lag: {metrics.jetLagMm} mm
-                  </text>
-                </g>
-              </svg>
-            </div>
+                  {/* Left Side: Front View (Kerf Taper) */}
+                  <g transform="translate(45, 0)">
+                    <text x="75" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      VISTA FRONTAL: CONICIDAD (TAPER)
+                    </text>
+                    <rect x="0" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
+                    <rect x="85" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
+
+                    <polygon
+                      points={`65,40 ${65 + (fiveAxisActive ? 20 : 20)},40 ${85 - (fiveAxisActive ? 0 : 6)},140 ${65 + (fiveAxisActive ? 0 : 6)},140`}
+                      fill="#00F0FF"
+                      fillOpacity="0.25"
+                      stroke="#00F0FF"
+                      strokeWidth="1.5"
+                    />
+
+                    <text x="75" y="56" fill="#00F0FF" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      W_top: {metrics.topKerfMm} mm
+                    </text>
+                    <text x="75" y="132" fill="#38bdf8" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      W_bottom: {metrics.bottomKerfMm} mm
+                    </text>
+
+                    <text x="75" y="162" fill={fiveAxisActive ? '#10B981' : '#F59E0B'} fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      {fiveAxisActive ? 'Pared Recta a 90,00°' : `Conicidad: ${metrics.effectiveTaperDeg}°`}
+                    </text>
+                  </g>
+
+                  {/* Right Side: Side View (Stream / Jet Lag Curve) */}
+                  <g transform="translate(265, 0)">
+                    <text x="105" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      VISTA LATERAL: RETARDO DE COLA (JET LAG)
+                    </text>
+
+                    <line x1="30" y1="32" x2="175" y2="32" stroke="#EA580C" strokeWidth="1.5" />
+                    <text x="102" y="27" fill="#EA580C" fontSize="8.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Avance CNC ({metrics.feedRateMmMin} mm/min) ──►
+                    </text>
+
+                    <rect x="20" y="40" width="170" height="100" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+
+                    <path
+                      d={`M 140,40 Q 135,90 ${140 - Math.min(60, Number(metrics.jetLagMm) * 8)},140`}
+                      fill="none"
+                      stroke="#00F0FF"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
+
+                    <line x1="140" y1="40" x2="140" y2="140" stroke="#64748b" strokeWidth="1" strokeDasharray="3 3" />
+
+                    <line
+                      x1={140 - Math.min(60, Number(metrics.jetLagMm) * 8)}
+                      y1="148"
+                      x2="140"
+                      y2="148"
+                      stroke="#EA580C"
+                      strokeWidth="1.5"
+                    />
+                    <text x={140 - Math.min(60, Number(metrics.jetLagMm) * 4)} y="164" fill="#EA580C" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      L_lag: {metrics.jetLagMm} mm
+                    </text>
+                  </g>
+                </svg>
+              </div>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Simulator Real Photographic Inspection Modal */}
+      {simModalImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          onClick={() => setSimModalImage(null)}
+        >
+          <div 
+            className="bg-slate-900 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-700 flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-4 sm:p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+              <div>
+                <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider block">
+                  {simModalImage.badge}
+                </span>
+                <h3 className="text-lg sm:text-xl font-bold text-white mt-0.5">
+                  {simModalImage.title}
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  {simModalImage.subtitle}
+                </p>
+              </div>
+              <button 
+                onClick={() => setSimModalImage(null)}
+                className="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+                title="Cerrar [Esc]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Image */}
+            <div className="relative bg-black flex items-center justify-center overflow-hidden max-h-[58vh]">
+              <img 
+                src={simModalImage.src} 
+                alt={simModalImage.title} 
+                className="w-full h-auto max-h-[58vh] object-contain select-none"
+              />
+            </div>
+
+            {/* Modal Specs Grid */}
+            <div className="p-4 sm:p-5 bg-slate-950 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {simModalImage.specs.map((spec, i) => (
+                <div key={i} className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">{spec.label}</span>
+                  <span className="text-xs font-mono font-bold text-cyan-300 mt-0.5 block truncate" title={spec.value}>{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

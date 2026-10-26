@@ -240,8 +240,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     setShowDrawer(false);
                   }}
                   className={`text-left p-2.5 rounded-lg border transition-all ${currentSlide === s.id
-                      ? 'border-[#EA580C] bg-[#FFF7ED] text-[#EA580C] font-bold'
-                      : 'border-[#E2E8F0] hover:bg-[#F8F9FA] text-[#334155]'
+                    ? 'border-[#EA580C] bg-[#FFF7ED] text-[#EA580C] font-bold'
+                    : 'border-[#E2E8F0] hover:bg-[#F8F9FA] text-[#334155]'
                     }`}
                 >
                   <div className="flex justify-between items-center">
@@ -480,8 +480,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     <button
                       onClick={() => setSlide2ViewMode('infographic')}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${slide2ViewMode === 'infographic'
-                          ? 'bg-[#EA580C] text-white shadow-sm'
-                          : 'text-[#475569] hover:text-[#0F172A]'
+                        ? 'bg-[#EA580C] text-white shadow-sm'
+                        : 'text-[#475569] hover:text-[#0F172A]'
                         }`}
                     >
                       <Layers className="w-3.5 h-3.5" />
@@ -490,8 +490,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     <button
                       onClick={() => setSlide2ViewMode('cards')}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${slide2ViewMode === 'cards'
-                          ? 'bg-[#0F172A] text-white shadow-sm'
-                          : 'text-[#475569] hover:text-[#0F172A]'
+                        ? 'bg-[#0F172A] text-white shadow-sm'
+                        : 'text-[#475569] hover:text-[#0F172A]'
                         }`}
                     >
                       <Sliders className="w-3.5 h-3.5" />
@@ -1169,8 +1169,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       <button
                         onClick={() => setIsTaperCompActive(false)}
                         className={`px-3 py-1 text-xs font-mono rounded transition-colors ${!isTaperCompActive
-                            ? 'bg-[#0F172A] text-white font-bold'
-                            : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
+                          ? 'bg-[#0F172A] text-white font-bold'
+                          : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
                           }`}
                       >
                         Corte 2D Fijo
@@ -1178,8 +1178,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       <button
                         onClick={() => setIsTaperCompActive(true)}
                         className={`px-3 py-1 text-xs font-mono rounded transition-colors ${isTaperCompActive
-                            ? 'bg-[#EA580C] text-white font-bold'
-                            : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
+                          ? 'bg-[#EA580C] text-white font-bold'
+                          : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
                           }`}
                       >
                         5 Ejes Activo (θ = 0°)
@@ -1395,8 +1395,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                         key={q}
                         onClick={() => setSelectedQuality(q)}
                         className={`py-3 rounded-lg border font-mono font-bold text-center transition-all ${selectedQuality === q
-                            ? 'bg-[#EA580C] text-white border-[#EA580C] shadow-swiss'
-                            : 'bg-white text-[#334155] border-[#E2E8F0] hover:bg-[#F1F5F9]'
+                          ? 'bg-[#EA580C] text-white border-[#EA580C] shadow-swiss'
+                          : 'bg-white text-[#334155] border-[#E2E8F0] hover:bg-[#F1F5F9]'
                           }`}
                       >
                         <span className="block text-sm">Q{q}</span>
@@ -1640,8 +1640,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           onClick={handlePrev}
           disabled={currentSlide === 1}
           className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === 1
-              ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
-              : 'border-[#E2E8F0] bg-white hover:bg-[#F8F9FA] text-[#0F172A] shadow-swiss'
+            ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
+            : 'border-[#E2E8F0] bg-white hover:bg-[#F8F9FA] text-[#0F172A] shadow-swiss'
             }`}
         >
           <ChevronLeft className="w-4 h-4" />
@@ -1655,8 +1655,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               key={idx + 1}
               onClick={() => setCurrentSlide(idx + 1)}
               className={`h-2 rounded-full transition-all ${currentSlide === idx + 1
-                  ? 'w-7 bg-[#EA580C]'
-                  : 'w-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]'
+                ? 'w-7 bg-[#EA580C]'
+                : 'w-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]'
                 }`}
               title={`Ir a diapositiva ${idx + 1}`}
             />
@@ -1668,8 +1668,8 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           onClick={handleNext}
           disabled={currentSlide === totalSlides}
           className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === totalSlides
-              ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
-              : 'border-[#EA580C] bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-swiss'
+            ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
+            : 'border-[#EA580C] bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-swiss'
             }`}
         >
           <span>Siguiente [→ / Espacio]</span>
