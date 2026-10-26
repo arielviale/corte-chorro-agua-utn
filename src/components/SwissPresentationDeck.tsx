@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Maximize2, 
-  Minimize2, 
-  Play, 
-  Pause, 
-  RotateCcw, 
-  Layers, 
-  Sliders, 
-  Crosshair, 
-  CheckCircle2, 
-  ArrowRight, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  Minimize2,
+  Play,
+  Pause,
+  RotateCcw,
+  Layers,
+  Sliders,
+  Crosshair,
+  CheckCircle2,
+  ArrowRight,
   HelpCircle,
   FileText,
   Clock,
@@ -119,11 +119,11 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
   // Fullscreen toggle
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
+      document.documentElement.requestFullscreen().catch(() => { });
       setIsFullscreen(true);
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
+        document.exitFullscreen().catch(() => { });
         setIsFullscreen(false);
       }
     }
@@ -212,7 +212,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           <div className="bg-white rounded-xl shadow-swiss-lg border border-[#E2E8F0] p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-4 border-b border-[#E2E8F0]">
               <h3 className="text-base font-bold text-[#0F172A]">Índice de la Defensa Técnica (11 Slides)</h3>
-              <button 
+              <button
                 onClick={() => setShowDrawer(false)}
                 className="text-xs font-mono text-[#64748B] hover:text-[#0F172A] px-2 py-1 rounded bg-[#F1F5F9]"
               >
@@ -239,11 +239,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     setCurrentSlide(s.id);
                     setShowDrawer(false);
                   }}
-                  className={`text-left p-2.5 rounded-lg border transition-all ${
-                    currentSlide === s.id
+                  className={`text-left p-2.5 rounded-lg border transition-all ${currentSlide === s.id
                       ? 'border-[#EA580C] bg-[#FFF7ED] text-[#EA580C] font-bold'
                       : 'border-[#E2E8F0] hover:bg-[#F8F9FA] text-[#334155]'
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-between items-center">
                     <span>{s.title}</span>
@@ -480,22 +479,20 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                   <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-xl border border-[#CBD5E1]">
                     <button
                       onClick={() => setSlide2ViewMode('infographic')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                        slide2ViewMode === 'infographic'
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${slide2ViewMode === 'infographic'
                           ? 'bg-[#EA580C] text-white shadow-sm'
                           : 'text-[#475569] hover:text-[#0F172A]'
-                      }`}
+                        }`}
                     >
                       <Layers className="w-3.5 h-3.5" />
                       <span>Esquema Infográfico</span>
                     </button>
                     <button
                       onClick={() => setSlide2ViewMode('cards')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                        slide2ViewMode === 'cards'
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${slide2ViewMode === 'cards'
                           ? 'bg-[#0F172A] text-white shadow-sm'
                           : 'text-[#475569] hover:text-[#0F172A]'
-                      }`}
+                        }`}
                     >
                       <Sliders className="w-3.5 h-3.5" />
                       <span>Fichas y Métricas</span>
@@ -511,7 +508,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               {/* VIEW 1: HERO INFOGRAPHIC COMPARISON */}
               {slide2ViewMode === 'infographic' ? (
                 <div className="my-auto py-2 flex flex-col items-center gap-3">
-                  <div 
+                  <div
                     onClick={() => setPreviewImage({
                       src: '/images/corte_agua_vs_abrasivo.jpg',
                       title: 'Dos Tipos Principales de Proceso de Corte por Chorro de Agua',
@@ -526,9 +523,9 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     })}
                     className="relative rounded-2xl overflow-hidden border-2 border-[#CBD5E1] shadow-swiss hover:shadow-xl transition-all group cursor-pointer bg-white max-h-[58vh] flex items-center justify-center w-full max-w-5xl"
                   >
-                    <img 
-                      src="/images/corte_agua_vs_abrasivo.jpg" 
-                      alt="Dos tipos principales de proceso de corte por chorro de agua: Agua Pura vs Con Abrasivo" 
+                    <img
+                      src="/images/corte_agua_vs_abrasivo.jpg"
+                      alt="Dos tipos principales de proceso de corte por chorro de agua: Agua Pura vs Con Abrasivo"
                       className="w-full h-auto max-h-[58vh] object-contain group-hover:scale-[1.01] transition-transform duration-300 select-none"
                     />
                     <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center pointer-events-none">
@@ -569,7 +566,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       </div>
 
                       {/* Real Photo Embed 1: PWJ */}
-                      <div 
+                      <div
                         onClick={() => setPreviewImage({
                           src: '/images/pwj_pure_waterjet.jpg',
                           title: 'Corte por Chorro de Agua Pura (PWJ)',
@@ -584,10 +581,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                         })}
                         className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
                       >
-                        <img 
-                          src="/images/pwj_pure_waterjet.jpg" 
-                          alt="Chorro de Agua Pura (PWJ)" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        <img
+                          src="/images/pwj_pure_waterjet.jpg"
+                          alt="Chorro de Agua Pura (PWJ)"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
@@ -631,7 +628,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       </div>
 
                       {/* Real Photo Embed 2: AWJ */}
-                      <div 
+                      <div
                         onClick={() => setPreviewImage({
                           src: '/images/awj_metal_cutting.jpg',
                           title: 'Corte Abrasivo Supersónico AWJ 4.0',
@@ -646,10 +643,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                         })}
                         className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
                       >
-                        <img 
-                          src="/images/awj_metal_cutting.jpg" 
-                          alt="Chorro de Agua Abrasivo (AWJ)" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        <img
+                          src="/images/awj_metal_cutting.jpg"
+                          alt="Chorro de Agua Abrasivo (AWJ)"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
@@ -693,7 +690,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       </div>
 
                       {/* Interactive Thumbnail trigger for 5-Axis Real Photo */}
-                      <div 
+                      <div
                         onClick={() => setPreviewImage({
                           src: '/images/awj_5axis_tilt.jpg',
                           title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
@@ -708,10 +705,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                         })}
                         className="relative rounded-lg overflow-hidden border border-[#FDBA74] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
                       >
-                        <img 
-                          src="/images/awj_5axis_tilt.jpg" 
-                          alt="Cinemática 5 Ejes AWJ" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        <img
+                          src="/images/awj_5axis_tilt.jpg"
+                          alt="Cinemática 5 Ejes AWJ"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent pointer-events-none" />
                         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 backdrop-blur-sm text-white p-1 rounded">
@@ -1069,7 +1066,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
               </div>
 
               {/* Metallurgical Macro-Evidence Banner */}
-              <div 
+              <div
                 onClick={() => setPreviewImage({
                   src: '/images/waterjet_zac_metallurgy.jpg',
                   title: 'Evidencia Metalográfica: ZAC 0,00 mm vs Corte Térmico',
@@ -1171,21 +1168,19 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setIsTaperCompActive(false)}
-                        className={`px-3 py-1 text-xs font-mono rounded transition-colors ${
-                          !isTaperCompActive
+                        className={`px-3 py-1 text-xs font-mono rounded transition-colors ${!isTaperCompActive
                             ? 'bg-[#0F172A] text-white font-bold'
                             : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
-                        }`}
+                          }`}
                       >
                         Corte 2D Fijo
                       </button>
                       <button
                         onClick={() => setIsTaperCompActive(true)}
-                        className={`px-3 py-1 text-xs font-mono rounded transition-colors ${
-                          isTaperCompActive
+                        className={`px-3 py-1 text-xs font-mono rounded transition-colors ${isTaperCompActive
                             ? 'bg-[#EA580C] text-white font-bold'
                             : 'bg-white border text-[#64748B] hover:text-[#0F172A]'
-                        }`}
+                          }`}
                       >
                         5 Ejes Activo (θ = 0°)
                       </button>
@@ -1196,7 +1191,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                   <div className="bg-white p-4 rounded-lg border border-[#E2E8F0] flex flex-col justify-center text-center space-y-3">
                     {isTaperCompActive ? (
                       <div className="space-y-3">
-                        <div 
+                        <div
                           onClick={() => setPreviewImage({
                             src: '/images/awj_5axis_tilt.jpg',
                             title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
@@ -1211,9 +1206,9 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                           })}
                           className="relative rounded-lg overflow-hidden border border-[#CBD5E1] h-44 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
                         >
-                          <img 
-                            src="/images/awj_5axis_tilt.jpg" 
-                            alt="Cabezal 5 Ejes en Acción" 
+                          <img
+                            src="/images/awj_5axis_tilt.jpg"
+                            alt="Cabezal 5 Ejes en Acción"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent pointer-events-none" />
@@ -1399,11 +1394,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                       <button
                         key={q}
                         onClick={() => setSelectedQuality(q)}
-                        className={`py-3 rounded-lg border font-mono font-bold text-center transition-all ${
-                          selectedQuality === q
+                        className={`py-3 rounded-lg border font-mono font-bold text-center transition-all ${selectedQuality === q
                             ? 'bg-[#EA580C] text-white border-[#EA580C] shadow-swiss'
                             : 'bg-white text-[#334155] border-[#E2E8F0] hover:bg-[#F1F5F9]'
-                        }`}
+                          }`}
                       >
                         <span className="block text-sm">Q{q}</span>
                       </button>
@@ -1645,11 +1639,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
         <button
           onClick={handlePrev}
           disabled={currentSlide === 1}
-          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${
-            currentSlide === 1
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === 1
               ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
               : 'border-[#E2E8F0] bg-white hover:bg-[#F8F9FA] text-[#0F172A] shadow-swiss'
-          }`}
+            }`}
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Anterior [←]</span>
@@ -1661,11 +1654,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
             <button
               key={idx + 1}
               onClick={() => setCurrentSlide(idx + 1)}
-              className={`h-2 rounded-full transition-all ${
-                currentSlide === idx + 1
+              className={`h-2 rounded-full transition-all ${currentSlide === idx + 1
                   ? 'w-7 bg-[#EA580C]'
                   : 'w-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]'
-              }`}
+                }`}
               title={`Ir a diapositiva ${idx + 1}`}
             />
           ))}
@@ -1675,11 +1667,10 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
         <button
           onClick={handleNext}
           disabled={currentSlide === totalSlides}
-          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${
-            currentSlide === totalSlides
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === totalSlides
               ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
               : 'border-[#EA580C] bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-swiss'
-          }`}
+            }`}
         >
           <span>Siguiente [→ / Espacio]</span>
           <ChevronRight className="w-4 h-4" />
@@ -1688,11 +1679,11 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
 
       {/* High-Resolution Real Cutting Inspection Modal */}
       {previewImage && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
           onClick={() => setPreviewImage(null)}
         >
-          <div 
+          <div
             className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#CBD5E1] flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -1709,7 +1700,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                   {previewImage.subtitle}
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => setPreviewImage(null)}
                 className="p-2 rounded-lg bg-white border border-[#E2E8F0] text-[#64748B] hover:text-[#0F172A] hover:bg-slate-100 transition-colors"
                 title="Cerrar [Esc]"
@@ -1720,9 +1711,9 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
 
             {/* Modal High-Res Photographic Container */}
             <div className="relative bg-slate-950 flex items-center justify-center overflow-hidden max-h-[58vh]">
-              <img 
-                src={previewImage.src} 
-                alt={previewImage.title} 
+              <img
+                src={previewImage.src}
+                alt={previewImage.title}
                 className="w-full h-auto max-h-[58vh] object-contain select-none"
               />
             </div>
