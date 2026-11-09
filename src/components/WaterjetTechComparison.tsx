@@ -225,15 +225,15 @@ export default function WaterjetTechComparison() {
             </p>
           </div>
           <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-            <span className="text-amber-300 font-mono font-bold block mb-1">Lights-Out Cutting 4.0</span>
+            <span className="text-amber-300 font-mono font-bold block mb-1">Corte Desatendido 4.0</span>
             <p className="text-slate-300 text-[11px] leading-relaxed">
-              Corte desatendido nocturno sin operador humano, asistido por diagnóstico remoto cloud (Hypertherm Remote Help) y sensores de monitoreo de orificio.
+              Corte autónomo nocturno sin operador humano, asistido por diagnóstico remoto en la nube y sensores de monitoreo de orificio.
             </p>
           </div>
           <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
             <span className="text-emerald-400 font-mono font-bold block mb-1">Reciclaje de Granate 60-70%</span>
             <p className="text-slate-300 text-[11px] leading-relaxed">
-              Sistemas automáticos hydro-cyclone que recuperan partículas de almandino intactas para su reutilización inmediata, abatiendo el costo del lodo residual.
+              Sistemas automáticos hidrociclónicos que recuperan partículas de almandino intactas para su reutilización inmediata, abatiendo el costo del lodo residual.
             </p>
           </div>
         </div>
@@ -244,7 +244,7 @@ export default function WaterjetTechComparison() {
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-bold text-white font-mono uppercase tracking-wider flex items-center gap-2">
             <Cpu className="w-4 h-4 text-cyan-400" />
-            Matriz Cuantitativa Inter-Tecnológica (AWJM vs Láser vs Plasma vs Wire EDM)
+            Matriz Cuantitativa Inter-Tecnológica (AWJM vs Láser vs Plasma vs Electroerosión)
           </h3>
           <span className="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
             Criterios de Selección en Manufactura Avanzada
@@ -258,9 +258,9 @@ export default function WaterjetTechComparison() {
               <th className="p-3">Mecanismo Físico</th>
               <th className="p-3">Rango Espesor</th>
               <th className="p-3">Tolerancia</th>
-              <th className="p-3">Kerf</th>
-              <th className="p-3">Vel. Acero 12mm</th>
-              <th className="p-3 text-emerald-400">Zona Térmica (ZAT)</th>
+              <th className="p-3">Sangría</th>
+              <th className="p-3">Vel. Acero 12 mm</th>
+              <th className="p-3 text-emerald-400">Zona Térmica (ZAC)</th>
               <th className="p-3">Costo Operativo</th>
               <th className="p-3">Versatilidad</th>
             </tr>
@@ -309,11 +309,11 @@ export default function WaterjetTechComparison() {
         </table>
       </div>
 
-      {/* Critical "So What?" Syntheses */}
+      {/* Critical Syntheses */}
       <div className="mt-6 space-y-3">
         <h4 className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-amber-400" />
-          Evaluación Crítica del "So What?" Tecnológico:
+          Evaluación Crítica de Impacto Tecnológico:
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
           {SO_WHAT_SYNTHESIS.map((sw, i) => {

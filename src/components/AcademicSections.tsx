@@ -88,7 +88,7 @@ export default function AcademicSections() {
       content: (
         <div className="space-y-4">
           <p className="leading-relaxed">
-            El <strong>corte por chorro de agua</strong> (<em>Waterjet Cutting</em>) es un proceso de mecanizado no tradicional por <strong>erosión en frío</strong>. Un chorro de agua a presión ultra alta —que en la tecnología actual alcanza hasta <strong>94.000 psi (≈ 6.480 bar)</strong>— sale impulsado por un orificio microscópico calibrado a velocidad supersónica (casi 4 veces la velocidad del sonido, entre <strong>1.000 y 1.150 m/s</strong>), erosionando el material por impacto mecánico sin producir alteración térmica.
+            El <strong>corte por chorro de agua</strong> es un proceso de mecanizado no tradicional por <strong>erosión en frío</strong>. Un chorro de agua a presión ultra alta —que en la tecnología actual alcanza hasta <strong>94.000 psi (≈ 6.480 bar)</strong>— sale impulsado por un orificio microscópico calibrado a velocidad supersónica (casi 4 veces la velocidad del sonido, entre <strong>1.000 y 1.150 m/s</strong>), erosionando el material por impacto mecánico sin producir alteración térmica.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
@@ -108,7 +108,7 @@ export default function AcademicSections() {
                 <span className="text-amber-400 font-bold font-mono text-sm">Modalidad 2: Chorro Abrasivo (AWJ)</span>
               </div>
               <p className="text-slate-300 text-xs leading-relaxed">
-                El efecto Venturi en el cabezal genera vacío que arrastra granate mineral (<em>Barton Garnet</em>), <strong>multiplicando la potencia erosiva hasta 1.000 veces</strong>. Permite cortar cualquier metal (acero inoxidable, titanio, Hardox, cobre), piedra, vidrio y cerámicos hasta espesores mayores a 250–300 mm.
+                El efecto Venturi en el cabezal genera vacío que arrastra granate mineral almandino, <strong>multiplicando la potencia erosiva hasta 1.000 veces</strong>. Permite cortar cualquier metal (acero inoxidable, titanio, Hardox, cobre), piedra, vidrio y cerámicos hasta espesores mayores a 250–300 mm.
               </p>
             </div>
           </div>
@@ -288,14 +288,14 @@ export default function AcademicSections() {
 
           <div className="bg-slate-950 p-4 rounded-xl border border-purple-500/40 shadow-sm space-y-2.5">
             <span className="text-purple-300 font-mono font-bold uppercase block text-xs">
-              Lo Premium 2026 para Destacar en la Defensa:
+              Tecnología 2026 para Destacar en la Defensa:
             </span>
             <ul className="space-y-1.5 text-slate-300 text-xs">
-              <li>• <strong>Bomba HyperJet de Flow:</strong> 94.000 psi (6.480 bar) — corta 30-50% más rápido y consume ~50% menos granate que una de 60.000 psi.</li>
-              <li>• <strong>Cinemática 5 Ejes Doble (Lateral + Lead Angle):</strong> La inclinación lateral desvía la conicidad al scrap dejando la pared útil a 90,00°. El <em>Lead Angle</em> (inclinación frontal) adelanta la base del chorro para neutralizar el retraso parabólico (<em>Stream Lag</em>), el cual se torna crítico al superar el 25% de la velocidad máxima de separación.</li>
-              <li>• <strong>Variante Micro-Waterjet:</strong> Orificios de 0,05 a 0,10 mm, micro-tubos de 0,15 a 0,20 mm y abrasivo ultra-fino Mesh 200–300, logrando un kerf de apenas 0,20 mm y tolerancias de <strong>±0,01 mm</strong> para stents biomédicos y microelectrónica.</li>
-              <li>• <strong>Software Inteligente (OMAX IntelliMAX / Flow):</strong> Asigna automáticamente velocidades, presiones y calidades Q1-Q5 según material y espesor.</li>
-              <li>• <strong>Industria 4.0:</strong> Diagnóstico remoto cloud (Remote Help de Hypertherm), nesting automático de chapa y <em>"lights-out cutting"</em> (corte sin operador durante la noche).</li>
+              <li>• <strong>Bomba HyperJet de 94.000 psi (6.480 bar):</strong> Corta 30-50% más rápido y consume ~50% menos granate que una de 60.000 psi.</li>
+              <li>• <strong>Cinemática 5 Ejes Doble (Lateral + Ángulo de Avance):</strong> La inclinación lateral desvía la conicidad al descarte dejando la pared útil a 90,00°. La inclinación frontal adelanta la base del chorro para neutralizar el retraso parabólico de estela, el cual se torna crítico al superar el 25% de la velocidad máxima de separación.</li>
+              <li>• <strong>Variante Micro-Chorro de Agua:</strong> Orificios de 0,05 a 0,10 mm, micro-tubos de 0,15 a 0,20 mm y abrasivo ultra-fino Malla 200–300, logrando una sangría de apenas 0,20 mm y tolerancias de <strong>±0,01 mm</strong> para endoprótesis biomédicas y microelectrónica.</li>
+              <li>• <strong>Software Inteligente CAM:</strong> Asigna automáticamente velocidades, presiones y calidades Q1-Q5 según material y espesor.</li>
+              <li>• <strong>Industria 4.0:</strong> Diagnóstico remoto en la nube, anidamiento automático de chapa y <em>corte desatendido nocturno</em> sin operador.</li>
             </ul>
           </div>
         </div>
@@ -309,14 +309,14 @@ export default function AcademicSections() {
         <div className="space-y-3 text-xs">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
-              <span className="text-cyan-400 font-mono font-bold block mb-1">1. Orificio de Gema (Orifice):</span>
+              <span className="text-cyan-400 font-mono font-bold block mb-1">1. Orificio de Gema Primaria:</span>
               <p className="text-slate-300 leading-relaxed">
-                Rubí (40–100 h por micro-fractura) y Zafiro (50–200 h por cavitación) para bajo costo, o <strong>Diamante Monocristalino / PCD (800–2.000 horas)</strong> para chorro colimado continuo.
+                Rubí (40–100 h por micro-fractura) y Zafiro (50–200 h por cavitación) para bajo costo, o <strong>Diamante Monocristalino / Policristalino (800–2.000 horas)</strong> para chorro colimado continuo.
               </p>
             </div>
 
             <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
-              <span className="text-cyan-400 font-mono font-bold block mb-1">2. Tubo Mezclador (Nozzle):</span>
+              <span className="text-cyan-400 font-mono font-bold block mb-1">2. Tubo Mezclador (Boquilla):</span>
               <p className="text-slate-300 leading-relaxed">
                 Carburo de tungsteno nanométrico (ROCTEC). Diámetros de 0,76 a 1,02 mm. Se desgasta a una tasa de <strong>≈0,025 mm cada 8 horas</strong> de corte continuo, requiriendo reemplazo tras 80–150 h.
               </p>
@@ -325,14 +325,14 @@ export default function AcademicSections() {
             <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
               <span className="text-cyan-400 font-mono font-bold block mb-1">3. Abrasivo Granate de Almandino:</span>
               <p className="text-slate-300 leading-relaxed">
-                Dureza 7,5–8,0 Mohs. Malla 50/60 (desbaste), Malla 80 (estándar) y Malla 200–300 (Micro-Waterjet). <strong>Representa el 55% al 70% del costo variable por hora de máquina</strong>.
+                Dureza 7,5–8,0 Mohs. Malla 50/60 (desbaste), Malla 80 (estándar) y Malla 200–300 (Micro-AWJ). <strong>Representa el 55% al 70% del costo variable por hora de máquina</strong>.
               </p>
             </div>
           </div>
 
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-slate-300">
             <div>
-              <strong className="text-white font-mono block">Impacto Económico HyperPressure:</strong>
+              <strong className="text-white font-mono block">Impacto Económico de Hiperpresión:</strong>
               <span>A 90.000–94.000 psi se consume entre 35% y 50% menos abrasivo por metro lineal que a 60.000 psi, amortizando la bomba UHP en tiempo récord.</span>
             </div>
             <span className="text-amber-400 font-mono text-[11px] bg-slate-900 px-2.5 py-1 rounded border border-slate-700 whitespace-nowrap self-start sm:self-center">
@@ -415,11 +415,11 @@ export default function AcademicSections() {
           </div>
 
           <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
-            <span className="text-cyan-400 font-mono font-bold block">Tipos de Perforación Inicial (Piercing Mecatrónico):</span>
+            <span className="text-cyan-400 font-mono font-bold block">Tipos de Perforación Inicial Controlada:</span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-1 text-slate-300">
               <div className="bg-slate-900 p-2.5 rounded border border-slate-800">
                 <strong className="text-white block font-mono text-xs">1. Perforación Estacionaria:</strong>
-                <span>El cabezal permanece fijo; ideal para materiales frágiles o vidrio con vacío previo UltraPierce.</span>
+                <span>El cabezal permanece fijo; ideal para materiales frágiles o vidrio con vacío previo asistido.</span>
               </div>
               <div className="bg-slate-900 p-2.5 rounded border border-slate-800">
                 <strong className="text-white block font-mono text-xs">2. Perforación Dinámica (Lineal):</strong>
@@ -427,7 +427,7 @@ export default function AcademicSections() {
               </div>
               <div className="bg-slate-900 p-2.5 rounded border border-slate-800">
                 <strong className="text-white block font-mono text-xs">3. Perforación Radial (Circular):</strong>
-                <span>Trayectoria en espiral en scrap para abrir camino suavemente en metales gruesos (&gt;50 mm).</span>
+                <span>Trayectoria en espiral en zona de descarte para abrir camino suavemente en metales gruesos (&gt;50 mm).</span>
               </div>
             </div>
           </div>
@@ -446,7 +446,7 @@ export default function AcademicSections() {
               <strong className="text-cyan-400 text-base block mt-0.5">±0,10 mm</strong>
             </div>
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
-              <span className="text-slate-500 block text-[10px] uppercase">Ancho de Corte (Kerf)</span>
+              <span className="text-slate-500 block text-[10px] uppercase">Ancho de Sangría</span>
               <strong className="text-amber-400 text-base block mt-0.5">0,8 a 1,5 mm</strong>
             </div>
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
@@ -454,14 +454,14 @@ export default function AcademicSections() {
               <strong className="text-emerald-400 text-base block mt-0.5">Ra 1,4 a 6 µm</strong>
             </div>
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
-              <span className="text-slate-500 block text-[10px] uppercase">Zona Térmica (ZAT)</span>
+              <span className="text-slate-500 block text-[10px] uppercase">Zona Térmica (ZAC)</span>
               <strong className="text-purple-300 text-base block mt-0.5">0,00 mm</strong>
             </div>
           </div>
 
           <div className="space-y-2">
             {[
-              { q: 'Q1', name: 'Corte de Separación Rápida (100% Vel)', ra: 'Ra 12,5 – 25 µm', desc: 'Desbaste veloz o recorte de scrap; estrías marcadas en el tercio inferior.' },
+              { q: 'Q1', name: 'Corte de Separación Rápida (100% Vel)', ra: 'Ra 12,5 – 25 µm', desc: 'Desbaste veloz o recorte de descarte; estrías marcadas en el tercio inferior.' },
               { q: 'Q2', name: 'Corte Rugoso Industrial (70% Vel)', ra: 'Ra 6,3 – 12,5 µm', desc: 'Estructuras soldadas estándar y bridas sin mecanizado fino posterior.' },
               { q: 'Q3', name: 'Corte Estándar Comercial (45% Vel)', ra: 'Ra 3,2 – 6,3 µm', desc: 'Estándar del 80% de talleres; excelente equilibrio entre costo y tolerancia ±0,10 mm.' },
               { q: 'Q4', name: 'Acabado Fino Satinado (26% Vel)', ra: 'Ra 1,8 – 3,2 µm', desc: 'Superficie homogénea sin estrías discernibles al tacto ni conicidad perceptible.' },
@@ -505,7 +505,7 @@ export default function AcademicSections() {
                   <td className="p-2.5 text-emerald-300">Compensación 5 ejes en tiempo real, reducir velocidad, cambiar tubo ROCTEC</td>
                 </tr>
                 <tr>
-                  <td className="p-2.5 font-bold text-white font-mono">Marcas de estriado ("drag lines")</td>
+                  <td className="p-2.5 font-bold text-white font-mono">Marcas de estriado (líneas de arrastre)</td>
                   <td className="p-2.5">Avance demasiado rápido para el espesor del material</td>
                   <td className="p-2.5 text-emerald-300">Bajar velocidad de avance a Q3-Q5, aumentar presión UHP o caudal de granate</td>
                 </tr>
@@ -517,7 +517,7 @@ export default function AcademicSections() {
                 <tr>
                   <td className="p-2.5 font-bold text-white font-mono">Desviación en esquinas</td>
                   <td className="p-2.5">Inercia de la columna del chorro al cambiar bruscamente de dirección</td>
-                  <td className="p-2.5 text-emerald-300">Algoritmo "Corner Pass" con Look-Ahead que desacelera e inclina el cabezal</td>
+                  <td className="p-2.5 text-emerald-300">Algoritmo de paso de esquina con control predictivo que desacelera e inclina el cabezal</td>
                 </tr>
               </tbody>
             </table>
@@ -544,8 +544,8 @@ export default function AcademicSections() {
               <ul className="space-y-1.5 text-slate-300">
                 <li>• <strong>PROHIBICIÓN ESTRICTA:</strong> Queda terminantemente prohibido suturar la herida o colocar vendajes oclusivos en el centro primario de salud.</li>
                 <li>• <strong>Ventana Crítica Quirúrgica de 6 Horas:</strong> La intervención mediante <em>Fasciotomía Descompresiva amplia</em> y debridación agresiva debe ejecutarse antes de 6 horas o la necrosis obliga a amputación irreversible.</li>
-                <li>• <strong>Tarjeta Médica de Alerta (Medical Alert Card):</strong> Todo operario debe portar la tarjeta WJTA que advierte al cirujano sobre la naturaleza interna no visible del choque hidráulico.</li>
-                <li>• <strong>Protecciones de Celda:</strong> Cortinas ópticas PLe Cat 4, doble válvula Dump de descarga en &lt;0,5 s y manguitos whip checks antirramotazo.</li>
+                <li>• <strong>Tarjeta Médica de Alerta (WJTA):</strong> Todo operario debe portar la tarjeta médica que advierte al cirujano sobre la naturaleza interna no visible del choque hidráulico.</li>
+                <li>• <strong>Protecciones de Celda:</strong> Cortinas ópticas PLe Cat 4, doble válvula de descarga en &lt;0,5 s y manguitos antirlatigazo en mangueras.</li>
               </ul>
             </div>
 
@@ -825,7 +825,7 @@ export default function AcademicSections() {
               rel="noreferrer"
               className="flex items-center justify-between p-2 rounded hover:bg-slate-900 border border-slate-800/60 hover:text-cyan-300 transition print:border-slate-300"
             >
-              <span>• Flow Mach 500 & Dynamic XD 5-Axis Manual</span>
+              <span>• Manual Técnico Flow Mach 500 y Cinemática 5 Ejes</span>
               <ExternalLink className="w-3 h-3 ml-1 print:hidden" />
             </a>
             <a
@@ -834,7 +834,7 @@ export default function AcademicSections() {
               rel="noreferrer"
               className="flex items-center justify-between p-2 rounded hover:bg-slate-900 border border-slate-800/60 hover:text-cyan-300 transition print:border-slate-300"
             >
-              <span>• KMT STREAMLINE PRO 6.200 bar (90.000 PSI)</span>
+              <span>• Bomba KMT PRO 6.200 bar (90.000 PSI)</span>
               <ExternalLink className="w-3 h-3 ml-1 print:hidden" />
             </a>
             <a
@@ -843,7 +843,7 @@ export default function AcademicSections() {
               rel="noreferrer"
               className="flex items-center justify-between p-2 rounded hover:bg-slate-900 border border-slate-800/60 hover:text-cyan-300 transition print:border-slate-300"
             >
-              <span>• OMAX EnduroMAX Direct-Drive Servopump Specs</span>
+              <span>• Especificaciones Servobomba de Accionamiento Directo OMAX</span>
               <ExternalLink className="w-3 h-3 ml-1 print:hidden" />
             </a>
             <a
@@ -852,7 +852,7 @@ export default function AcademicSections() {
               rel="noreferrer"
               className="flex items-center justify-between p-2 rounded hover:bg-slate-900 border border-slate-800/60 hover:text-cyan-300 transition print:border-slate-300"
             >
-              <span>• Barton Garnet 80 HPA Technical Guidelines</span>
+              <span>• Guía Técnica de Granate Almandino Malla 80</span>
               <ExternalLink className="w-3 h-3 ml-1 print:hidden" />
             </a>
             <a
@@ -861,7 +861,7 @@ export default function AcademicSections() {
               rel="noreferrer"
               className="flex items-center justify-between p-2 rounded hover:bg-slate-900 border border-slate-800/60 hover:text-cyan-300 transition print:border-slate-300"
             >
-              <span>• MDPI Applied Sciences: Abrasive Waterjet Review</span>
+              <span>• Publicación Científica MDPI: Revisión de Chorro de Agua Abrasivo</span>
               <ExternalLink className="w-3 h-3 ml-1 print:hidden" />
             </a>
             <a

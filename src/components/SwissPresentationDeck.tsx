@@ -281,10 +281,10 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                   Navegación Principal
                 </h4>
                 <div className="grid grid-cols-2 gap-2 text-[#334155]">
-                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">→ / Espacio</kbd> Siguiente slide</div>
-                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">←</kbd> Slide anterior</div>
-                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">1-9</kbd> Saltar a slide N</div>
-                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">Home / End</kbd> Primera / Última</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">→ / Espacio</kbd> Siguiente diapositiva</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">←</kbd> Diapositiva anterior</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">1-9</kbd> Saltar a diapositiva N</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">Inicio / Fin</kbd> Primera / Última</div>
                 </div>
               </div>
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
@@ -310,42 +310,42 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74]">
                 <h4 className="font-bold text-[#9A3412] mb-2 flex items-center gap-1.5">
                   <Sliders className="w-4 h-4 text-[#EA580C]" />
-                  Anexo Técnico (Shift+1-7)
+                  Anexo Técnico (Mayús+1-7)
                 </h4>
                 <div className="grid grid-cols-2 gap-2 text-[#9A3412] text-[10px]">
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+1</kbd> Simulador CNC</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+2</kbd> Cabezal & Venturi</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+3</kbd> Cabezal 3D</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+4</kbd> Láser vs Plasma</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+5</kbd> Defectología</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+6</kbd> Seguridad UHP</div>
-                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+7</kbd> Memoria Técnica</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+1</kbd> Simulador CNC</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+2</kbd> Cabezal y Venturi</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+3</kbd> Cabezal 3D</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+4</kbd> Láser vs Plasma</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+5</kbd> Defectología</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+6</kbd> Seguridad UHP</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+7</kbd> Memoria Técnica</div>
                 </div>
               </div>
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
                 <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
                   <X className="w-4 h-4 text-rose-500" />
-                  Emergency
+                  Emergencia
                 </h4>
                 <div className="grid grid-cols-2 gap-2 text-[#334155]">
-                  <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">ESC</kbd> Cerrar modales/drawer</div>
+                  <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">ESC</kbd> Cerrar ventanas/índice</div>
                   <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">F5</kbd> Recargar página completa</div>
                 </div>
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 text-xs font-medium">
               {[
-                { id: 1, title: '01. Portada Institucional UTN FRP', type: 'Dark Canvas' },
-                { id: 2, title: '02. Principio Físico y Métricas UHP', type: 'Layout A (Big Metrics)' },
-                { id: 3, title: '03. Génesis: Chorro Puro (PWJ) vs Abrasivo (AWJ)', type: 'Layout B (3 Columns)' },
-                { id: 4, title: '04. Cabezal de Corte & Efecto Venturi', type: 'Layout C (Graphic/Metric Split)' },
-                { id: 5, title: '05. Cadena de Transformación Hidráulica', type: 'Layout D (Timeline)' },
-                { id: 6, title: '06. Comparativa Técnica vs Láser y Plasma', type: 'Layout B (3 Columns)' },
-                { id: 7, title: '07. Cinemática Activa y Conicidad θ = 0°', type: 'Layout A (Big Metric + 5 Ejes)' },
-                { id: 8, title: '08. Espectro de Materiales Industriales', type: 'Layout B (3 Columns)' },
-                { id: 9, title: '09. Calidades Q1-Q5 y Defectología', type: 'Layout C (Graphic/Metric Split)' },
-                { id: 10, title: '10. Industria 4.0 & Ecosistema Ciberfísico', type: 'Layout D (Timeline)' },
-                { id: 11, title: '11. Conclusiones y Preguntas Tribunal', type: 'Dark Canvas' },
+                { id: 1, title: '01. Portada Institucional UTN FRP', type: 'Fondo Oscuro' },
+                { id: 2, title: '02. Principio Físico y Métricas UHP', type: 'Diseño A (Métricas Clave)' },
+                { id: 3, title: '03. Génesis: Chorro Puro (PWJ) vs Abrasivo (AWJ)', type: 'Diseño B (3 Columnas)' },
+                { id: 4, title: '04. Cabezal de Corte y Efecto Venturi', type: 'Diseño C (Esquema y Métricas)' },
+                { id: 5, title: '05. Cadena de Transformación Hidráulica', type: 'Diseño D (Línea de Tiempo)' },
+                { id: 6, title: '06. Comparativa Técnica vs Láser y Plasma', type: 'Diseño B (3 Columnas)' },
+                { id: 7, title: '07. Cinemática Activa y Conicidad θ = 0°', type: 'Diseño A (Métrica + 5 Ejes)' },
+                { id: 8, title: '08. Espectro de Materiales Industriales', type: 'Diseño B (3 Columnas)' },
+                { id: 9, title: '09. Calidades Q1-Q5 y Defectología', type: 'Diseño C (Esquema y Métricas)' },
+                { id: 10, title: '10. Industria 4.0 y Ecosistema Ciberfísico', type: 'Diseño D (Línea de Tiempo)' },
+                { id: 11, title: '11. Conclusiones y Preguntas Tribunal', type: 'Fondo Oscuro' },
               ].map((s) => (
                 <button
                   key={s.id}
@@ -547,7 +547,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
                   <span className="text-xs font-mono text-[#EA580C] font-bold hidden md:inline">
-                    Barton Garnet Malla 80 • 1,1 M part/s
+                    Granate Barton Malla 80 • 1,1 M part/s
                   </span>
                   <button
                     onClick={() => setPreviewImage({
@@ -650,7 +650,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                     </div>
                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm border border-[#CBD5E1] px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-[#0F172A] shadow-sm flex items-center gap-1.5">
                       <Eye className="w-3.5 h-3.5 text-[#EA580C]" />
-                      <span>Zoom Interactivo</span>
+                      <span>Ampliación Interactiva</span>
                     </div>
                   </div>
 
@@ -749,7 +749,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                           subtitle: 'Cabezal industrial CNC cortando bloque macizo de acero de 80 mm',
                           badge: 'AWJ Real • Mach 3.06',
                           specs: [
-                            { label: 'Presión Hidráulica', value: '6.480 bar (HyperJet)' },
+                            { label: 'Presión Hidráulica', value: '6.480 bar (Bomba HyperJet)' },
                             { label: 'Velocidad de Impacto', value: '1.050 m/s (Mach 3.06)' },
                             { label: 'Tubo Mezclador', value: 'ROCTEC 500 (Ø 0,76 mm)' },
                             { label: 'Abrasivo', value: 'Granate Almandino Barton Malla 80' }
@@ -807,14 +807,14 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                       <div
                         onClick={() => setPreviewImage({
                           src: '/images/awj_5axis_tilt.jpg',
-                          title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
+                          title: 'Cabezal Articulado 5 Ejes (Inclinación Dinámica XD)',
                           subtitle: 'Compensación mecatrónica activa de conicidad en pieza aeroespacial',
                           badge: 'Reto Mecatrónico UTN',
                           specs: [
                             { label: 'Ejes Cinemáticos', value: 'X, Y, Z, A, C (Interpolados)' },
                             { label: 'Conicidad Lograda', value: 'θ = 0,00° (Cero error)' },
                             { label: 'Control CNC', value: 'Lazo Cerrado IoT / Beckhoff' },
-                            { label: 'Nivel Tecnológico', value: 'Industria 4.0 Cyber-Physical' }
+                            { label: 'Nivel Tecnológico', value: 'Industria 4.0 Ciberfísica' }
                           ]
                         })}
                         className="relative rounded-lg overflow-hidden border border-[#FDBA74] h-28 sm:h-32 mb-3 group cursor-pointer shadow-sm hover:shadow-md transition-all bg-slate-900"
@@ -1174,7 +1174,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                     </div>
                   </div>
                   <p className="text-xs text-[#9A3412] pt-2 border-t border-[#FDBA74] font-medium">
-                    Cero microfisuras, sin rebaba fundida y apto para cualquier aleación metálica o composite.
+                    Cero microfisuras, sin rebaba fundida y apto para cualquier aleación metálica o material compuesto.
                   </p>
                 </div>
               </div>
@@ -1308,7 +1308,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                         <div
                           onClick={() => setPreviewImage({
                             src: '/images/awj_5axis_tilt.jpg',
-                            title: 'Cabezal Articulado 5 Ejes (Tilt-A-Jet Dynamic XD)',
+                            title: 'Cabezal Articulado 5 Ejes (Inclinación Dinámica XD)',
                             subtitle: 'Articulación mecatrónica activa para anular la conicidad y el arrastre de estela',
                             badge: 'Cinemática 5 Ejes en Vivo',
                             specs: [
@@ -1332,7 +1332,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                           <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end text-white text-left">
                             <div>
                               <span className="text-[10px] font-mono font-bold bg-[#EA580C] px-2 py-0.5 rounded inline-block mb-1">
-                                OMAX TILT-A-JET DYNAMIC XD • REGISTRO REAL
+                                CABEZAL ARTICULADO 5 EJES • REGISTRO REAL
                               </span>
                               <p className="text-xs font-medium drop-shadow-sm">Cabezal 5 ejes inclinándose para anular la conicidad natural en pieza aeroespacial.</p>
                             </div>
@@ -1469,7 +1469,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
 
               {/* Bottom Takeaway */}
               <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74] text-xs font-mono text-[#9A3412] flex justify-between items-center">
-                <span>Composites y Sándwiches: Fibra de carbono, kevlar y caucho sin delaminación mediante perforación suave asistida por vacío.</span>
+                <span>Materiales Compuestos y Laminados: Fibra de carbono, kevlar y caucho sin delaminación mediante perforación suave asistida por vacío.</span>
                 <span className="text-[#EA580C] font-bold">1 Única Máquina para Todo</span>
               </div>
             </div>
@@ -1625,7 +1625,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                 <div className="p-5 rounded-xl bg-[#F8F9FA] border-t-4 border-[#EA580C] border-x border-b border-[#E2E8F0] flex flex-col justify-between">
                   <div>
                     <span className="text-xs font-mono font-bold text-[#EA580C] block">PILAR 02</span>
-                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Anidamiento (Nesting)</h3>
+                    <h3 className="text-lg font-bold text-[#0F172A] mt-1">Anidamiento Inteligente</h3>
                     <div className="text-xl font-bold text-[#EA580C] font-mono mt-2">
                       &gt;92% Rendimiento
                     </div>
@@ -1659,7 +1659,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                     </div>
                   </div>
                   <p className="text-sm text-[#9A3412] mt-4">
-                    <strong className="text-[#0F172A]">Planta Verde:</strong> Agua en circuito cerrado y sistema hydro-cyclone que recupera hasta 70% del granate.
+                    <strong className="text-[#0F172A]">Planta Verde:</strong> Agua en circuito cerrado y sistema hidrociclónico que recupera hasta 70% del granate.
                   </p>
                 </div>
               </div>
@@ -1848,7 +1848,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               {previewImage.specs.map((spec, i) => (
                 <div key={i} className="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-[#64748B] block">{spec.label}</span>
-                  <span className="text-xs font-mono font-bold text-[#0F172A] mt-0.5 block truncate" title={spec.value}>{spec.value}</span>
+                  <span className="text-xs font-mono font-bold text-[#0F172A] mt-0.5 block leading-snug break-words" title={spec.value}>{spec.value}</span>
                 </div>
               ))}
             </div>

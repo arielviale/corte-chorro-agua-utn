@@ -117,7 +117,7 @@ export default function DefectsAnalysis() {
                       90,00° PIEZA ÚTIL
                     </text>
                     <text x="215" y="105" fill="#F59E0B" fontSize="9" fontFamily="monospace">
-                      ◄ Conicidad volcada al Scrap
+                      ◄ Conicidad volcada al descarte
                     </text>
                     {/* Inclined nozzle above */}
                     <line x1="172" y1="10" x2="175" y2="40" stroke="#00F0FF" strokeWidth="4" />
@@ -141,7 +141,7 @@ export default function DefectsAnalysis() {
                       Conicidad V Natural (θ_t &gt; 0,8°)
                     </text>
                     <text x="175" y="180" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="middle">
-                      W_top &gt; W_bottom por disipación cinética
+                      Ancho Sup. &gt; Ancho Inf. por disipación cinética
                     </text>
                   </g>
                 )}
@@ -178,7 +178,7 @@ export default function DefectsAnalysis() {
                     <path d="M 180,40 Q 180,90 145,160" fill="none" stroke="#EF4444" strokeWidth="2" />
                     <path d="M 230,40 Q 230,90 195,160" fill="none" stroke="#EF4444" strokeWidth="2" />
                     <text x="175" y="80" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      Marcas de Estriado ("Drag Lines")
+                      Marcas de Estriado (Líneas de Arrastre)
                     </text>
                     <text x="175" y="178" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
                       Avance excesivo: la cola del chorro se curva hacia atrás
@@ -236,7 +236,7 @@ export default function DefectsAnalysis() {
                     {/* Compensated look-ahead: straight column */}
                     <line x1="240" y1="40" x2="240" y2="160" stroke="#10B981" strokeWidth="3" />
                     <text x="235" y="100" fill="#10B981" fontSize="10" fontFamily="monospace" textAnchor="end" fontWeight="bold">
-                      Algoritmo "Corner Pass":
+                      Algoritmo Paso de Esquina:
                     </text>
                     <text x="235" y="115" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="end">
                       Desacelera en esquinas y verticaliza la columna
@@ -266,7 +266,7 @@ export default function DefectsAnalysis() {
                   <g>
                     <rect x="155" y="10" width="40" height="25" fill="#0f172a" stroke="#10B981" strokeWidth="1.5" />
                     <text x="175" y="27" fill="#10B981" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                      SOD = 1,5 mm
+                      Dist. = 1,5 mm
                     </text>
                     <text x="175" y="195" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Filo vivo nítido a 90° sin arenado
@@ -375,7 +375,7 @@ export default function DefectsAnalysis() {
                 <td className="p-3 text-emerald-300">Compensación 5 ejes en tiempo real, reducir velocidad, renovar tubo ROCTEC</td>
               </tr>
               <tr>
-                <td className="p-3 font-bold text-white">Marcas de estriado ("drag lines")</td>
+                <td className="p-3 font-bold text-white">Marcas de estriado (líneas de arrastre)</td>
                 <td className="p-3">Avance demasiado rápido para el espesor del material</td>
                 <td className="p-3 text-emerald-300">Bajar velocidad de avance a Q3-Q5, aumentar presión UHP o caudal de granate</td>
               </tr>
@@ -387,7 +387,7 @@ export default function DefectsAnalysis() {
               <tr>
                 <td className="p-3 font-bold text-white">Desviación en esquinas</td>
                 <td className="p-3">Inercia de la columna del chorro al cambiar de dirección</td>
-                <td className="p-3 text-emerald-300">Algoritmo "Corner Pass" del software CAM, desacelerar vértices</td>
+                <td className="p-3 text-emerald-300">Algoritmo de compensación en esquinas del software CAM, desacelerar vértices</td>
               </tr>
             </tbody>
           </table>

@@ -340,7 +340,7 @@ endobj
 endobj
 6 0 obj
 <<
-/Length 14234
+/Length 14199
 >>
 stream
 0.9921259842519685 w
@@ -488,9 +488,9 @@ BT
 0.059 0.09 0.165 rg
 52.4409448818897701 554.1734645669291695 Td
 ("¿Qué ocurre si cortamos una placa gruesa con un cabezal convencional de 3 ejes fijo a 90 grados? A medida que el chorro) Tj
-T* (penetra en el espesor del metal, va perdiendo energía cinética por fricción. Como resultado, la ranura de corte \(llamada sangría o) Tj
-T* (kerf\) es más ancha arriba que abajo, dejando una conicidad natural en forma de V de entre 1 y 3 grados. Esa pieza no tendría) Tj
-T* (paredes a 90 grados y requeriría un fresado posterior.") Tj
+T* (penetra en el espesor del metal, va perdiendo energía cinética por fricción. Como resultado, la ranura de corte \(llamada sangría\) es) Tj
+T* (más ancha arriba que abajo, dejando una conicidad natural en forma de V de entre 1 y 3 grados. Esa pieza no tendría paredes a) Tj
+T* (90 grados y requeriría un fresado posterior.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -503,7 +503,7 @@ BT
 0.059 0.09 0.165 rg
 52.4409448818897701 502.5829133858267141 Td
 ("¿Cómo lo resuelve la ingeniería mecatrónica en el AWJ 4.0? Mediante una muñeca cinemática articulada de 5 ejes \(sumando los) Tj
-T* (ejes rotativos A y C al pórtico cartesiano X, Y, Z\), como los sistemas OMAX Tilt-A-Jet o Flow Dynamic XD.") Tj
+T* (ejes rotativos A y C al pórtico cartesiano X, Y, Z\), con sistemas de inclinación dinámica multieje.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -517,8 +517,8 @@ BT
 52.4409448818897701 473.6695275590550409 Td
 ("El algoritmo CNC calcula a una frecuencia de 1.000 Hz cuánta conicidad va a generar el chorro según la dureza y el espesor del) Tj
 T* (material, e inclina activamente el cabezal en sentido opuesto. De esta manera, el cabezal absorbe toda la conicidad natural y la) Tj
-T* (desvía hacia el lado del recorte o chatarra \(scrap\), dejando la pared de nuestra pieza útil 100% perpendicular, con un ángulo de) Tj
-T* (conicidad residual theta igual a 0,00 grados.") Tj
+T* (desvía hacia el lado del recorte o descarte, dejando la pared de nuestra pieza útil 100% perpendicular, con un ángulo de conicidad) Tj
+T* (residual theta igual a 0,00 grados.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -559,9 +559,9 @@ BT
 10.0039999999999996 TL
 0.2 0.255 0.333 rg
 48.1889763779527627 366.2364566929133503 Td
-(- Doble compensación de los 5 ejes \(Lateral + Frontal\): 1\) La inclinación lateral \(Taper Angle\) corrige la conicidad en V volcando el ángulo) Tj
-T* (al scrap. 2\) La inclinación frontal en el sentido de avance \(Lead Angle\) adelanta la punta de la boquilla para compensar el retraso) Tj
-T* (parabólico de la cola del chorro \(Stream Lag\).) Tj
+(- Doble compensación de los 5 ejes \(Lateral + Frontal\): 1\) La inclinación lateral \(Ángulo de Conicidad\) corrige la conicidad en V volcando) Tj
+T* (el ángulo al descarte. 2\) La inclinación frontal en el sentido de avance \(Ángulo de Ataque\) adelanta la punta de la boquilla para) Tj
+T* (compensar el retraso parabólico de la cola del chorro.) Tj
 ET
 BT
 /F1 8.2 Tf
@@ -680,8 +680,8 @@ BT
 52.4409448818897701 115.3703149606297984 Td
 ("El primer grupo, a la izquierda, es el Titanio Grado 5 \(Ti-6Al-4V\), utilizado en la industria aeroespacial y en implantes médicos.) Tj
 T* (Cuando el titanio se corta con calor, absorbe oxígeno e hidrógeno formando una capa superficial cristalina y quebradiza llamada) Tj
-T* (Alpha-Case \(capa alfa fragilizada\), que provoca fisuras por fatiga en vuelo.Como el chorro de agua no supera los 60 grados) Tj
-T* (Celsius, corta titanio de hasta 120 milímetros sin capa frágil, cumpliendo directamente la norma aeronáutica AS9100.") Tj
+T* (capa alfa fragilizada, que provoca fisuras por fatiga en vuelo. Como el chorro de agua no supera los 60 grados Celsius, corta titanio) Tj
+T* (de hasta 120 milímetros sin capa frágil, cumpliendo directamente la norma aeronáutica AS9100.") Tj
 ET
 BT
 /F1 7.8 Tf
@@ -702,7 +702,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 13369
+/Length 13273
 >>
 stream
 1.7007874015748032 w
@@ -737,7 +737,7 @@ BT
 0.392 0.455 0.545 rg
 52.4409448818897701 793.7010236220472734 Td
 ("El segundo grupo, en el centro, son los Metales Reflectivos y Tratados Térmicamente: el Cobre Electrolítico C11000 y el Aluminio) Tj
-T* (Aeronáutico 6061-T6. En el cobre puro \(usado en barras colectoras Busbars para transformadores y baterías de vehículos) Tj
+T* (Aeronáutico 6061-T6. En el cobre puro \(usado en barras colectoras eléctricas para transformadores y baterías de vehículos) Tj
 T* (eléctricos\), el láser sufre rebote óptico y el calor oxida el borde; el agua lo corta limpiamente conservando el 100% de su) Tj
 T* (conductividad IACS. Y en el aluminio 6061-T6, el corte en frío evita destruir el tratamiento térmico artificial T6 en el perímetro de la) Tj
 T* (pieza.") Tj
@@ -906,7 +906,7 @@ BT
 0.059 0.09 0.165 rg
 52.4409448818897701 421.795511811023573 Td
 ("Si seleccionamos Q1 \(Separación Rápida\), el cabezal avanza a máxima velocidad dejando estrías marcadas en la mitad inferior y) Tj
-T* (una rugosidad Ra de unos 16,5 micrómetros; se usa para desbaste o recorte de chatarra. Si subimos a Q3 \(Comercial Estándar\),) Tj
+T* (una rugosidad Ra de unos 16,5 micrómetros; se usa para desbaste o recorte de descarte. Si subimos a Q3 \(Comercial Estándar\),) Tj
 T* (reducimos la velocidad al 45%, logrando una pared mate uniforme de Ra 4,5 micrómetros libre de rebaba, que cubre el 80% de las) Tj
 T* (piezas metalmecánicas. Y si seleccionamos Q5 \(Precisión Extrema Aeroespacial\), la velocidad baja al 14% para dar tiempo a que) Tj
 T* (el chorro rectifique toda la pared, alcanzando una rugosidad satinada de Ra 1,4 micrómetros y tolerancias de 25 micrones.") Tj
@@ -933,10 +933,10 @@ BT
 10.75 TL
 0.059 0.09 0.165 rg
 52.4409448818897701 341.291574803149615 Td
-("El Defecto 1 es la Desviación y Retardo del Chorro en Esquinas \(Jet Lag\): cuando el cabezal llega rápido a una esquina de 90) Tj
-T* (grados, la parte superior dobla pero la cola inferior del chorro sigue de largo por inercia, dañando el vértice. La solución) Tj
-T* (mecatrónica es el algoritmo CAM de control predictivo Look-Ahead \(Corner Pass\), que desacelera anticipadamente antes de la) Tj
-T* (esquina e inclina el cabezal para verticalizar la columna de agua.") Tj
+("El Defecto 1 es la Desviación y Retardo del Chorro en Esquinas: cuando el cabezal llega rápido a una esquina de 90 grados, la) Tj
+T* (parte superior dobla pero la cola inferior del chorro sigue de largo por inercia, dañando el vértice. La solución mecatrónica es el) Tj
+T* (algoritmo CAM de control predictivo anticipado \(Paso de Esquina\), que desacelera antes de la esquina e inclina el cabezal para) Tj
+T* (verticalizar la columna de agua.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -948,8 +948,8 @@ BT
 10.75 TL
 0.059 0.09 0.165 rg
 52.4409448818897701 289.7010236220472734 Td
-("El Defecto 2 es el Redondeo del Borde Superior \(Roll-Over\): ocurre si la boquilla se aleja de la chapa. Lo solucionamos con el) Tj
-T* (palpador capacitivo en el eje Z que mantiene la distancia constante en 1,5 milímetros incluso si la chapa está arqueada.") Tj
+("El Defecto 2 es el Redondeo del Borde Superior: ocurre si la boquilla se aleja de la chapa. Lo solucionamos con el palpador) Tj
+T* (capacitivo en el eje Z que mantiene la distancia constante en 1,5 milímetros incluso si la chapa está arqueada.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -961,9 +961,9 @@ BT
 10.75 TL
 0.059 0.09 0.165 rg
 52.4409448818897701 260.7876377952757139 Td
-("Y el Defecto 3 es el Cráter de Perforación Inicial \(Blowout\): para que el impacto inicial no deje una marca en la pieza ni delamine) Tj
-T* (materiales frágiles, el software programa una entrada tangencial \(Lead-in\) fuera del contorno útil aplicando perforación dinámica a) Tj
-T* (baja presión con vacío asistido.") Tj
+("Y el Defecto 3 es el Cráter de Perforación Inicial: para que el impacto inicial no deje una marca en la pieza ni delamine materiales) Tj
+T* (frágiles, el software programa una entrada tangencial fuera del contorno útil aplicando perforación dinámica a baja presión con) Tj
+T* (vacío asistido.") Tj
 ET
 0.95 0.96 0.98 rg
 0.8 0.84 0.88 RG
@@ -991,9 +991,9 @@ BT
 10.0039999999999996 TL
 0.2 0.255 0.333 rg
 48.1889763779527627 193.6065354330710306 Td
-(- Relación Velocidad vs Calidad Q: El software CAM \(como OMAX IntelliMAX o FlowXpert\) permite incluso asignar distintas calidades Q a) Tj
-T* (distintos tramos de una misma pieza: por ejemplo, cortar el contorno exterior no crítico en Q2 rápido, y cortar los alojamientos de) Tj
-T* (rodamientos internos en Q5 de alta precisión, optimizando el costo por pieza.) Tj
+(- Relación Velocidad vs Calidad Q: El software CAM permite incluso asignar distintas calidades Q a distintos tramos de una misma pieza:) Tj
+T* (por ejemplo, cortar el contorno exterior no crítico en Q2 rápido, y cortar los alojamientos de rodamientos internos en Q5 de alta precisión,) Tj
+T* (optimizando el costo por pieza.) Tj
 ET
 0.97 0.98 0.99 rg
 0.58 0.64 0.72 RG
@@ -1036,7 +1036,7 @@ endobj
 endobj
 10 0 obj
 <<
-/Length 13201
+/Length 13188
 >>
 stream
 0.8503937007874016 w
@@ -1132,10 +1132,10 @@ BT
 10.75 TL
 0.059 0.09 0.165 rg
 52.4409448818897701 687.6852755905511003 Td
-("Complementando los dos pilares digitales que explicó Diego, el Pilar 03 es la Manufactura Desatendida o Lights-Out Cutting \(corte) Tj
-T* (con luces apagadas\). Gracias a los sensores ópticos de flujo de granate y al control anticolisión en el eje Z, la máquina puede) Tj
-T* (quedar operando sola durante el turno noche sin operario. Si detecta que se obstruyó la boquilla o falta abrasivo en la tolva, pausa) Tj
-T* (el ciclo automáticamente, despresuriza la línea y envía una alerta al celular del supervisor.") Tj
+("Complementando los dos pilares digitales que explicó Diego, el Pilar 03 es la Manufactura Desatendida \(corte autónomo con luces) Tj
+T* (apagadas\). Gracias a los sensores ópticos de flujo de granate y al control anticolisión en el eje Z, la máquina puede quedar) Tj
+T* (operando sola durante el turno noche sin operario. Si detecta que se obstruyó la boquilla o falta abrasivo en la tolva, pausa el ciclo) Tj
+T* (automáticamente, despresuriza la línea y envía una alerta al celular del supervisor.") Tj
 ET
 0.92 0.35 0.05 RG
 1.7007874015748032 w
@@ -1148,7 +1148,7 @@ BT
 0.059 0.09 0.165 rg
 52.4409448818897701 636.0947244094487587 Td
 ("El Pilar 04 es la Economía Circular y Planta Verde. El abrasivo representa cerca del 65% del costo operativo por hora. Por eso las) Tj
-T* (celdas modernas incorporan sistemas de hidrociclones que extraen el lodo del tanque, lavan y tamizan el mineral, permitiendo) Tj
+T* (celdas modernas incorporan sistemas hidrociclónicos que extraen el lodo del tanque, lavan y tamizan el mineral, permitiendo) Tj
 T* (reciclar hasta el 70% del granate almandino y recircular el agua en circuito cerrado.") Tj
 ET
 0.92 0.35 0.05 RG
@@ -1362,7 +1362,7 @@ endobj
 endobj
 12 0 obj
 <<
-/Length 6656
+/Length 6643
 >>
 stream
 0.8503937007874016 w
@@ -1440,10 +1440,10 @@ BT
 10.1260000000000012 TL
 0.2 0.255 0.333 rg
 48.1889763779527627 712.9136220472440755 Td
-(Respuesta técnica: El software CAM \(como IntelliMAX\) utiliza el modelo matemático empírico de Zeng & Kim que relaciona el índice) Tj
-T* (de maquinabilidad M del material, el espesor, la presión UHP y la velocidad de avance Q1-Q5. Con esos datos predice el ángulo de) Tj
-T* (divergencia del chorro e interpola los ejes rotativos A \(inclinación lateral para conicidad\) y C \(orientación e inclinación frontal Lead) Tj
-T* (Angle para compensar el retraso de cola\).) Tj
+(Respuesta técnica: El software CAM utiliza el modelo matemático empírico de Zeng & Kim que relaciona el índice de maquinabilidad) Tj
+T* (M del material, el espesor, la presión UHP y la velocidad de avance Q1-Q5. Con esos datos predice el ángulo de divergencia del) Tj
+T* (chorro e interpola los ejes rotativos A \(inclinación lateral para conicidad\) y C \(orientación e inclinación frontal de ataque para) Tj
+T* (compensar el retraso de cola\).) Tj
 ET
 0.97 0.98 0.99 rg
 0.8 0.84 0.88 RG
@@ -1473,8 +1473,8 @@ BT
 0.2 0.255 0.333 rg
 48.1889763779527627 613.7010236220471597 Td
 (Respuesta técnica: Porque por encima de los 450-500 °C el titanio reacciona ávidamente con el oxígeno y el nitrógeno del aire) Tj
-T* (formando una costra dura y sumamente frágil llamada Alpha-Case \(capa alfa\). Esa capa actúa como concentrador de tensiones e) Tj
-T* (inicia microfisuras por fatiga cíclica. Al cortar en frío con AWJ \(ZAC = 0,00 mm\), no existe Alpha-Case y la pieza cumple) Tj
+T* (formando una costra dura y sumamente frágil llamada capa alfa fragilizada. Esa capa actúa como concentrador de tensiones e inicia) Tj
+T* (microfisuras por fatiga cíclica. Al cortar en frío con AWJ \(ZAC = 0,00 mm\), no existe capa alfa fragilizada y la pieza cumple) Tj
 T* (directamente la norma aeroespacial AS9100.) Tj
 ET
 0.97 0.98 0.99 rg
@@ -1687,7 +1687,7 @@ endobj
 27 0 obj
 <<
 /Producer (jsPDF 4.2.1)
-/CreationDate (D:20261109125505-03'00')
+/CreationDate (D:20261109191906-03'00')
 >>
 endobj
 28 0 obj
@@ -1701,41 +1701,41 @@ endobj
 xref
 0 29
 0000000000 65535 f 
-0000061428 00000 n 
-0000063275 00000 n 
+0000061271 00000 n 
+0000063118 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
 0000013204 00000 n 
 0000013341 00000 n 
-0000027628 00000 n 
-0000027765 00000 n 
-0000041187 00000 n 
-0000041325 00000 n 
-0000054580 00000 n 
-0000054719 00000 n 
-0000061510 00000 n 
-0000061636 00000 n 
-0000061767 00000 n 
-0000061901 00000 n 
-0000062039 00000 n 
-0000062163 00000 n 
-0000062292 00000 n 
-0000062424 00000 n 
-0000062560 00000 n 
-0000062688 00000 n 
-0000062815 00000 n 
-0000062944 00000 n 
-0000063077 00000 n 
-0000063179 00000 n 
-0000063528 00000 n 
-0000063614 00000 n 
+0000027593 00000 n 
+0000027730 00000 n 
+0000041056 00000 n 
+0000041194 00000 n 
+0000054436 00000 n 
+0000054575 00000 n 
+0000061353 00000 n 
+0000061479 00000 n 
+0000061610 00000 n 
+0000061744 00000 n 
+0000061882 00000 n 
+0000062006 00000 n 
+0000062135 00000 n 
+0000062267 00000 n 
+0000062403 00000 n 
+0000062531 00000 n 
+0000062658 00000 n 
+0000062787 00000 n 
+0000062920 00000 n 
+0000063022 00000 n 
+0000063371 00000 n 
+0000063457 00000 n 
 trailer
 <<
 /Size 29
 /Root 28 0 R
 /Info 27 0 R
-/ID [ <1AFE3026399BF8015EAF6E9CCFBDD1A5> <1AFE3026399BF8015EAF6E9CCFBDD1A5> ]
+/ID [ <E0FC9A872A0DCED0BCC0283FFFE63DC9> <E0FC9A872A0DCED0BCC0283FFFE63DC9> ]
 >>
 startxref
-63718
+63561
 %%EOF

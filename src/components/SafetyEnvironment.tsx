@@ -102,7 +102,7 @@ export default function SafetyEnvironment() {
           {/* Tarjeta Médica Oficial WJTA / WJA */}
           <div className="bg-slate-950 p-3.5 rounded-lg border border-amber-500/40 space-y-2 text-xs">
             <span className="text-amber-400 font-mono font-bold block flex items-center gap-1.5">
-              <FileText className="w-4 h-4" /> TARJETA MÉDICA OBLIGATORIA DEL OPERARIO (WJTA Medical Alert Card):
+              <FileText className="w-4 h-4" /> TARJETA MÉDICA OBLIGATORIA DEL OPERARIO (Alerta Médica WJTA):
             </span>
             <p className="text-slate-200 text-[11px] italic bg-slate-900/90 p-2.5 rounded border border-slate-800 leading-relaxed">
               "ATENCIÓN CIRUJANO DE GUARDIA: Este operario puede haber sufrido una inyección por chorro de agua a ultra-alta presión (&gt;6.500 bar) con abrasivo mineral. <strong>ESTÁ CATEGÓRICAMENTE PROHIBIDA LA SUTURA PRIMARIA</strong> de la herida o el uso de vendajes oclusivos. Requiere hospitalización urgente con debridación quirúrgica amplia, descompresión de fascias e irrigación salina copiosa."
@@ -111,11 +111,11 @@ export default function SafetyEnvironment() {
 
           <div className="grid grid-cols-2 gap-2 text-xs pt-1">
             <div className="bg-slate-950/80 p-2.5 rounded border border-slate-800">
-              <span className="text-cyan-400 font-mono font-bold block mb-0.5">Doble Válvula Dump & Whip Checks:</span>
-              <span className="text-slate-400 text-[11px]">Despresuriza 6.500 bar a 0 bar en &lt; 0,5 seg y manguitos antirramotazo en mangueras.</span>
+              <span className="text-cyan-400 font-mono font-bold block mb-0.5">Doble Válvula de Descarga y Cables Antirlatigazo:</span>
+              <span className="text-slate-400 text-[11px]">Despresuriza 6.500 bar a 0 bar en &lt; 0,5 seg y manguitos antirlatigazo en mangueras.</span>
             </div>
             <div className="bg-slate-950/80 p-2.5 rounded border border-slate-800">
-              <span className="text-emerald-400 font-mono font-bold block mb-0.5">Indumentaria UHMWPE & PLe:</span>
+              <span className="text-emerald-400 font-mono font-bold block mb-0.5">Indumentaria UHMWPE y Nivel PLe:</span>
               <span className="text-slate-400 text-[11px]">Trajes de polietileno de ultra-alto peso molecular y botas con blindaje metatarsal.</span>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function SafetyEnvironment() {
 
           <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
             <span className="text-amber-400 font-mono font-bold block flex items-center gap-1.5">
-              <Gauge className="w-4 h-4" /> Barton Garnet Ecológico:
+              <Gauge className="w-4 h-4" /> Granate Almandino Ecológico:
             </span>
             <p className="text-slate-300 leading-relaxed">
               El granate almandino es un silicato natural inerte con <strong>menos de 0,1% de sílice libre cristalina</strong>, eliminando por completo el riesgo ocupacional de silicosis.
@@ -212,7 +212,7 @@ export default function SafetyEnvironment() {
 
           <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
             <span className="text-emerald-400 font-mono font-bold block flex items-center gap-1.5">
-              <Recycle className="w-4 h-4" /> Reciclado de Lodos (Big-Bags):
+              <Recycle className="w-4 h-4" /> Reciclado de Lodos (Bolsas Filtrantes):
             </span>
             <p className="text-slate-300 leading-relaxed">
               Sistemas de hidrociclones decantan el lodo del tanque hacia bolsas filtrantes. Tras lavado y tamizado neumático, se <strong>recupera hasta un 60–70% del granate</strong> para reutilización inmediata, abatiendo drásticamente el costo operativo.

@@ -118,12 +118,12 @@ export const SimulatorErrorFallback = () => (
     <Zap className="w-12 h-12 text-rose-400 mb-3" />
     <h3 className="text-lg font-semibold text-white mb-2">Simulador no disponible</h3>
     <p className="text-slate-400 text-center mb-4 max-w-md">
-      El motor de cálculo falló. Los presets de demostración siguen funcionando desde la UI.
+      El motor de cálculo falló. Los perfiles preconfigurados siguen funcionando desde la interfaz.
     </p>
     <div className="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs font-mono text-slate-300 space-y-1 max-w-xs">
-      <div><span className="text-cyan-400">Presets rápidos:</span> Titanio 15mm Q5 • Hardox 60mm • Cobre 25mm • Alu 30mm</div>
-      <div><span className="text-amber-400">Controles:</span> Sliders presión, espesor, abrasivo, calidad Q1-Q5</div>
-      <div><span className="text-emerald-400">5 Ejes:</span> Toggle compensación conicidad θ=0°</div>
+      <div><span className="text-cyan-400">Perfiles rápidos:</span> Titanio 15 mm Q5 • Hardox 60 mm • Cobre 25 mm • Alu 30 mm</div>
+      <div><span className="text-amber-400">Controles:</span> Deslizadores de presión, espesor, abrasivo y calidad Q1-Q5</div>
+      <div><span className="text-emerald-400">5 Ejes:</span> Conmutador de compensación de conicidad θ=0°</div>
     </div>
   </div>
 );
@@ -139,12 +139,12 @@ export const Head3DErrorFallback = ({ theme = 'dark' }: { theme?: 'dark' | 'ligh
       Modelo 3D no disponible
     </h3>
     <p className={`text-sm text-center mb-4 max-w-md ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-      WebGL no pudo inicializarse. Verifica drivers GPU o usa modo CPU.
+      WebGL no pudo inicializarse. Verificá los controladores gráficos o utilizá el modo 2D.
     </p>
     <div className={`p-3 rounded-lg text-xs font-mono text-center ${
       theme === 'dark' ? 'bg-slate-900 border border-slate-700 text-slate-300' : 'bg-slate-100 border border-slate-200 text-slate-700'
     }`}>
-      Controles: Click+drag = rotar • Scroll = zoom • Botones θ = inclinar cabezal
+      Controles: Clic y arrastrar = rotar • Rueda = acercar/alejar • Botones θ = inclinar cabezal
     </div>
   </div>
 );

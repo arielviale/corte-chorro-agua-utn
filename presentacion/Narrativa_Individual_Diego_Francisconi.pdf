@@ -712,7 +712,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 14856
+/Length 14864
 >>
 stream
 1.7007874015748032 w
@@ -924,8 +924,8 @@ BT
 52.4409448818897701 409.323070866141677 Td
 ("Finalmente, en el paso 4, el agua, el aire y el granate ingresan al Tubo Mezclador o Focalizador ROCTEC de carburo de tungsteno) Tj
 T* (de grano nanométrico, de 0,76 milímetros de diámetro interno. Allí el agua transfiere su cantidad de movimiento a los granos) Tj
-T* (minerales y el haz sale colimado hacia la chapa, manteniendo una distancia de trabajo \(Standoff\) estricta de 1,5 milímetros) Tj
-T* (regulada en lazo cerrado por un sensor capacitivo seguidor de terreno.") Tj
+T* (minerales y el haz sale colimado hacia la chapa, manteniendo una distancia de trabajo \( separación boquilla-pieza\) estricta de 1,5) Tj
+T* (milímetros regulada en lazo cerrado por un sensor capacitivo seguidor de terreno.") Tj
 ET
 0.95 0.96 0.98 rg
 0.8 0.84 0.88 RG
@@ -961,8 +961,8 @@ BT
 10.0039999999999996 TL
 0.2 0.255 0.333 rg
 48.1889763779527627 304.1577165354329964 Td
-(- Por qué es crítica la distancia de 1,5 mm \(Standoff / SOD\): Si el cabezal se aleja a más de 3 o 4 mm de la chapa, el chorro supersónico) Tj
-T* (se abre en forma de campana, redondeando el borde superior \(efecto Roll-over\) y ensanchando la sangría.) Tj
+(- Por qué es crítica la distancia de 1,5 mm \(Separación boquilla-pieza\): Si el cabezal se aleja a más de 3 o 4 mm de la chapa, el chorro) Tj
+T* (supersónico se abre en forma de campana, redondeando el borde superior y ensanchando la sangría.) Tj
 ET
 0.97 0.98 0.99 rg
 0.58 0.64 0.72 RG
@@ -1092,7 +1092,7 @@ endobj
 endobj
 10 0 obj
 <<
-/Length 15140
+/Length 15167
 >>
 stream
 1.7007874015748032 w
@@ -1205,8 +1205,8 @@ BT
 0.2 0.255 0.333 rg
 48.1889763779527627 601.7955118110235162 Td
 (- Rendimiento de bombas: Una bomba intensificadora hidráulica tiene un rendimiento del 65-72% \(por las pérdidas térmicas del aceite) Tj
-T* (hidráulico, que requiere Chiller\), mientras que una servobomba de accionamiento directo \(Direct Drive triplex\) alcanza el 85-90% de) Tj
-T* (eficiencia.) Tj
+T* (hidráulico, que requiere enfriador de circuito cerrado\), mientras que una servobomba de accionamiento directo triplex alcanza el 85-90%) Tj
+T* (de eficiencia.) Tj
 ET
 0.97 0.98 0.99 rg
 0.58 0.64 0.72 RG
@@ -1261,7 +1261,7 @@ BT
 11.2699999999999996 TL
 0.059 0.09 0.165 rg
 42.5196850393700814 471.9687401574802834 Td
-(Título en pantalla: AWJ en la Industria 4.0: Telemetría IoT y Nesting CAM) Tj
+(Título en pantalla: AWJ en la Industria 4.0: Telemetría IoT y Anidamiento Inteligente CAM) Tj
 ET
 BT
 /F3 8.2 Tf
@@ -1330,9 +1330,9 @@ BT
 10.75 TL
 0.059 0.09 0.165 rg
 52.4409448818897701 325.9844881889763428 Td
-("El Pilar 02 es el Anidamiento Inteligente o Nesting CAM. Como el chorro de agua no genera calor ni deforma térmicamente la) Tj
-T* (chapa, podemos anidar las piezas a apenas 2 milímetros de distancia entre sí e incluso compartir líneas de corte comunes sin) Tj
-T* (riesgo de que la chapa se alabee o se suelde por temperatura, logrando un aprovechamiento de materia prima superior al 92%.") Tj
+("El Pilar 02 es el Anidamiento Inteligente CAM. Como el chorro de agua no genera calor ni deforma térmicamente la chapa,) Tj
+T* (podemos anidar las piezas a apenas 2 milímetros de distancia entre sí e incluso compartir líneas de corte comunes sin riesgo de) Tj
+T* (que la chapa se alabee o se suelde por temperatura, logrando un aprovechamiento de materia prima superior al 92%.") Tj
 ET
 0.95 0.96 0.98 rg
 0.8 0.84 0.88 RG
@@ -1360,9 +1360,9 @@ BT
 10.0039999999999996 TL
 0.2 0.255 0.333 rg
 48.1889763779527627 258.8033858267716596 Td
-(- Por qué el Nesting en AWJ supera al térmico: En plasma o láser, si las piezas se colocan muy juntas en chapas gruesas, el calor) Tj
-T* (acumulado deforma el esqueleto de la chapa y mueve las piezas. En AWJ, al ser corte en frío, la chapa permanece dimensionalmente) Tj
-T* (estable de principio a fin.) Tj
+(- Por qué el Anidamiento Inteligente en AWJ supera al térmico: En plasma o láser, si las piezas se colocan muy juntas en chapas) Tj
+T* (gruesas, el calor acumulado deforma el esqueleto de la chapa y mueve las piezas. En AWJ, al ser corte en frío, la chapa permanece) Tj
+T* (dimensionalmente estable de principio a fin.) Tj
 ET
 0.97 0.98 0.99 rg
 0.58 0.64 0.72 RG
@@ -1896,7 +1896,7 @@ endobj
 29 0 obj
 <<
 /Producer (jsPDF 4.2.1)
-/CreationDate (D:20261109125505-03'00')
+/CreationDate (D:20261109191906-03'00')
 >>
 endobj
 30 0 obj
@@ -1910,43 +1910,43 @@ endobj
 xref
 0 31
 0000000000 65535 f 
-0000067724 00000 n 
-0000069578 00000 n 
+0000067759 00000 n 
+0000069613 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
 0000013046 00000 n 
 0000013183 00000 n 
 0000027480 00000 n 
 0000027617 00000 n 
-0000042526 00000 n 
-0000042664 00000 n 
-0000057858 00000 n 
-0000057997 00000 n 
-0000061102 00000 n 
-0000061241 00000 n 
-0000067813 00000 n 
-0000067939 00000 n 
-0000068070 00000 n 
-0000068204 00000 n 
-0000068342 00000 n 
-0000068466 00000 n 
-0000068595 00000 n 
-0000068727 00000 n 
-0000068863 00000 n 
-0000068991 00000 n 
-0000069118 00000 n 
-0000069247 00000 n 
-0000069380 00000 n 
-0000069482 00000 n 
-0000069831 00000 n 
-0000069917 00000 n 
+0000042534 00000 n 
+0000042672 00000 n 
+0000057893 00000 n 
+0000058032 00000 n 
+0000061137 00000 n 
+0000061276 00000 n 
+0000067848 00000 n 
+0000067974 00000 n 
+0000068105 00000 n 
+0000068239 00000 n 
+0000068377 00000 n 
+0000068501 00000 n 
+0000068630 00000 n 
+0000068762 00000 n 
+0000068898 00000 n 
+0000069026 00000 n 
+0000069153 00000 n 
+0000069282 00000 n 
+0000069415 00000 n 
+0000069517 00000 n 
+0000069866 00000 n 
+0000069952 00000 n 
 trailer
 <<
 /Size 31
 /Root 30 0 R
 /Info 29 0 R
-/ID [ <4759DB6A554D867E74D2C5DF2C601C93> <4759DB6A554D867E74D2C5DF2C601C93> ]
+/ID [ <BFFC6735369E33A97015D090FBB013DD> <BFFC6735369E33A97015D090FBB013DD> ]
 >>
 startxref
-70021
+70056
 %%EOF

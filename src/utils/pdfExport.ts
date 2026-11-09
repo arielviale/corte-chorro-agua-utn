@@ -161,7 +161,7 @@ export function downloadAcademicPDF(): void {
   doc.text(cleanPdfText('Abrasivo Activo:'), col2X, y + 11.5);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(180, 83, 9);
-  doc.text(cleanPdfText('Barton Garnet #80 (1,1 M part/s)'), col2X + 32, y + 11.5);
+  doc.text(cleanPdfText('Granate Malla 80 (1,1 M part/s)'), col2X + 32, y + 11.5);
 
   // Row 3
   doc.setFont('helvetica', 'bold');
@@ -176,7 +176,7 @@ export function downloadAcademicPDF(): void {
   doc.text(cleanPdfText('Cinemática 5 Ejes:'), col2X, y + 17.5);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(15, 23, 42);
-  doc.text(cleanPdfText('Flow Dynamic XD (Conicidad = 0 deg)'), col2X + 32, y + 17.5);
+  doc.text(cleanPdfText('Cabezal Dinámico 5D (Conicidad = 0°)'), col2X + 32, y + 17.5);
 
   y += 28;
 
@@ -187,17 +187,17 @@ export function downloadAcademicPDF(): void {
     {
       title: 'Punto 1: Descripción del Proceso',
       paragraphs: [
-        'El corte por chorro de agua (Waterjet Cutting) es un proceso de mecanizado no tradicional por erosión mecánica en frío. Un haz de fluido a presión ultra alta -de hasta 94.000 psi (~ 6.480 bar)- es forzado a través de un orificio microscópico calibrado de zafiro o diamante (0,10 a 0,38 mm), saliendo a velocidades supersónicas de 1.000 a 1.150 m/s (superando Mach 3 en el aire).',
+        'El corte por chorro de agua es un proceso de mecanizado no tradicional por erosión mecánica en frío. Un haz de fluido a presión ultra alta -de hasta 94.000 psi (~ 6.480 bar)- es forzado a través de un orificio microscópico calibrado de zafiro o diamante (0,10 a 0,38 mm), saliendo a velocidades supersónicas de 1.000 a 1.150 m/s (superando Mach 3 en el aire).',
         'Modalidad 1 - Chorro Puro (PWJ): Emplea agua pura a ultra-alta presión. Se utiliza para el corte aséptico y rápido de materiales blandos: elastómeros, espumas, juntas, plásticos, alimentos, cuero y papel con costo operativo mínimo (cero consumo de abrasivo).',
-        'Modalidad 2 - Chorro Abrasivo (AWJ): Mediante efecto Venturi en el cabezal de mezcla se genera vacío que arrastra granate mineral (Barton Garnet #80). El flujo trifásico (agua + aire + abrasivo) colima en un tubo focalizador ROCTEC, multiplicando la potencia erosiva 1.000 veces y seccionando metales (acero inoxidable, titanio, Hardox, cobre), composites y cerámicos hasta espesores mayores a 250 mm sin zona afectada térmicamente (ZAC = 0,00 mm).'
+        'Modalidad 2 - Chorro Abrasivo (AWJ): Mediante efecto Venturi en el cabezal de mezcla se genera vacío que arrastra granate mineral Malla 80. El flujo trifásico (agua + aire + abrasivo) colima en un tubo focalizador ROCTEC, multiplicando la potencia erosiva 1.000 veces y seccionando metales (acero inoxidable, titanio, Hardox, cobre), materiales compuestos y cerámicos hasta espesores mayores a 250 mm sin zona afectada térmicamente (ZAC = 0,00 mm).'
       ]
     },
     {
       title: 'Punto 2: Principio Físico y Modelo Hidrodinámico',
       paragraphs: [
-        'Ecuación de Bernoulli ideal: v_jet = raiz [ (2 * P) / rho ].',
+        'Ecuación de Bernoulli ideal: v_chorro = raiz [ (2 * P) / rho ].',
         'Régimen real de Ultra Alta Presión (UHP): A presiones superiores a 4.000 bar, el agua experimenta compresibilidad con un incremento de densidad del 10% al 12%. Considerando el coeficiente de descarga por fricción y vena contracta (Cd ~ 0,65), la velocidad real de salida resulta:',
-        'v_real = Cd * v_jet = Cd * raiz [ (2 * P) / rho ] ~ 1.000 a 1.050 m/s (Mach 3.06).',
+        'v_real = Cd * v_chorro = Cd * raiz [ (2 * P) / rho ] ~ 1.000 a 1.050 m/s (Mach 3.06).',
         'Conservación de la Cantidad de Movimiento en la mezcla Venturi: m_agua * v_agua = (m_agua + m_abrasivo + m_aire) * v_mezcla. La velocidad de impacto de las partículas de granate alcanza 600 a 700 m/s.',
         'Mecanismo dual de remoción: En materiales dúctiles (metales) actúa por microcorte y cizalladura plástica en frío. En materiales frágiles (vidrio, piedra) actúa por microfractura y propagación controlada de grietas sin choque térmico.',
         'Potencia Hidráulica instantánea: P_h = P * Q = (400 MPa) * (3,33 x 10^-5 m^3/s) = 13,3 kW (requiere motor eléctrico industrial de 50 a 60 HP con rendimiento electro-hidráulico del 75%).'
@@ -207,33 +207,33 @@ export function downloadAcademicPDF(): void {
       title: 'Punto 3: Máquinas y Componentes del Sistema',
       paragraphs: [
         'Generador de Presión UHP: Se divide en dos arquitecturas principales. 1) Bomba Intensificadora Hidráulica de doble efecto (relación de áreas 20:1, cilindros cerámicos gemelos, acumulador/atenuador de pulsaciones que reduce la fluctuación al +-2% y presiones hasta 6.480 bar / 94.000 PSI). 2) Bomba de Transmisión Directa con cigüeñal triplex (alta eficiencia energética 85-90% y presiones de 4.100 bar).',
-        'Cabezal de Mezcla y Enfoque: Cuerpo de acero inoxidable autofretado de alta tenacidad. Aloja el orificio UHP de diamante policristalino PCD (vida útil de 800 a 2.000 h), la cámara de vacío Venturi, la entrada dosificada de abrasivo y el tubo focalizador de nano-carburo ROCTEC (vida útil de 80 a 150 h).',
-        'Mesa de Coordenadas CNC y Batea Colectora: Cinemática pórtico de alta rigidez con servomotores AC brushless de lazo cerrado y reglas ópticas lineales (< 0,005 mm de resolución). Batea colectora con lamas de sacrificio de acero/cobre y nivel de agua regulable para corte sumergido.'
+        'Cabezal de Mezcla y Enfoque: Cuerpo de acero inoxidable autofretado de alta tenacidad. Aloja el orificio UHP de diamante policristalino (vida útil de 800 a 2.000 h), la cámara de vacío Venturi, la entrada dosificada de abrasivo y el tubo focalizador de nano-carburo ROCTEC (vida útil de 80 a 150 h).',
+        'Mesa de Coordenadas CNC y Batea Colectora: Cinemática pórtico de alta rigidez con servomotores de corriente alterna sin escobillas de lazo cerrado y reglas ópticas lineales (< 0,005 mm de resolución). Batea colectora con lamas de sacrificio de acero/cobre y nivel de agua regulable para corte sumergido.'
       ]
     },
     {
       title: 'Punto 4: Servicios Auxiliares e Infraestructura Requerida',
       paragraphs: [
-        'Acondicionamiento del Agua: Requiere tren de filtración previa (filtros de 5 um, 1 um y 0,45 um) y planta desmineralizadora por Ósmosis Inversa (TDS < 50 ppm, dureza < 0,5 dH). Previene la precipitación de sales, cavitación y micro-rayaduras en los orificios de diamante.',
+        'Acondicionamiento del Agua: Requiere tren de filtración previa (filtros de 5 um, 1 um y 0,45 um) y planta desmineralizadora por Ósmosis Inversa (sólidos disueltos < 50 ppm, dureza < 0,5 dH). Previene la precipitación de sales, cavitación y micro-rayaduras en los orificios de diamante.',
         'Suministro Eléctrico: Conexión trifásica 380 V industrial (50/60 Hz) con transformador dedicado de 40 a 75 kVA para la bomba UHP y el control CNC.',
-        'Neumática y Enfriamiento: Aire comprimido seco y desengrasado (6 bar, ISO 8573-1) para el accionamiento de válvulas neumáticas UHP ultra-rápidas. Chiller de refrigeración circuito cerrado de 10 a 15 kW para mantener el aceite hidráulico de la bomba por debajo de 45 deg C.'
+        'Neumática y Enfriamiento: Aire comprimido seco y desengrasado (6 bar, ISO 8573-1) para el accionamiento de válvulas neumáticas UHP ultra-rápidas. Enfriador hidráulico de circuito cerrado de 10 a 15 kW para mantener el aceite hidráulico de la bomba por debajo de 45 °C.'
       ]
     },
     {
       title: 'Punto 5: Parámetros de Trabajo y Variables del Proceso',
       paragraphs: [
         'Presión de Bomba (P): Regulable de 3.800 a 6.480 bar. A mayor presión se incrementa la densidad de energía cinética (E proporcional a v^2), permitiendo mayor velocidad de avance o mayor espesor.',
-        'Distancia de Separación (Standoff distance): Mantenida rigurosamente entre 1,0 y 2,0 mm. Un standoff superior produce divergencia cónica del chorro y pérdida de perpendicularidad.',
-        'Caudal de Abrasivo: Dosificación calibrada de 250 a 500 g/min de granate almandino Barton Malla 80. La sobrealimentación genera atascamiento y pérdida de velocidad por saturación de masa.',
-        'Velocidad de Avance (Feedrate) y Calidades ISO/DIN Q1 a Q5: Q1 (separación rápida, Ra > 12 um), Q2 (estándar para soldadura), Q3 (comercial, Ra ~ 6,3 um), Q4 (precisión de ingeniería, Ra ~ 3,2 um) y Q5 (acabado fino aeroespacial con tolerancia estrecha, Ra < 1,6 um).'
+        'Distancia de Separación Boquilla-Pieza: Mantenida rigurosamente entre 1,0 y 2,0 mm. Una separación superior produce divergencia cónica del chorro y pérdida de perpendicularidad.',
+        'Caudal de Abrasivo: Dosificación calibrada de 250 a 500 g/min de granate almandino Malla 80. La sobrealimentación genera atascamiento y pérdida de velocidad por saturación de masa.',
+        'Velocidad de Avance y Calidades ISO/DIN Q1 a Q5: Q1 (separación rápida, Ra > 12 um), Q2 (estándar para soldadura), Q3 (comercial, Ra ~ 6,3 um), Q4 (precisión de ingeniería, Ra ~ 3,2 um) y Q5 (acabado fino aeroespacial con tolerancia estrecha, Ra < 1,6 um).'
       ]
     },
     {
       title: 'Punto 6: Defectos Típicos y Control Mecatrónico',
       paragraphs: [
-        'Conicidad de Ranura (Kerf Taper): Pérdida de energía del chorro que provoca corte en V, inverso o en barril. Solución mecatrónica: Cabezal articulado de 5 ejes (Flow Dynamic XD / Tilt-A-Jet) que inclina el cabezal activamente entre 1 deg y 9 deg para dejar la pieza útil 100% a escuadra (theta = 0,00 deg).',
-        'Retraso del Chorro (Jet Lag y Estriado Inferior): La base del chorro se retrasa respecto a la parte superior por fricción con el material. Solución mecatrónica: Algoritmo CNC de desaceleración y aceleración predictiva (Look-Ahead vectorial) en esquinas y vértices cerrados.',
-        'Despostillado / Picado Inicial: Evitado mediante ciclo de pre-perforación a baja presión (Vacuum Assist Pierce a 700 bar) antes de conmutar automáticamente a régimen UHP.'
+        'Conicidad de Sangría: Pérdida de energía del chorro que provoca corte en V, inverso o en barril. Solución mecatrónica: Cabezal articulado de 5 ejes que inclina la boquilla activamente entre 1° y 9° para dejar la pieza útil 100% a escuadra (theta = 0,00°).',
+        'Retraso del Chorro y Estriado Inferior: La base del chorro se retrasa respecto a la parte superior por fricción con el material. Solución mecatrónica: Algoritmo CNC de desaceleración y aceleración predictiva en esquinas y vértices cerrados.',
+        'Despostillado / Picado Inicial: Evitado mediante ciclo de pre-perforación asistida por vacío a baja presión (700 bar) antes de conmutar automáticamente a régimen UHP.'
       ]
     },
     {
@@ -248,20 +248,20 @@ export function downloadAcademicPDF(): void {
       title: 'Punto 8: Seguridad Ocupacional y Sustentabilidad Ambiental',
       paragraphs: [
         'Peligro Crítico de Inyección a Ultra Alta Presión: Un chorro a 6.000 bar penetra la piel de forma instantánea causando destrucción tisular profunda sin quemadura térmica evidente. Requiere protocolo médico hospitalario de descompresión quirúrgica inmediata.',
-        'Equipos de Protección Personal (EPP): Trajes y polainas técnicas de fibra Dyneema / aramida certificadas contra impactos de 7.500 bar, protección ocular panorámica y auditiva.',
+        'Equipos de Protección Personal (EPP): Trajes y polainas técnicas de fibra de ultra-alto peso molecular certificadas contra impactos de 7.500 bar, protección ocular panorámica y auditiva.',
         'Sustentabilidad Ambiental: Operación con corte sumergido bajo agua que disminuye el nivel sonoro de 100 dBA a 74 dBA y retiene el 100% de aerosoles y nieblas. Los residuos sólidos de granate y metales pesados son extraídos por hidrociclones y decantación para reciclado o confinamiento seguro.'
       ]
     },
     {
       title: 'Punto 9: Secuencia Operativa Estándar (9 Pasos CNC)',
       paragraphs: [
-        'Paso 1: Carga del plano CAD/CAM (DXF/STEP) y trazado de entradas (Lead-in) con compensación de radio de sangría.',
+        'Paso 1: Carga del plano CAD/CAM (DXF/STEP) y trazado de entradas tangenciales con compensación de radio de sangría.',
         'Paso 2: Selección mecatrónica de material, espesor y calidad requerida (Q1 a Q5) en la base de datos de corte.',
         'Paso 3: Verificación de presiones de entrada de agua, tolva de abrasivo y estado del orificio de diamante.',
         'Paso 4: Fijación rígida del tocho metálico sobre las lamas de sacrificio de la batea.',
-        'Paso 5: Ajuste de cero pieza (G54) y calibración automática del sensor de distancia (Standoff a 1,5 mm).',
+        'Paso 5: Ajuste de cero pieza (G54) y calibración automática del sensor de distancia (1,5 mm).',
         'Paso 6: Secuencia de cebado hidráulico y presurización de la bomba UHP a 6.480 bar.',
-        'Paso 7: Ejecución del ciclo de perforación inicial (Piercing con abrasivo activo).',
+        'Paso 7: Ejecución del ciclo de perforación inicial controlada con abrasivo activo.',
         'Paso 8: Mecanizado continuo del contorno con compensación dinámica de conicidad en 5 ejes.',
         'Paso 9: Despresurización controlada, purga de líneas y retiro de la pieza terminada limpia e inalterada.'
       ]
@@ -354,35 +354,35 @@ export function downloadAcademicMarkdown(): void {
 ---
 
 ## Parámetros Característicos UHP
-* Presión de Trabajo UHP: 6.480 bar (94.000 PSI) - Flow HyperJet 2026
+* Presión de Trabajo UHP: 6.480 bar (94.000 PSI) - Bomba HyperJet 2026
 * Velocidad del Chorro Supersónico: 1.050 m/s (Mach 3.06)
 * Zona Afectada Térmicamente: ZAC = 0,00 mm (Corte 100% en Frío)
-* Tasa de Abrasivo: Barton Garnet Malla 80 (1,1 M part/s)
-* Corrección Angular Cinemática 5D: theta = 0,00 deg (Flow Dynamic XD / Tilt-A-Jet)
+* Tasa de Abrasivo: Granate Almandino Malla 80 (1,1 M part/s)
+* Corrección Angular Cinemática 5D: theta = 0,00° (Inclinación Dinámica 5 Ejes)
 
 ---
 
 ## 1. Descripción del Proceso
-El corte por chorro de agua (Waterjet Cutting) es un proceso de mecanizado no tradicional por erosión en frío.
+El corte por chorro de agua es un proceso de mecanizado no tradicional por erosión en frío.
 Un chorro de agua a presión ultra alta -de hasta 94.000 psi (~ 6.480 bar)- es forzado a través de un orificio microscópico calibrado de piedra preciosa (zafiro, rubí o diamante policristalino de 0,10 a 0,38 mm), saliendo a velocidades supersónicas de 1.000 a 1.150 m/s (Mach 3+).
 * **Modalidad Chorro Puro (PWJ):** Para materiales blandos (goma, juntas, plásticos, alimentos, cuero).
-* **Modalidad Chorro Abrasivo (AWJ):** Incorpora granate mineral en la cámara Venturi, permitiendo cortar cualquier metal (acero inoxidable, titanio, Hardox) y composites de más de 250 mm de espesor sin aporte térmico.
+* **Modalidad Chorro Abrasivo (AWJ):** Incorpora granate mineral en la cámara Venturi, permitiendo cortar cualquier metal (acero inoxidable, titanio, Hardox) y materiales compuestos de más de 250 mm de espesor sin aporte térmico.
 
 ## 2. Principio Físico y Modelo Hidrodinámico
-* Ecuación de Bernoulli ideal: v_jet = raiz [ (2 * P) / rho ]
+* Ecuación de Bernoulli ideal: v_chorro = raiz [ (2 * P) / rho ]
 * Régimen real UHP con compresibilidad y coeficiente de descarga Cd ~ 0,65: v_real = Cd * raiz [ (2 * P) / rho ] ~ 1.050 m/s (Mach 3.06).
-* Conservación del momento lineal en cámara de mezcla: m_w * v_w = (m_w + m_a + m_air) * v_mix.
+* Conservación del momento lineal en cámara de mezcla: m_agua * v_agua = (m_agua + m_abrasivo + m_aire) * v_mezcla.
 * Potencia hidráulica del chorro: P_h = P * Q = 400 MPa * 3,33x10^-5 m^3/s = 13,3 kW.
 
 ## 3. Componentes de la Máquina
 * Bomba Intensificadora UHP (relación de áreas 20:1, doble efecto cerámico).
-* Cabezal de mezcla Paschen/Venturi con orificio de diamante PCD y tubo colimador ROCTEC.
-* Cinemática 5D de lazo cerrado (Flow Dynamic XD) para compensación en tiempo real.
+* Cabezal de mezcla Venturi con orificio de diamante y tubo colimador ROCTEC.
+* Cinemática 5D de lazo cerrado para compensación en tiempo real.
 
 ## 4. Servicios Auxiliares
-* Tratamiento de agua por Ósmosis Inversa (TDS < 50 ppm).
+* Tratamiento de agua por Ósmosis Inversa (sólidos disueltos < 50 ppm).
 * Suministro eléctrico trifásico 380V (40 a 75 kVA).
-* Neumática industrial seca (6 bar) y Chiller de enfriamiento de aceite hidráulico.
+* Neumática industrial seca (6 bar) y enfriador hidráulico de aceite.
 
 ## 5. Parámetros de Trabajo y Calidades Q1-Q5
 * Q1: Corte de separación rápida (Ra > 12 um).
@@ -392,9 +392,9 @@ Un chorro de agua a presión ultra alta -de hasta 94.000 psi (~ 6.480 bar)- es f
 * Q5: Precisión aeroespacial (Ra < 1,6 um, tolerancia estrecha).
 
 ## 6. Defectos Típicos y Control Mecatrónico
-* Conicidad (Kerf Taper): Compensada mediante inclinación dinámica del cabezal 5D.
-* Retraso del chorro (Jet Lag): Compensado con desaceleración predictiva (Look-Ahead CNC).
-* Despostillado: Prevenido con perforación suave a baja presión (Vacuum Assist Pierce).
+* Conicidad de Sangría: Compensada mediante inclinación dinámica del cabezal 5D.
+* Retraso del chorro: Compensado con desaceleración predictiva CNC.
+* Despostillado: Prevenido con perforación suave asistida por vacío a baja presión.
 
 ## 7. Metrología y Tolerancias
 * Tolerancias de contorno: +-0,025 a +-0,08 mm.
@@ -402,18 +402,18 @@ Un chorro de agua a presión ultra alta -de hasta 94.000 psi (~ 6.480 bar)- es f
 
 ## 8. Seguridad y Ecosistema
 * Riesgo crítico de inyección a 6.500 bar y protocolo médico descompresivo.
-* EPP certificado en fibra Dyneema resistente a 7.500 bar.
+* EPP certificado en fibra resistente a 7.500 bar.
 * Corte subacuático (atenuación acústica a 74 dBA y cero aerosoles).
 * Hidrociclones para extracción de lodos de granate.
 
 ## 9. Secuencia Operativa (9 Pasos)
-1. Carga CAD/CAM con Lead-in.
+1. Carga CAD/CAM con entrada tangencial.
 2. Definición de parámetros y calidad Q.
 3. Chequeo de agua, presión y abrasivo.
 4. Amarre de pieza.
-5. Calibración de cero (G54) y standoff (1,5 mm).
+5. Calibración de cero (G54) y separación boquilla-pieza (1,5 mm).
 6. Presurización UHP.
-7. Perforación inicial (Piercing).
+7. Perforación inicial controlada.
 8. Contorneado CNC con 5 ejes.
 9. Despresurización y retiro seguro.
 

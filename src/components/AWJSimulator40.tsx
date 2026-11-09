@@ -338,7 +338,7 @@ function AWJSimulatorInner() {
               className="w-full accent-amber-400 cursor-pointer"
             />
             <div className="flex items-center justify-between mt-2 pt-1 border-t border-slate-800 text-xs">
-              <span className="text-slate-400 font-mono">Malla Barton Garnet:</span>
+              <span className="text-slate-400 font-mono">Malla de Granate Almandino:</span>
               <div className="flex gap-2">
                 {[50, 80, 120].map((mesh) => (
                   <button
@@ -350,7 +350,7 @@ function AWJSimulatorInner() {
                         : 'bg-slate-800 text-slate-400 hover:text-white'
                     }`}
                   >
-                    Mesh {mesh}
+                    Malla {mesh}
                   </button>
                 ))}
               </div>
@@ -453,13 +453,13 @@ function AWJSimulatorInner() {
                 {metrics.estimatedRaUm} <span className="text-sm font-normal text-slate-400">µm</span>
               </p>
               <div className="text-[11px] text-emerald-400 mt-1 font-mono font-semibold">
-                ZAC / HAZ = 0,00 mm (Cold Cut)
+                ZAC = 0,00 mm (Corte en Frío)
               </div>
             </div>
 
             <div className="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
               <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
-                Sangría (Kerf) & Taper
+                Sangría y Conicidad
               </span>
               <p className="text-lg font-bold text-white mt-1 font-mono">
                 {metrics.topKerfMm} → {metrics.bottomKerfMm} mm
@@ -500,7 +500,7 @@ function AWJSimulatorInner() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs font-mono text-slate-400 gap-2 border-b border-slate-800/80 pb-3">
               <span className="flex items-center gap-1.5 text-cyan-300 font-semibold">
                 <Activity className="w-3.5 h-3.5" />
-                Frente de Corte y Deformación (Kerf Geometry & Jet Lag)
+                Frente de Corte y Deformación (Geometría de Sangría y Retardo de Cola)
               </span>
 
               {/* View Mode Toggle Buttons */}
@@ -537,12 +537,12 @@ function AWJSimulatorInner() {
                 <div 
                   onClick={() => setSimModalImage({
                     src: '/images/kerf_taper_real.jpg',
-                    title: 'Ensayo Metrológico: Sangría y Conicidad Real (Kerf Taper)',
+                    title: 'Ensayo Metrológico: Sangría y Conicidad Real',
                     subtitle: 'Medición de sangría con calibre micrométrico Mitutoyo en probeta de acero inoxidable',
                     badge: 'Probeta de Laboratorio Metalúrgico',
                     specs: [
-                      { label: 'Sangría Superior (W_top)', value: `${metrics.topKerfMm} mm` },
-                      { label: 'Sangría Inferior (W_bottom)', value: `${metrics.bottomKerfMm} mm` },
+                      { label: 'Sangría Superior (Ancho Sup.)', value: `${metrics.topKerfMm} mm` },
+                      { label: 'Sangría Inferior (Ancho Inf.)', value: `${metrics.bottomKerfMm} mm` },
                       { label: 'Ángulo Conicidad θ', value: fiveAxisActive ? '0,00° (Compensado 5 Ejes)' : `${metrics.effectiveTaperDeg}° (Natural)` },
                       { label: 'Material Probeta', value: `${selectedMaterial.name} (h = ${thicknessMm} mm)` }
                     ]
@@ -569,14 +569,14 @@ function AWJSimulatorInner() {
                   {/* Bottom Telemetry Overlay */}
                   <div className="absolute bottom-2 left-2 right-2 text-left">
                     <div className="flex justify-between items-center text-xs font-mono font-bold text-white mb-0.5">
-                      <span>W_top: {metrics.topKerfMm} mm</span>
-                      <span className="text-cyan-400">W_bot: {metrics.bottomKerfMm} mm</span>
+                      <span>Ancho Sup.: {metrics.topKerfMm} mm</span>
+                      <span className="text-cyan-400">Ancho Inf.: {metrics.bottomKerfMm} mm</span>
                     </div>
                     <div className="flex justify-between items-center text-[10px] font-mono">
                       <span className={fiveAxisActive ? 'text-emerald-400 font-bold' : 'text-amber-400'}>
                         {fiveAxisActive ? '✓ Pared recta 90,00°' : `θ conicidad: ${metrics.effectiveTaperDeg}°`}
                       </span>
-                      <span className="text-slate-400 text-[9px]">Click para ampliar [HD]</span>
+                      <span className="text-slate-400 text-[9px]">Clic para ampliar [HD]</span>
                     </div>
                   </div>
                 </div>
@@ -585,11 +585,11 @@ function AWJSimulatorInner() {
                 <div 
                   onClick={() => setSimModalImage({
                     src: '/images/jet_lag_striations_real.jpg',
-                    title: 'Ensayo Físico: Retardo de Cola y Estriaciones (Jet Lag)',
+                    title: 'Ensayo Físico: Retardo de Cola y Estriaciones',
                     subtitle: 'Registro macrográfico de la cara lateral de corte mostrando la pérdida de energía cinética',
                     badge: 'Probeta de Laboratorio Metalúrgico',
                     specs: [
-                      { label: 'Retardo de Cola (L_lag)', value: `${metrics.jetLagMm} mm` },
+                      { label: 'Retardo de Cola', value: `${metrics.jetLagMm} mm` },
                       { label: 'Avance CNC (Vf)', value: `${metrics.feedRateMmMin} mm/min` },
                       { label: 'Rugosidad Fondo (Ra)', value: `${metrics.estimatedRaUm} µm (Calidad Q${qualityIndex})` },
                       { label: 'Espesor Macizo', value: `${thicknessMm} mm macizo` }
@@ -617,14 +617,14 @@ function AWJSimulatorInner() {
                   {/* Bottom Telemetry Overlay */}
                   <div className="absolute bottom-2 left-2 right-2 text-left">
                     <div className="flex justify-between items-center text-xs font-mono font-bold text-white mb-0.5">
-                      <span>L_lag: <strong className="text-amber-400">{metrics.jetLagMm} mm</strong></span>
+                      <span>Retardo: <strong className="text-amber-400">{metrics.jetLagMm} mm</strong></span>
                       <span className="text-slate-300">Vf: {metrics.feedRateMmMin} mm/min</span>
                     </div>
                     <div className="flex justify-between items-center text-[10px] font-mono">
                       <span className="text-cyan-300">
                         Ra fondo: {metrics.estimatedRaUm} µm (Q{qualityIndex})
                       </span>
-                      <span className="text-slate-400 text-[9px]">Click para ampliar [HD]</span>
+                      <span className="text-slate-400 text-[9px]">Clic para ampliar [HD]</span>
                     </div>
                   </div>
                 </div>
@@ -640,7 +640,7 @@ function AWJSimulatorInner() {
                   {/* Left Side: Front View (Kerf Taper) */}
                   <g transform="translate(45, 0)">
                     <text x="75" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      VISTA FRONTAL: CONICIDAD (TAPER)
+                      VISTA FRONTAL: CONICIDAD DE SANGRÍA
                     </text>
                     <rect x="0" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
                     <rect x="85" y="40" width="65" height="100" fill="#334155" stroke="#475569" strokeWidth="1" />
@@ -654,10 +654,10 @@ function AWJSimulatorInner() {
                     />
 
                     <text x="75" y="56" fill="#00F0FF" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
-                      W_top: {metrics.topKerfMm} mm
+                      Ancho Sup.: {metrics.topKerfMm} mm
                     </text>
                     <text x="75" y="132" fill="#38bdf8" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
-                      W_bottom: {metrics.bottomKerfMm} mm
+                      Ancho Inf.: {metrics.bottomKerfMm} mm
                     </text>
 
                     <text x="75" y="162" fill={fiveAxisActive ? '#10B981' : '#F59E0B'} fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
@@ -668,7 +668,7 @@ function AWJSimulatorInner() {
                   {/* Right Side: Side View (Stream / Jet Lag Curve) */}
                   <g transform="translate(265, 0)">
                     <text x="105" y="16" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      VISTA LATERAL: RETARDO DE COLA (JET LAG)
+                      VISTA LATERAL: RETARDO DE COLA
                     </text>
 
                     <line x1="30" y1="32" x2="175" y2="32" stroke="#EA580C" strokeWidth="1.5" />
@@ -697,7 +697,7 @@ function AWJSimulatorInner() {
                       strokeWidth="1.5"
                     />
                     <text x={140 - Math.min(60, Number(metrics.jetLagMm) * 4)} y="164" fill="#EA580C" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      L_lag: {metrics.jetLagMm} mm
+                      Retardo: {metrics.jetLagMm} mm
                     </text>
                   </g>
                 </svg>
@@ -753,7 +753,7 @@ function AWJSimulatorInner() {
               {simModalImage.specs.map((spec, i) => (
                 <div key={i} className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">{spec.label}</span>
-                  <span className="text-xs font-mono font-bold text-cyan-300 mt-0.5 block truncate" title={spec.value}>{spec.value}</span>
+                  <span className="text-xs font-mono font-bold text-cyan-300 mt-0.5 block leading-snug break-words" title={spec.value}>{spec.value}</span>
                 </div>
               ))}
             </div>

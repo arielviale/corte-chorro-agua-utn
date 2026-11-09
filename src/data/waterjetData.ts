@@ -17,7 +17,7 @@ export const MATERIALS: MaterialSpec[] = [
     category: 'Aeroespacial y Biomedicina',
     machinability: 108,
     density: 4.43,
-    hardnessNote: 'Aeroespacial (~330 HB) — Cero capa alfa fragilizada (Alpha-Case)',
+    hardnessNote: 'Aeroespacial (~330 HB) — Cero capa alfa fragilizada',
     thermalNote: 'ZAC = 0,00 mm (Apto directo para normas aeronáuticas AS9100 / Boeing / Airbus)',
     maxRecommendedThick: 120,
   },
@@ -58,7 +58,7 @@ export const MATERIALS: MaterialSpec[] = [
     machinability: 138,
     density: 8.96,
     hardnessNote: 'Excelente ductilidad (45-55 HRB) — Altamente reflectivo a fotones',
-    thermalNote: 'ZAC = 0,00 mm (Corte óptimo de barras Busbars para transformadores y baterías VE)',
+    thermalNote: 'ZAC = 0,00 mm (Corte óptimo de barras colectoras para transformadores y baterías VE)',
     maxRecommendedThick: 80,
   },
   {
@@ -77,7 +77,7 @@ export const QUALITY_LEVELS: QualityLevel[] = [
   {
     q: 1,
     label: 'Q1 - Corte de Separación Rápida',
-    description: 'Máxima productividad con estrías visibles en el 60% inferior. Ideal para recorte de scrap o desbaste previo a fresado.',
+    description: 'Máxima productividad con estrías visibles en el 60% inferior. Ideal para recorte de chatarra o desbaste previo a fresado.',
     speedFactor: 1.0,
     raBase: 16.5,
     taperDeg: 0.85,
@@ -237,24 +237,24 @@ export const WATERJET_VARIANTS: WaterjetVariant[] = [
     bestUseCases: 'Celdas de producción continua automatizada, optimización de consumo eléctrico kWh.'
   },
   {
-    name: 'Micro-Waterjet (Ultra-Precisión Biomédica & Microelectrónica)',
+    name: 'Micro-Chorro de Agua (Ultra-Precisión Biomédica y Microelectrónica)',
     category: 'Micro-Mecanizado Abrasivo de Precisión',
-    architecture: 'Cabezal miniaturizado con orificio de gema de 0,05 a 0,10 mm, micro-tubo focalizador de 0,15 a 0,20 mm y abrasivo ultra-fino Mesh 200–300.',
+    architecture: 'Cabezal miniaturizado con orificio de gema de 0,05 a 0,10 mm, micro-tubo focalizador de 0,15 a 0,20 mm y abrasivo ultra-fino Malla 200–300.',
     maxPressure: '4.000 bar estabilizada con atenuador de alta frecuencia',
-    efficiency: 'Resolución sub-milimétrica sin daño térmico, compitiendo directo con láser femtosegundo y Wire EDM.',
-    typicalMaterials: 'Stents de nitinol, titanio grado médico, silicio, micro-engranajes de relojería y cerámicas técnicas.',
-    kerfAndTaper: 'Sangría ultra-estrecha: Kerf ≈ 0,20 mm • Tolerancia: ± 0,01 mm',
+    efficiency: 'Resolución sub-milimétrica sin daño térmico, compitiendo directo con láser de femtosegundo y electroerosión por hilo.',
+    typicalMaterials: 'Endoprótesis de nitinol, titanio grado médico, silicio, micro-engranajes de relojería y cerámicas técnicas.',
+    kerfAndTaper: 'Sangría ultra-estrecha: 0,20 mm • Tolerancia: ± 0,01 mm',
     pros: [
       'Ancho de corte minúsculo de 0,20 mm con tolerancias de ±0,01 mm',
       'No induce deformación térmica ni microfisuras en componentes biomédicos',
-      'Cero emisión de calor, libre de rebaba y sin capa refundida (recast layer)',
+      'Cero emisión de calor, libre de rebaba y sin capa refundida',
       'Permite micro-corte de polímeros biorreabsorbibles y aleaciones con memoria de forma'
     ],
     cons: [
-      'Exige abrasivo de ultra-alta pureza Mesh 200–300 para no tapar el micro-tubo',
+      'Exige abrasivo de ultra-alta pureza Malla 200–300 para no tapar el micro-tubo',
       'Velocidad de avance menor que en macro-corte'
     ],
-    bestUseCases: 'Dispositivos médicos implantables, microelectrónica, relojería de alta gama, MEMS.'
+    bestUseCases: 'Dispositivos médicos implantables, microelectrónica, relojería de alta gama, sistemas microelectromecánicos.'
   }
 ];
 
@@ -263,15 +263,15 @@ export const INTER_TECH_COMPARISON = [
     process: 'Chorro de Agua Abrasivo (AWJM)',
     removalMechanism: 'Erosión mecánica por impacto abrasivo supersónico (frío)',
     thicknessRange: '1 mm a >150 mm (hasta >300 mm)',
-    tolerance: '± 0,05 mm a ± 0,25 mm (±0,01 en Micro-WJ)',
-    kerf: '0,60 mm a 1,20 mm (0,20 mm en Micro-WJ)',
+    tolerance: '± 0,05 mm a ± 0,25 mm (±0,01 en Micro-AWJ)',
+    kerf: '0,60 mm a 1,20 mm (0,20 mm en Micro-AWJ)',
     speedSteel12mm: '100 a 450 mm/min (según Q1–Q5)',
     hazExtent: 'NULA (0,00 mm - Proceso 100% en frío)',
     operatingCost: 'Alto (~$25 - $35 USD/h por abrasivo)',
     versatility: 'Universal (Metales, cerámicas, vidrio, compuestos CFRP)'
   },
   {
-    process: 'Láser de Fibra (Fiber Laser)',
+    process: 'Láser de Fibra Óptica',
     removalMechanism: 'Fusión y evaporación por fotones coherentes',
     thicknessRange: '0,5 mm a 25 mm',
     tolerance: '± 0,03 mm a ± 0,10 mm',
@@ -282,7 +282,7 @@ export const INTER_TECH_COMPARISON = [
     versatility: 'Metales conductores no reflectivos, polímeros seleccionados'
   },
   {
-    process: 'Plasma de Alta Definición (HD Plasma)',
+    process: 'Plasma de Alta Definición',
     removalMechanism: 'Fusión por arco de gas ionizado térmico (>20.000 K)',
     thicknessRange: '3 mm a 50 mm',
     tolerance: '± 0,25 mm a ± 0,75 mm',
@@ -293,13 +293,13 @@ export const INTER_TECH_COMPARISON = [
     versatility: 'Exclusivamente metales electroconductores'
   },
   {
-    process: 'Electroerosión por Hilo (Wire EDM)',
+    process: 'Electroerosión por Hilo (EDM)',
     removalMechanism: 'Descarga por micro-chispas térmicas en dieléctrico',
     thicknessRange: '1 mm a 200 mm',
     tolerance: '± 0,002 mm a ± 0,005 mm (submicrónica)',
     kerf: '0,10 mm a 0,30 mm',
     speedSteel12mm: '10 a 20 mm/min (muy lenta)',
-    hazExtent: 'Mínima (capa de refundición recast blanca)',
+    hazExtent: 'Mínima (capa de refundición blanca)',
     operatingCost: 'Muy Alto (~$85 USD/h por hilo y resinas)',
     versatility: 'Exclusivamente metales electroconductores'
   }
@@ -312,12 +312,12 @@ export const SO_WHAT_SYNTHESIS = [
     reason: 'Imbatible en costo y velocidad para producción masiva de chapa fina. Pierde viabilidad en metales reflectivos (cobre, bronce) y espesores macizos.'
   },
   {
-    tech: 'Plasma HD',
+    tech: 'Plasma de Alta Definición',
     verdict: 'Líder en costo/metro de acero estructural grueso',
     reason: 'Rápido y económico para calderería pesada, pero genera conicidad pronunciada y ZAC con borde templado que exige rectificado posterior.'
   },
   {
-    tech: 'Wire EDM',
+    tech: 'Electroerosión por Hilo',
     verdict: 'El rey de la precisión para matricería',
     reason: 'Tolerancias submicrónicas insustituibles en matrices de corte, pero restringido a metales conductores y con velocidades de avance sumamente lentas.'
   },
@@ -334,7 +334,7 @@ export const DEFECTS_CATALOG: DefectItem[] = [
     id: 'taper',
     name: 'Conicidad en la Pared',
     alias: 'Conicidad Natural del Chorro',
-    visualDesc: 'Diferencia de ancho entre la cara superior de entrada (W_top) y la cara inferior de salida (W_bottom), dejando la pared inclinada con un ángulo θ_t.',
+    visualDesc: 'Diferencia de ancho entre la cara superior de entrada y la cara inferior de salida, dejando la pared inclinada con un ángulo θ_t.',
     cause: 'El chorro pierde energía cinética por fricción y choque al profundizar en el espesor, o por desgaste cónico del tubo mezclador.',
     mechatronicFix: 'Compensación 5 ejes en tiempo real volcando la conicidad hacia el desecho; reducir velocidad de avance o cambiar consumibles.',
     diagramType: 'taper'
@@ -369,29 +369,29 @@ export const DEFECTS_CATALOG: DefectItem[] = [
   {
     id: 'rollover',
     name: 'Redondeo del Borde Superior',
-    alias: 'Top Edge Roll-Over & Frosting',
+    alias: 'Chaflán Superior y Esmerilado Periférico',
     visualDesc: 'Pérdida del filo vivo en la arista de entrada, con chaflán redondeado y franja opaca periférica de 0,5 a 1,5 mm.',
-    cause: 'Distancia boquilla-pieza excesiva (SOD > 3,5 mm) o desgaste del orificio primario de joya.',
-    mechatronicFix: 'Control de lazo cerrado del eje Z con palpador de terreno capacitivo (Terrain Follower) para mantener SOD constante en 1,5 mm.',
+    cause: 'Distancia boquilla-pieza excesiva (> 3,5 mm) o desgaste del orificio primario de joya.',
+    mechatronicFix: 'Control de lazo cerrado del eje Z con palpador de terreno capacitivo para mantener distancia constante en 1,5 mm.',
     diagramType: 'rollover'
   },
   {
     id: 'blowout',
     name: 'Cráter en Punto de Perforación',
-    alias: 'Piercing Blowout / Witness Mark',
+    alias: 'Reventón de Perforación y Marca de Entrada',
     visualDesc: 'Cráter o muesca irregular en la arista de la pieza donde se inició o cerró el contorno.',
     cause: 'Perforar directamente sobre la línea de contorno o corte instantáneo sin trayectoria de aproximación suave.',
-    mechatronicFix: 'Generar entradas tangenciales Lead-in y salidas Lead-out en arco en la zona de desecho, con perforación dinámica y vacío previo UltraPierce.',
+    mechatronicFix: 'Generar entradas y salidas tangenciales en arco en la zona de desecho, con perforación dinámica y vacío previo asistido.',
     diagramType: 'piercing'
   }
 ];
 
 export const MACHINERY_COMPONENTS: MachineryComponent[] = [
   {
-    component: 'Bomba Intensificadora / Direct Drive',
+    component: 'Bomba Intensificadora / Accionamiento Directo',
     function: 'Genera la presión ultra alta (UHP)',
     techDetails: 'Comprime el agua filtrada desde 3.800 bar hasta 6.480 bar (94.000 psi). Utiliza circuitos electrohidráulicos o servomotores cigüeñal triplex.',
-    specs2026: 'Bomba HyperJet de Flow: 94.000 psi (6.480 bar). Corta 30-50% más rápido que a 60.000 psi y ahorra 25-35% de granate (hasta ~50% a 90k psi).'
+    specs2026: 'Bomba HyperJet: 94.000 psi (6.480 bar). Corta 30-50% más rápido que a 60.000 psi y ahorra 25-35% de granate (hasta ~50% a 90k psi).'
   },
   {
     component: 'Cabezal de Corte (Orificio + Cámara + Tubo)',
@@ -408,8 +408,8 @@ export const MACHINERY_COMPONENTS: MachineryComponent[] = [
   {
     component: 'Puente / Mesa CNC (X, Y, Z)',
     function: 'Movimiento relativo del cabezal con máxima precisión',
-    techDetails: 'Estructura cartesiana de pórtico con servomotores brushless, guías lineales de alta rigidez y encoders ópticos absolutos con resolución micrométrica.',
-    specs2026: 'Sistemas inteligentes con algoritmos Look-Ahead que anticipan curvas y esquinas para regular velocidad de avance.'
+    techDetails: 'Estructura cartesiana de pórtico con servomotores sin escobillas, guías lineales de alta rigidez y codificadores ópticos absolutos con resolución micrométrica.',
+    specs2026: 'Sistemas inteligentes con algoritmos de control predictivo que anticipan curvas y esquinas para regular velocidad de avance.'
   },
   {
     component: 'Tolva Dosificadora de Abrasivo',
@@ -427,10 +427,10 @@ export const MACHINERY_COMPONENTS: MachineryComponent[] = [
 
 export const AUXILIARY_SERVICES = [
   { service: 'Alimentación Eléctrica', requirement: 'Red trifásica 380V (50/60 Hz) con potencia de 60 a 125 HP (45 a 93 kW) para accionar la bomba UHP.' },
-  { service: 'Agua Potable Filtrada', requirement: 'Agua tratada con ósmosis inversa y ablandador; TDS controlado (50-150 ppm) para proteger sellos y orificios de joya.' },
-  { service: 'Chiller de Enfriamiento', requirement: 'Unidad de refrigeración de circuito cerrado para disipar el calor generado por el aceite hidráulico de la bomba intensificadora.' },
+  { service: 'Agua Potable Filtrada', requirement: 'Agua tratada con ósmosis inversa y ablandador; sólidos disueltos controlados (50-150 ppm) para proteger sellos y orificios de joya.' },
+  { service: 'Enfriador Hidráulico', requirement: 'Unidad de refrigeración de circuito cerrado para disipar el calor generado por el aceite hidráulico de la bomba intensificadora.' },
   { service: 'Aire Comprimido Seco', requirement: '6 a 7 bar con secador frigorífico (punto de rocío <3 °C); indispensable para accionar válvulas y evitar que el abrasivo se humedezca.' },
-  { service: 'Remoción y Reciclaje de Abrasivo', requirement: 'Sistemas automáticos tipo hydro-cyclone que extraen el lodo y equipos de reciclaje que permiten reutilizar hasta 60-70% del granate.' }
+  { service: 'Remoción y Reciclaje de Abrasivo', requirement: 'Sistemas automáticos hidrociclónicos que extraen el lodo y equipos de reciclaje que permiten reutilizar hasta 60-70% del granate.' }
 ];
 
 export const WORKING_PARAMETERS_TABLE: WorkingParameter[] = [
@@ -444,7 +444,7 @@ export const WORKING_PARAMETERS_TABLE: WorkingParameter[] = [
     variable: 'Velocidad de Avance (mm/min)',
     effect: '↓ Velocidad = Mejor acabado superficial (Ra) y menor conicidad',
     recommendedRange: '5 a 5.000 mm/min (según espesor y calidad Q1 a Q5)',
-    controlMethod: 'Cálculo algorítmico automático en el software CAM (OMAX IntelliMAX / FlowXpert).'
+    controlMethod: 'Cálculo algorítmico automático en el software CAM.'
   },
   {
     variable: 'Caudal de Abrasivo (kg/min)',
@@ -453,19 +453,19 @@ export const WORKING_PARAMETERS_TABLE: WorkingParameter[] = [
     controlMethod: 'Disco dosificador rotativo o válvula dosificadora de abrasivo CNC.'
   },
   {
-    variable: 'Altura del Cabezal - SOD (mm)',
-    effect: 'Debe mantenerse constante; si SOD > 3 mm se ensancha el kerf y redondea la arista',
+    variable: 'Altura del Cabezal Boquilla-Pieza (mm)',
+    effect: 'Debe mantenerse constante; si supera 3 mm se ensancha la sangría y redondea la arista',
     recommendedRange: '1,5 a 2,5 mm sobre la chapa',
-    controlMethod: 'Sensor de distancia láser o sonda táctil (Terrain Follower) en lazo cerrado.'
+    controlMethod: 'Sensor de distancia láser o sonda capacitiva seguidora de terreno en lazo cerrado.'
   },
   {
     variable: 'Diámetro Orificio / Tubo (mm)',
-    effect: 'Define el ancho de corte (kerf de 0,8 a 1,5 mm) y la potencia hidráulica',
+    effect: 'Define el ancho de sangría (0,8 a 1,5 mm) y la potencia hidráulica',
     recommendedRange: 'Orificio: 0,10 a 0,35 mm | Tubo: 0,76 a 1,02 mm',
     controlMethod: 'Selección mecánica de consumibles calibrados según espesor a cortar.'
   },
   {
-    variable: 'Tipo de Perforación (Piercing)',
+    variable: 'Tipo de Perforación Inicial',
     effect: 'Garantiza inicio seguro sin romper materiales frágiles ni generar cráteres',
     recommendedRange: 'Radial, Dinámica o Estacionaria',
     controlMethod: 'Selección automática por software según espesor y ductilidad del material.'
@@ -482,7 +482,7 @@ export const GOLDEN_EFFECTS = [
   {
     id: 'zero-haz',
     tag: 'Metalurgia',
-    highlight: 'El ÚNICO proceso de corte en frío de la jornada: ZAT = 0,00 mm',
+    highlight: 'El ÚNICO proceso de corte en frío de la jornada: ZAC = 0,00 mm',
     detail: 'No hay calor, no hay refundición ni borde templado martensítico. Conserva intacta la microestructura de aceros, titanio e Inconel.'
   },
   {
@@ -506,8 +506,8 @@ export const GOLDEN_EFFECTS = [
   {
     id: 'lights-out',
     tag: 'Industria 4.0',
-    highlight: 'Lights-Out Cutting: Mecanizado nocturno 100% desatendido',
-    detail: 'Con diagnóstico remoto cloud, nesting automático y sensores de protección, la máquina corta de noche sin operador humano.'
+    highlight: 'Manufactura Desatendida: Mecanizado nocturno 100% autónomo',
+    detail: 'Con diagnóstico remoto en la nube, anidamiento automático y sensores de protección, la máquina corta de noche sin operador humano.'
   }
 ];
 
@@ -523,9 +523,9 @@ export const PRESENTATION_SLIDES = [
       'Dos modalidades operativas: Chorro Puro (PWJ) para elastómeros y Chorro Abrasivo (AWJ) con granate para metales y piedra',
       'Golpe de Efecto 1: "94.000 psi = 1.800 veces la presión de una manguera de jardín"',
       'Principio físico: erosión mecánica por micro-impactos ("el Cañón del Antílope acelerado 1.000 veces")',
-      'Microcorte en metales dúctiles vs microfractura en materiales frágiles: ZAT = 0,00 mm, sin deformación ni templado'
+      'Microcorte en metales dúctiles vs microfractura en materiales frágiles: ZAC = 0,00 mm, sin deformación ni templado'
     ],
-    interactiveAction: 'Mostrar en el Dashboard el indicador de velocidad Mach 3.06, la presión UHP y la ausencia de gradiente térmico.'
+    interactiveAction: 'Mostrar en el panel el indicador de velocidad Mach 3.06, la presión UHP y la ausencia de gradiente térmico.'
   },
   {
     id: 2,
@@ -533,7 +533,7 @@ export const PRESENTATION_SLIDES = [
     speaker: 'Diego',
     title: '2. Principio de Funcionamiento Paso a Paso',
     objectives: [
-      'Paso 1 - Generación de presión: bomba intensificadora / direct drive presuriza agua a 4.000–6.200 bar',
+      'Paso 1 - Generación de presión: bomba intensificadora / accionamiento directo presuriza agua a 4.000–6.200 bar',
       'Paso 2 - Conducción: tuberías autofretadas de acero inoxidable 316 CW hasta el cabezal',
       'Paso 3 - Conversión: orificio de joya (zafiro, rubí o diamante de 0,1–0,35 mm) transforma presión en chorro supersónico (~1.000 m/s)',
       'Paso 4 - Mezcla abrasiva: el vacío generado por efecto Venturi succiona granate de almandino a la cámara',
@@ -549,11 +549,11 @@ export const PRESENTATION_SLIDES = [
     title: '3. Maquinaria, Tecnología 2026 e Industria 4.0',
     objectives: [
       'Los 5 componentes principales: Bomba UHP, Cabezal de corte, Mesa CNC, Tolva de abrasivo y Tanque con reja',
-      'Servicios auxiliares de planta: electricidad (60-125 HP), agua desmineralizada, chiller, aire comprimido seco y reciclaje de granate (60-70%)',
-      'Lo Premium 2026: Bomba HyperJet de Flow a 94.000 psi (corta 30-50% más rápido y consume ~50% menos abrasivo)',
+      'Servicios auxiliares de planta: electricidad (60-125 HP), agua desmineralizada, enfriador hidráulico, aire comprimido seco y reciclaje de granate (60-70%)',
+      'Tecnología 2026: Bomba HyperJet a 94.000 psi (corta 30-50% más rápido y consume ~50% menos abrasivo)',
       'Cabezal 5 ejes (A y C): inclinación de hasta 60° para biselados, chaflanes y piezas 3D',
-      'Software inteligente (OMAX IntelliMAX / FlowXpert) y compensación dinámica de conicidad en tiempo real',
-      'Industria 4.0: diagnóstico remoto cloud (Remote Help), nesting automático de chapa y Lights-Out Cutting (corte nocturno desatendido)'
+      'Software inteligente CAM y compensación dinámica de conicidad en tiempo real',
+      'Industria 4.0: diagnóstico remoto en la nube, anidamiento automático de chapa y corte nocturno desatendido'
     ],
     interactiveAction: 'Mostrar la comparativa técnica de bombas y la animación de inclinación de 5 ejes compensando la conicidad.'
   },
@@ -566,8 +566,8 @@ export const PRESENTATION_SLIDES = [
       'Consumibles críticos: Orificio de gema (diamante >1.000 h vs zafiro 40-80 h), tubo mezclador de carburo ROCTEC y granate malla 80/120',
       'Espectro ilimitado de materiales: metales aeroespaciales (Ti-6Al-4V, Inconel 718), metales reflectivos (cobre C11000, aluminio 6061) y Hardox 500',
       'Capacidades de espesor: desde láminas delgadas hasta metales de más de 250-300 mm en una sola pasada',
-      'Variables de trabajo: Presión (bar), Velocidad de avance (mm/min), Caudal de abrasivo (kg/min) y Distancia SOD constante',
-      'Tipos de perforación (Piercing): Radial, Dinámica y Estacionaria con tecnología UltraPierce según espesor y fragilidad'
+      'Variables de trabajo: Presión (bar), Velocidad de avance (mm/min), Caudal de abrasivo (kg/min) y Distancia boquilla-pieza constante',
+      'Tipos de perforación inicial: Radial, Dinámica y Estacionaria con asistencia por vacío según espesor y fragilidad'
     ],
     interactiveAction: 'En el Simulador AWJ, alternar entre Titanio, Cobre y Hardox, mostrando la variación de avance según el factor M.'
   },
@@ -578,10 +578,10 @@ export const PRESENTATION_SLIDES = [
     title: '5. Calidad de Corte (Q1 a Q5) y Diagnóstico de Defectos',
     objectives: [
       'Índices de calidad Q1 a Q5: de desbaste rápido a precisión extrema aeroespacial (tolerancias ±0,1 mm, Ra 1,4 a 6 µm)',
-      'Defecto 1 - Conicidad en la pared: corregida al 100% con cabezal de 5 ejes volcando el taper al scrap',
-      'Defecto 2 - Marcas de estriado ("Drag Lines"): avance excesivo; solución regulando velocidad y presión',
+      'Defecto 1 - Conicidad en la pared: corregida al 100% con cabezal de 5 ejes volcando la conicidad al descarte',
+      'Defecto 2 - Marcas de estriado (líneas de arrastre): avance excesivo; solución regulando velocidad y presión',
       'Defecto 3 - Corte incompleto / no perfora: presión insuficiente o granate húmedo; monitoreo de flujo y purga',
-      'Defecto 4 - Desviación en esquinas (Jet Lag): inercia del chorro resuelta con algoritmo "Corner Pass" con Look-Ahead'
+      'Defecto 4 - Desviación en esquinas: inercia del chorro resuelta con algoritmo de paso de esquina y control predictivo'
     ],
     interactiveAction: 'Entrar al módulo de Diagnóstico de Defectos y alternar el botón "Vista: CORRECCIÓN MECATRÓNICA ACTIVA" en vivo.'
   },
@@ -593,7 +593,7 @@ export const PRESENTATION_SLIDES = [
     objectives: [
       'Seguridad UHP de nivel quirúrgico: corte sumergido para reducir el ruido de 105 dBA a <75 dBA, cerramientos PLe y tarjeta médica',
       'Sustentabilidad ecológica: el proceso más limpio de la industria (cero humos de cromo Cr⁶⁺, agua recirculada, reciclaje del 60-70% de abrasivo)',
-      'Matriz de decisión: ¿Cuándo elegir chorro de agua? Cero ZAT, espesores macizos, metales reflectivos y bisel 3D en 1 sola operación',
+      'Matriz de decisión: ¿Cuándo elegir chorro de agua? Cero ZAC, espesores macizos, metales reflectivos y bisel 3D en 1 sola operación',
       'Cierre conjunto: Demostración final del gemelo digital y ronda de preguntas frente al tribunal de la UTN FRP'
     ],
     interactiveAction: 'Cierre con la pantalla completa del simulador en modo interactivo e invitar a los profesores a proponer un material para simular.'
@@ -614,7 +614,7 @@ export const CLOSING_STATEMENTS = [
   {
     author: 'Ariel',
     focus: 'Decisión Económica Industrial',
-    quote: 'El proceso de chorro abrasivo es especialmente valioso cuando el costo de una alteración térmica (ZAC) es mayor que el costo operativo del abrasivo. Por eso se consolida como la tecnología insustituible en titanio aeroespacial y composites.'
+    quote: 'El proceso de chorro abrasivo es especialmente valioso cuando el costo de una alteración térmica (ZAC) es mayor que el costo operativo del abrasivo. Por eso se consolida como la tecnología insustituible en titanio aeroespacial y materiales compuestos.'
   }
 ];
 
@@ -632,13 +632,13 @@ export const POWER_CALCULATION = {
 };
 
 export const OPERATIONAL_STEPS_9 = [
-  { step: 1, title: 'Programación CAD/CAM & Nesting Inteligente', desc: 'Importación del modelo DXF/STEP, anidado algorítmico para máximo aprovechamiento de la chapa, cálculo de velocidades según calidad Q1–Q5 y compensación de kerf.' },
+  { step: 1, title: 'Programación CAD/CAM y Anidamiento Inteligente', desc: 'Importación del modelo DXF/STEP, anidado algorítmico para máximo aprovechamiento de la chapa, cálculo de velocidades según calidad Q1–Q5 y compensación de sangría.' },
   { step: 2, title: 'Sujeción de la Pieza sobre la Mesa CNC', desc: 'Fijación de la placa mediante morsets, topes mecánicos, ventosas o dispositivos magnéticos sobre las lamas de sacrificio de la mesa.' },
-  { step: 3, title: 'Configuración y Calibración del Cabezal', desc: 'Ajuste del diámetro de tobera (0,1–0,35 mm), tubo focalizador ROCTEC, distancia de trabajo SOD (1,5–2,5 mm) y ángulo multieje A/C.' },
+  { step: 3, title: 'Configuración y Calibración del Cabezal', desc: 'Ajuste del diámetro de tobera (0,1–0,35 mm), tubo focalizador ROCTEC, distancia de trabajo (1,5–2,5 mm) y ángulo multieje A/C.' },
   { step: 4, title: 'Generación y Estabilización UHP', desc: 'La bomba intensificadora o servobomba directa presuriza el agua tratada hasta 4.000–6.480 bar, estabilizada por el acumulador atenuador de pulsos.' },
   { step: 5, title: 'Formación del Chorro y Vacío Venturi', desc: 'El agua supersónica pasa por la joya de diamante a Mach 3.5; la depresión en la cámara de mezcla succiona el flujo regulado de granate almandino.' },
-  { step: 6, title: 'Perforación Inicial (Piercing Controlado)', desc: 'Estrategia de penetración suave, dinámica o radial con tecnología UltraPierce para no astillar materiales frágiles ni delaminar composites.' },
-  { step: 7, title: 'Corte por Interpolación Cinemática Continua', desc: 'El cabezal recorre la trayectoria guiado por CNC con algoritmos Look-Ahead que desaceleran en esquinas vivas e inclinan el cabezal 5 ejes.' },
+  { step: 6, title: 'Perforación Inicial Controlada', desc: 'Estrategia de penetración suave, dinámica o radial con asistencia de vacío para no astillar materiales frágiles ni delaminar compuestos.' },
+  { step: 7, title: 'Corte por Interpolación Cinemática Continua', desc: 'El cabezal recorre la trayectoria guiado por CNC con algoritmos predictivos que desaceleran en esquinas vivas e inclinan el cabezal 5 ejes.' },
   { step: 8, title: 'Separación de Pieza y Disipación en Cuba', desc: 'El chorro remanente es frenado por la columna de agua del tanque de captura, amortiguando el ruido y canalizando el lodo al sistema de reciclaje.' },
   { step: 9, title: 'Descarga, Control Dimensional y Acabado', desc: 'Extracción de la pieza cortada; al ser corte en frío sin rebaba soldada ni ZAC, la pieza está lista para ensamble directo o desbarbado mínimo.' }
 ];
@@ -646,7 +646,7 @@ export const OPERATIONAL_STEPS_9 = [
 export const NORMATIVE_REFERENCES = [
   { code: 'ISO 23125', title: 'Seguridad en Máquinas Herramienta de Corte por Chorro de Agua', domain: 'Seguridad de Máquinas' },
   { code: 'ISO 13849-1', title: 'Seguridad de los Sistemas de Mando (Nivel PLe / Categoría 4)', domain: 'Interbloqueos y Parada' },
-  { code: 'IEC 62443', title: 'Ciberseguridad en Sistemas de Control y Automatización Industrial (IACS)', domain: 'Industria 4.0 Cloud' },
+  { code: 'IEC 62443', title: 'Ciberseguridad en Sistemas de Control y Automatización Industrial', domain: 'Industria 4.0 en la Nube' },
   { code: 'WJTA / WJA', title: 'Protocolo Médico de Emergencia e Inyección a Ultra-Alta Presión', domain: 'Salud Ocupacional' },
   { code: 'Res. SRT 295/03', title: 'Higiene y Seguridad en el Trabajo – Límite de Exposición Acústica (85 dBA)', domain: 'Argentina / Laboral' },
   { code: 'Ley 24.051', title: 'Régimen de Residuos Industriales y Gestión de Lodos Abrasivos', domain: 'Medio Ambiente Argentina' }
@@ -663,7 +663,7 @@ export const SPEECH_SCRIPT_18MIN = [
     interval: 'Minuto 1 a 3',
     speaker: 'Ariel',
     section: 'Descripción y Modalidades (PWJ vs AWJ)',
-    dialogue: 'El proceso opera en dos variantes: Chorro Puro para materiales blandos como espumas, gomas o alimentos, y Chorro Abrasivo, donde añadimos granate mineral en la cámara de mezcla para cortar aceros templados, titanio, cobre y composites. En la industria metalmecánica, el corte abrasivo es la estrella, multiplicando la potencia de erosión hasta 1.000 veces.'
+    dialogue: 'El proceso opera en dos variantes: Chorro Puro para materiales blandos como espumas, gomas o alimentos, y Chorro Abrasivo, donde añadimos granate mineral en la cámara de mezcla para cortar aceros templados, titanio, cobre y materiales compuestos. En la industria metalmecánica, el corte abrasivo es la estrella, multiplicando la potencia de erosión hasta 1.000 veces.'
   },
   {
     interval: 'Minuto 3 a 5',
@@ -675,7 +675,7 @@ export const SPEECH_SCRIPT_18MIN = [
     interval: 'Minuto 5 a 7',
     speaker: 'Ariel',
     section: 'Principio de Funcionamiento Paso a Paso',
-    dialogue: 'El flujo productivo inicia en el software CAD/CAM con nesting inteligente. Se sujeta la chapa, se presuriza la línea UHP y se ejecuta una perforación suave o dinámica para evitar cráteres. Luego, el pórtico CNC desplaza el cabezal erosionando la pieza de forma continua. La columna de agua en la cuba amortigua el chorro y recircula el fluido, entregando piezas terminadas sin deformación térmica.'
+    dialogue: 'El flujo productivo inicia en el software CAD/CAM con anidamiento inteligente. Se sujeta la chapa, se presuriza la línea UHP y se ejecuta una perforación suave o dinámica para evitar cráteres. Luego, el pórtico CNC desplaza el cabezal erosionando la pieza de forma continua. La columna de agua en la cuba amortigua el chorro y recircula el fluido, entregando piezas terminadas sin deformación térmica.'
   },
   {
     interval: 'Minuto 7 a 9',
@@ -687,7 +687,7 @@ export const SPEECH_SCRIPT_18MIN = [
     interval: 'Minuto 9 a 11',
     speaker: 'Ariel',
     section: 'Herramientas, Consumibles y Materiales',
-    dialogue: 'Los consumibles críticos son el orificio de diamante —que dura hasta 2.000 horas—, el tubo mezclador de carburo ROCTEC y el granate almandino malla 80. El abrasivo representa entre el 55% y el 70% del costo variable por hora. Cortamos metales reflectivos como cobre y aluminio sin problemas ópticos, aceros Hardox sin perder dureza y composites CFRP sin delaminar.'
+    dialogue: 'Los consumibles críticos son el orificio de diamante —que dura hasta 2.000 horas—, el tubo mezclador de carburo ROCTEC y el granate almandino malla 80. El abrasivo representa entre el 55% y el 70% del costo variable por hora. Cortamos metales reflectivos como cobre y aluminio sin problemas ópticos, aceros Hardox sin perder dureza y compuestos de carbono sin delaminar.'
   },
   {
     interval: 'Minuto 11 a 13',
@@ -699,13 +699,13 @@ export const SPEECH_SCRIPT_18MIN = [
     interval: 'Minuto 13 a 15',
     speaker: 'Ariel',
     section: 'Defectos, Seguridad y Ambiente',
-    dialogue: 'Dos defectos clave son el corte incompleto —corregido ajustando presión y secando el granate— y el retraso parabólico o Stream Lag en esquinas, neutralizado desacelerando con algoritmos Look-Ahead. En seguridad, el protocolo médico WJTA exige que ante una punción UHP no se suture jamás y se practique fasciotomía dentro de las 6 horas. En ambiente, es el proceso más limpio: cero humos de cromo y reciclaje del 60% al 70% del granate.'
+    dialogue: 'Dos defectos clave son el corte incompleto —corregido ajustando presión y secando el granate— y el retraso parabólico del chorro en esquinas, neutralizado desacelerando con algoritmos de control predictivo. En seguridad, el protocolo médico WJTA exige que ante una punción UHP no se suture jamás y se practique fasciotomía dentro de las 6 horas. En ambiente, es el proceso más limpio: cero humos de cromo y reciclaje del 60% al 70% del granate.'
   },
   {
     interval: 'Minuto 15 a 17',
     speaker: 'Diego',
     section: 'Industria 4.0, Gemelo Digital y Aplicaciones',
-    dialogue: 'Hoy el chorro de agua es una celda 4.0 conectada. Contamos con sensores IIoT de presión y vibración, gemelo digital para predecir colisiones antes de cortar, monitoreo cloud, cortes autónomos Lights-Out durante la noche y ciberseguridad industrial bajo norma IEC 62443.'
+    dialogue: 'Hoy el chorro de agua es una celda 4.0 conectada. Contamos con sensores IIoT de presión y vibración, gemelo digital para predecir colisiones antes de cortar, monitoreo en la nube, cortes autónomos desatendidos durante la noche y ciberseguridad industrial bajo norma IEC 62443.'
   },
   {
     interval: 'Minuto 17 a 18',

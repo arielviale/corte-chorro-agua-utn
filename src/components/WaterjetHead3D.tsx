@@ -422,7 +422,7 @@ function WaterjetHead3DInner({
       <div 
         ref={containerRef} 
         className="w-full h-full min-h-[300px] flex-1 cursor-grab active:cursor-grabbing"
-        title="Arrastra con el ratón para rotar en 3D 360° • Rueda para zoom"
+        title="Arrastrar con el ratón para rotar en 3D 360° • Rueda para acercar/alejar"
       />
 
       {/* Floating 3D Badges & Telemetry */}
@@ -464,7 +464,7 @@ function WaterjetHead3DInner({
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
-              -4° Taper
+              -4° Conicidad
             </button>
             <button
               onClick={() => setTiltAngle(8)}
@@ -490,7 +490,7 @@ function WaterjetHead3DInner({
               title="Encender / Apagar chorro supersónico"
             >
               <Zap className="w-3 h-3 text-cyan-400" />
-              <span>{isWaterActive ? 'Chorro ON' : 'Chorro OFF'}</span>
+              <span>{isWaterActive ? 'Chorro Activo' : 'Chorro Inactivo'}</span>
             </button>
 
             <button

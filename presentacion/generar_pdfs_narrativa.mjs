@@ -103,11 +103,11 @@ const DIEGO_SLIDES = [
       '"En el paso 1, el agua desmineralizada ingresa a 6.480 bar a través de tuberías de acero inoxidable autofretadas. La autofretación es un proceso donde el tubo se somete previamente a más de 10.000 bar para crear tensiones residuales de compresión en su pared interna y evitar que se fisure por fatiga."',
       '"En el paso 2, el agua atraviesa el Orificio de Joya Primaria, de unos 0,25 a 0,33 milímetros. Hoy se utiliza diamante sintético policristalino en lugar de zafiro o rubí, porque el diamante garantiza más de 1.000 horas de vida útil —25 veces más que el zafiro— manteniendo el chorro perfectamente coherente a Mach 3.06."',
       '"En el paso 3 ocurre el fenómeno clave: el Efecto Venturi. Al pasar el chorro supersónico a través de la cámara de mezcla, arrastra el aire circundante y genera una depresión o vacío de entre -0,85 y -0,95 bar. Ese vacío succiona de forma continua y pasiva el granate seco desde la tolva dosificadora sin necesidad de piezas móviles que se desgasten."',
-      '"Finalmente, en el paso 4, el agua, el aire y el granate ingresan al Tubo Mezclador o Focalizador ROCTEC de carburo de tungsteno de grano nanométrico, de 0,76 milímetros de diámetro interno. Allí el agua transfiere su cantidad de movimiento a los granos minerales y el haz sale colimado hacia la chapa, manteniendo una distancia de trabajo (Standoff) estricta de 1,5 milímetros regulada en lazo cerrado por un sensor capacitivo seguidor de terreno."'
+      '"Finalmente, en el paso 4, el agua, el aire y el granate ingresan al Tubo Mezclador o Focalizador ROCTEC de carburo de tungsteno de grano nanométrico, de 0,76 milímetros de diámetro interno. Allí el agua transfiere su cantidad de movimiento a los granos minerales y el haz sale colimado hacia la chapa, manteniendo una distancia de trabajo ( separación boquilla-pieza) estricta de 1,5 milímetros regulada en lazo cerrado por un sensor capacitivo seguidor de terreno."'
     ],
     explanation: [
       'Conservación del momento lineal en la cámara Venturi: m_agua * v_agua = (m_agua + m_abrasivo + m_aire) * v_mezcla. Si se dosifica demasiado abrasivo (>700 g/min), la mezcla se satura, cae la velocidad y se tapa el tubo.',
-      'Por qué es crítica la distancia de 1,5 mm (Standoff / SOD): Si el cabezal se aleja a más de 3 o 4 mm de la chapa, el chorro supersónico se abre en forma de campana, redondeando el borde superior (efecto Roll-over) y ensanchando la sangría.'
+      'Por qué es crítica la distancia de 1,5 mm (Separación boquilla-pieza): Si el cabezal se aleja a más de 3 o 4 mm de la chapa, el chorro supersónico se abre en forma de campana, redondeando el borde superior y ensanchando la sangría.'
     ],
     action: 'Recorrer visualmente los bloques 1 a 4 de la izquierda y destacar las 3 tarjetas de métricas de la derecha (>1.000 h diamante | -0,85 bar vacío | 1,5 mm constante).'
   },
@@ -126,22 +126,22 @@ const DIEGO_SLIDES = [
     ],
     explanation: [
       'Cálculo de potencia hidráulica (muy valorado por los docentes): P_hid = P * Q. Pasando al Sistema Internacional: P = 400 MPa = 400 x 10^6 Pa; Q = 2 L/min = 3,33 x 10^-5 m^3/s. Multiplicando ambos: P_hid = 13.333 W = 13,3 kW.',
-      'Rendimiento de bombas: Una bomba intensificadora hidráulica tiene un rendimiento del 65-72% (por las pérdidas térmicas del aceite hidráulico, que requiere Chiller), mientras que una servobomba de accionamiento directo (Direct Drive triplex) alcanza el 85-90% de eficiencia.'
+      'Rendimiento de bombas: Una bomba intensificadora hidráulica tiene un rendimiento del 65-72% (por las pérdidas térmicas del aceite hidráulico, que requiere enfriador de circuito cerrado), mientras que una servobomba de accionamiento directo triplex alcanza el 85-90% de eficiencia.'
     ],
     action: 'Señalar de izquierda a derecha las Fases 01 a 04, mencionar la fórmula P_hid = P x Q ≈ 13,3 kW del bloque inferior y darle el pase a Ariel avanzando a la Diapositiva 6.'
   },
   {
     slideNum: 'DIAPOSITIVA 10 (Sección 09 - Intervención de Diego: Pilares 01 y 02)',
     time: '16:30 - 17:30 min',
-    title: 'AWJ en la Industria 4.0: Telemetría IoT y Nesting CAM',
+    title: 'AWJ en la Industria 4.0: Telemetría IoT y Anidamiento Inteligente CAM',
     role: 'Exponer los dos primeros pilares ciberfísicos de la Industria 4.0 antes de que Ariel exponga los pilares 03 y 04.',
     narrative: [
       '"Retomando la palabra para analizar cómo se integra hoy esta máquina en un ecosistema de Industria 4.0, vemos cuatro pilares fundamentales. Yo voy a explicar los dos primeros vinculados a la digitalización y el software, y Ariel explicará la autonomía y sustentabilidad."',
       '"El Pilar 01 es la Telemetría IoT en la Nube. Una celda AWJ 4.0 moderna no es una máquina aislada: cuenta con sensores de presión, temperatura de aceite y acelerómetros de vibración conectados en red bajo normas de ciberseguridad industrial IEC 62443. Esto permite el mantenimiento predictivo: el sistema detecta la caída de rendimiento en los sellos de ultra-alta presión o el desgaste del orificio de diamante antes de que ocurra una rotura en medio de un corte crítico."',
-      '"El Pilar 02 es el Anidamiento Inteligente o Nesting CAM. Como el chorro de agua no genera calor ni deforma térmicamente la chapa, podemos anidar las piezas a apenas 2 milímetros de distancia entre sí e incluso compartir líneas de corte comunes sin riesgo de que la chapa se alabee o se suelde por temperatura, logrando un aprovechamiento de materia prima superior al 92%."'
+      '"El Pilar 02 es el Anidamiento Inteligente CAM. Como el chorro de agua no genera calor ni deforma térmicamente la chapa, podemos anidar las piezas a apenas 2 milímetros de distancia entre sí e incluso compartir líneas de corte comunes sin riesgo de que la chapa se alabee o se suelde por temperatura, logrando un aprovechamiento de materia prima superior al 92%."'
     ],
     explanation: [
-      'Por qué el Nesting en AWJ supera al térmico: En plasma o láser, si las piezas se colocan muy juntas en chapas gruesas, el calor acumulado deforma el esqueleto de la chapa y mueve las piezas. En AWJ, al ser corte en frío, la chapa permanece dimensionalmente estable de principio a fin.'
+      'Por qué el Anidamiento Inteligente en AWJ supera al térmico: En plasma o láser, si las piezas se colocan muy juntas en chapas gruesas, el calor acumulado deforma el esqueleto de la chapa y mueve las piezas. En AWJ, al ser corte en frío, la chapa permanece dimensionalmente estable de principio a fin.'
     ],
     action: 'Señalar los Pilares 01 y 02 de la Diapositiva 10 y cederle la palabra a Ariel para los Pilares 03 y 04.'
   },
@@ -186,13 +186,13 @@ const ARIEL_SLIDES = [
     role: 'Explicar el problema físico de la conicidad natural y cómo la mecatrónica de 5 ejes lo resuelve en tiempo real.',
     narrative: [
       '"Pasamos ahora a uno de los mayores desafíos mecatrónicos del corte por chorro de agua: el control cinemático en 5 ejes para lograr conicidad cero."',
-      '"¿Qué ocurre si cortamos una placa gruesa con un cabezal convencional de 3 ejes fijo a 90 grados? A medida que el chorro penetra en el espesor del metal, va perdiendo energía cinética por fricción. Como resultado, la ranura de corte (llamada sangría o kerf) es más ancha arriba que abajo, dejando una conicidad natural en forma de V de entre 1 y 3 grados. Esa pieza no tendría paredes a 90 grados y requeriría un fresado posterior."',
-      '"¿Cómo lo resuelve la ingeniería mecatrónica en el AWJ 4.0? Mediante una muñeca cinemática articulada de 5 ejes (sumando los ejes rotativos A y C al pórtico cartesiano X, Y, Z), como los sistemas OMAX Tilt-A-Jet o Flow Dynamic XD."',
-      '"El algoritmo CNC calcula a una frecuencia de 1.000 Hz cuánta conicidad va a generar el chorro según la dureza y el espesor del material, e inclina activamente el cabezal en sentido opuesto. De esta manera, el cabezal absorbe toda la conicidad natural y la desvía hacia el lado del recorte o chatarra (scrap), dejando la pared de nuestra pieza útil 100% perpendicular, con un ángulo de conicidad residual theta igual a 0,00 grados."',
+      '"¿Qué ocurre si cortamos una placa gruesa con un cabezal convencional de 3 ejes fijo a 90 grados? A medida que el chorro penetra en el espesor del metal, va perdiendo energía cinética por fricción. Como resultado, la ranura de corte (llamada sangría) es más ancha arriba que abajo, dejando una conicidad natural en forma de V de entre 1 y 3 grados. Esa pieza no tendría paredes a 90 grados y requeriría un fresado posterior."',
+      '"¿Cómo lo resuelve la ingeniería mecatrónica en el AWJ 4.0? Mediante una muñeca cinemática articulada de 5 ejes (sumando los ejes rotativos A y C al pórtico cartesiano X, Y, Z), con sistemas de inclinación dinámica multieje."',
+      '"El algoritmo CNC calcula a una frecuencia de 1.000 Hz cuánta conicidad va a generar el chorro según la dureza y el espesor del material, e inclina activamente el cabezal en sentido opuesto. De esta manera, el cabezal absorbe toda la conicidad natural y la desvía hacia el lado del recorte o descarte, dejando la pared de nuestra pieza útil 100% perpendicular, con un ángulo de conicidad residual theta igual a 0,00 grados."',
       '"Además, como vemos en la tarjeta inferior izquierda, esta articulación alcanza hasta ±60 grados, lo que nos permite mecanizar biseles en V, en Y o en K listos para soldadura en una sola operación sin mover la chapa de la mesa."'
     ],
     explanation: [
-      'Doble compensación de los 5 ejes (Lateral + Frontal): 1) La inclinación lateral (Taper Angle) corrige la conicidad en V volcando el ángulo al scrap. 2) La inclinación frontal en el sentido de avance (Lead Angle) adelanta la punta de la boquilla para compensar el retraso parabólico de la cola del chorro (Stream Lag).',
+      'Doble compensación de los 5 ejes (Lateral + Frontal): 1) La inclinación lateral (Ángulo de Conicidad) corrige la conicidad en V volcando el ángulo al descarte. 2) La inclinación frontal en el sentido de avance (Ángulo de Ataque) adelanta la punta de la boquilla para compensar el retraso parabólico de la cola del chorro.',
       'Interactividad en vivo: En la parte derecha de esta diapositiva hay un conmutador interactivo ("Corte 2D Fijo" vs "5 Ejes Activo (theta = 0°)") que cambia el diagnóstico en pantalla.'
     ],
     action: 'Hacer clic en el botón "Corte 2D Fijo" para mostrar el error de conicidad en V (1,5° a 2,8°) y luego volver a activar "5 Ejes Activo (theta = 0°)" y ampliar la foto del cabezal articulado si se desea.'
@@ -204,8 +204,8 @@ const ARIEL_SLIDES = [
     role: 'Exponer los 3 grupos de materiales críticos donde el chorro de agua es insustituible.',
     narrative: [
       '"Gracias a la suma de corte en frío (ZAC = 0,00 mm) y paredes perpendiculares (theta = 0,00°), el AWJ 4.0 se convierte en la máquina más versátil de la industria. Aquí destacamos tres familias de materiales críticos donde ningún otro proceso puede igualarlo."',
-      '"El primer grupo, a la izquierda, es el Titanio Grado 5 (Ti-6Al-4V), utilizado en la industria aeroespacial y en implantes médicos. Cuando el titanio se corta con calor, absorbe oxígeno e hidrógeno formando una capa superficial cristalina y quebradiza llamada Alpha-Case (capa alfa fragilizada), que provoca fisuras por fatiga en vuelo.Como el chorro de agua no supera los 60 grados Celsius, corta titanio de hasta 120 milímetros sin capa frágil, cumpliendo directamente la norma aeronáutica AS9100."',
-      '"El segundo grupo, en el centro, son los Metales Reflectivos y Tratados Térmicamente: el Cobre Electrolítico C11000 y el Aluminio Aeronáutico 6061-T6. En el cobre puro (usado en barras colectoras Busbars para transformadores y baterías de vehículos eléctricos), el láser sufre rebote óptico y el calor oxida el borde; el agua lo corta limpiamente conservando el 100% de su conductividad IACS. Y en el aluminio 6061-T6, el corte en frío evita destruir el tratamiento térmico artificial T6 en el perímetro de la pieza."',
+      '"El primer grupo, a la izquierda, es el Titanio Grado 5 (Ti-6Al-4V), utilizado en la industria aeroespacial y en implantes médicos. Cuando el titanio se corta con calor, absorbe oxígeno e hidrógeno formando una capa superficial cristalina y quebradiza llamada capa alfa fragilizada, que provoca fisuras por fatiga en vuelo. Como el chorro de agua no supera los 60 grados Celsius, corta titanio de hasta 120 milímetros sin capa frágil, cumpliendo directamente la norma aeronáutica AS9100."',
+      '"El segundo grupo, en el centro, son los Metales Reflectivos y Tratados Térmicamente: el Cobre Electrolítico C11000 y el Aluminio Aeronáutico 6061-T6. En el cobre puro (usado en barras colectoras eléctricas para transformadores y baterías de vehículos eléctricos), el láser sufre rebote óptico y el calor oxida el borde; el agua lo corta limpiamente conservando el 100% de su conductividad IACS. Y en el aluminio 6061-T6, el corte en frío evita destruir el tratamiento térmico artificial T6 en el perímetro de la pieza."',
       '"El tercer grupo, a la derecha, son las Superaleaciones y Aceros Antidesgaste: Inconel 718 para turbinas y chapas Hardox 500 de hasta 500 Brinell de dureza, muy utilizadas aquí en nuestra región en el sector de maquinaria agrícola de Entre Ríos y Santa Fe. El chorro de agua los corta sin generar acritud ni borde templado, permitiendo que la pieza pase directo a roscado o plegado."',
       '"Y como destaca el bloque inferior, la misma máquina corta también materiales compuestos como fibra de carbono (CFRP) y Kevlar sin quemar la resina epoxi ni delaminar las capas."'
     ],
@@ -221,14 +221,14 @@ const ARIEL_SLIDES = [
     role: 'Demostrar interactivamente la escala de calidades Q1 a Q5 y las 3 soluciones mecatrónicas a los defectos.',
     narrative: [
       '"En una celda CNC de chorro de agua no existe una única velocidad de corte: el acabado superficial se gobierna mediante la escala internacional de calidad de Q1 a Q5, que podemos probar en vivo en el panel izquierdo."',
-      '"Si seleccionamos Q1 (Separación Rápida), el cabezal avanza a máxima velocidad dejando estrías marcadas en la mitad inferior y una rugosidad Ra de unos 16,5 micrómetros; se usa para desbaste o recorte de chatarra. Si subimos a Q3 (Comercial Estándar), reducimos la velocidad al 45%, logrando una pared mate uniforme de Ra 4,5 micrómetros libre de rebaba, que cubre el 80% de las piezas metalmecánicas. Y si seleccionamos Q5 (Precisión Extrema Aeroespacial), la velocidad baja al 14% para dar tiempo a que el chorro rectifique toda la pared, alcanzando una rugosidad satinada de Ra 1,4 micrómetros y tolerancias de 25 micrones."',
+      '"Si seleccionamos Q1 (Separación Rápida), el cabezal avanza a máxima velocidad dejando estrías marcadas en la mitad inferior y una rugosidad Ra de unos 16,5 micrómetros; se usa para desbaste o recorte de descarte. Si subimos a Q3 (Comercial Estándar), reducimos la velocidad al 45%, logrando una pared mate uniforme de Ra 4,5 micrómetros libre de rebaba, que cubre el 80% de las piezas metalmecánicas. Y si seleccionamos Q5 (Precisión Extrema Aeroespacial), la velocidad baja al 14% para dar tiempo a que el chorro rectifique toda la pared, alcanzando una rugosidad satinada de Ra 1,4 micrómetros y tolerancias de 25 micrones."',
       '"En la mitad derecha vemos cómo la mecatrónica resuelve los tres defectos físicos típicos del proceso:"',
-      '"El Defecto 1 es la Desviación y Retardo del Chorro en Esquinas (Jet Lag): cuando el cabezal llega rápido a una esquina de 90 grados, la parte superior dobla pero la cola inferior del chorro sigue de largo por inercia, dañando el vértice. La solución mecatrónica es el algoritmo CAM de control predictivo Look-Ahead (Corner Pass), que desacelera anticipadamente antes de la esquina e inclina el cabezal para verticalizar la columna de agua."',
-      '"El Defecto 2 es el Redondeo del Borde Superior (Roll-Over): ocurre si la boquilla se aleja de la chapa. Lo solucionamos con el palpador capacitivo en el eje Z que mantiene la distancia constante en 1,5 milímetros incluso si la chapa está arqueada."',
-      '"Y el Defecto 3 es el Cráter de Perforación Inicial (Blowout): para que el impacto inicial no deje una marca en la pieza ni delamine materiales frágiles, el software programa una entrada tangencial (Lead-in) fuera del contorno útil aplicando perforación dinámica a baja presión con vacío asistido."'
+      '"El Defecto 1 es la Desviación y Retardo del Chorro en Esquinas: cuando el cabezal llega rápido a una esquina de 90 grados, la parte superior dobla pero la cola inferior del chorro sigue de largo por inercia, dañando el vértice. La solución mecatrónica es el algoritmo CAM de control predictivo anticipado (Paso de Esquina), que desacelera antes de la esquina e inclina el cabezal para verticalizar la columna de agua."',
+      '"El Defecto 2 es el Redondeo del Borde Superior: ocurre si la boquilla se aleja de la chapa. Lo solucionamos con el palpador capacitivo en el eje Z que mantiene la distancia constante en 1,5 milímetros incluso si la chapa está arqueada."',
+      '"Y el Defecto 3 es el Cráter de Perforación Inicial: para que el impacto inicial no deje una marca en la pieza ni delamine materiales frágiles, el software programa una entrada tangencial fuera del contorno útil aplicando perforación dinámica a baja presión con vacío asistido."'
     ],
     explanation: [
-      'Relación Velocidad vs Calidad Q: El software CAM (como OMAX IntelliMAX o FlowXpert) permite incluso asignar distintas calidades Q a distintos tramos de una misma pieza: por ejemplo, cortar el contorno exterior no crítico en Q2 rápido, y cortar los alojamientos de rodamientos internos en Q5 de alta precisión, optimizando el costo por pieza.'
+      'Relación Velocidad vs Calidad Q: El software CAM permite incluso asignar distintas calidades Q a distintos tramos de una misma pieza: por ejemplo, cortar el contorno exterior no crítico en Q2 rápido, y cortar los alojamientos de rodamientos internos en Q5 de alta precisión, optimizando el costo por pieza.'
     ],
     action: 'Hacer clic en los botones Q1, Q3 y Q5 en la mitad izquierda de la Diapositiva 9 para que el tribunal vea cómo cambian en vivo la rugosidad Ra (µm) y la descripción técnica.'
   },
@@ -238,8 +238,8 @@ const ARIEL_SLIDES = [
     title: 'AWJ en la Industria 4.0: Manufactura Desatendida, Economía Circular y Seguridad UHP',
     role: 'Completar la Diapositiva 10 tras la intervención de Diego (Pilares 01 y 02), explicando los Pilares 03 y 04, la seguridad UHP y el medio ambiente.',
     narrative: [
-      '"Complementando los dos pilares digitales que explicó Diego, el Pilar 03 es la Manufactura Desatendida o Lights-Out Cutting (corte con luces apagadas). Gracias a los sensores ópticos de flujo de granate y al control anticolisión en el eje Z, la máquina puede quedar operando sola durante el turno noche sin operario. Si detecta que se obstruyó la boquilla o falta abrasivo en la tolva, pausa el ciclo automáticamente, despresuriza la línea y envía una alerta al celular del supervisor."',
-      '"El Pilar 04 es la Economía Circular y Planta Verde. El abrasivo representa cerca del 65% del costo operativo por hora. Por eso las celdas modernas incorporan sistemas de hidrociclones que extraen el lodo del tanque, lavan y tamizan el mineral, permitiendo reciclar hasta el 70% del granate almandino y recircular el agua en circuito cerrado."',
+      '"Complementando los dos pilares digitales que explicó Diego, el Pilar 03 es la Manufactura Desatendida (corte autónomo con luces apagadas). Gracias a los sensores ópticos de flujo de granate y al control anticolisión en el eje Z, la máquina puede quedar operando sola durante el turno noche sin operario. Si detecta que se obstruyó la boquilla o falta abrasivo en la tolva, pausa el ciclo automáticamente, despresuriza la línea y envía una alerta al celular del supervisor."',
+      '"El Pilar 04 es la Economía Circular y Planta Verde. El abrasivo representa cerca del 65% del costo operativo por hora. Por eso las celdas modernas incorporan sistemas hidrociclónicos que extraen el lodo del tanque, lavan y tamizan el mineral, permitiendo reciclar hasta el 70% del granate almandino y recircular el agua en circuito cerrado."',
       '"Finalmente, en el bloque inferior destacamos dos aspectos críticos de Higiene, Seguridad y Ambiente: primero, al cortar sumergido apenas 15 milímetros bajo el agua de la batea, encapsulamos la onda de choque supersónica reduciendo el ruido de 105 decibeles a menos de 75 dBA; segundo, eliminamos el 100% de las emisiones de humos cancerígenos de Cromo Hexavalente (Cr6+) que se generan al cortar acero inoxidable con plasma o láser. Y en seguridad operativa, todo operario trabaja bajo cerramientos ISO 13849 PLe y porta la tarjeta de alerta médica WJTA ante riesgos de inyección a alta presión."'
     ],
     explanation: [
@@ -281,12 +281,12 @@ const QA_BANK = [
   {
     q: '4. ¿Cómo sabe el cabezal de 5 ejes exactamente cuántos grados debe inclinarse para lograr theta = 0,00°?',
     who: 'Ariel',
-    a: 'El software CAM (como IntelliMAX) utiliza el modelo matemático empírico de Zeng & Kim que relaciona el índice de maquinabilidad M del material, el espesor, la presión UHP y la velocidad de avance Q1-Q5. Con esos datos predice el ángulo de divergencia del chorro e interpola los ejes rotativos A (inclinación lateral para conicidad) y C (orientación e inclinación frontal Lead Angle para compensar el retraso de cola).'
+    a: 'El software CAM utiliza el modelo matemático empírico de Zeng & Kim que relaciona el índice de maquinabilidad M del material, el espesor, la presión UHP y la velocidad de avance Q1-Q5. Con esos datos predice el ángulo de divergencia del chorro e interpola los ejes rotativos A (inclinación lateral para conicidad) y C (orientación e inclinación frontal de ataque para compensar el retraso de cola).'
   },
   {
     q: '5. ¿Por qué es tan peligroso cortar Titanio Ti-6Al-4V con procesos térmicos y por qué el AWJ es obligatorio en aeronáutica?',
     who: 'Ariel',
-    a: 'Porque por encima de los 450-500 °C el titanio reacciona ávidamente con el oxígeno y el nitrógeno del aire formando una costra dura y sumamente frágil llamada Alpha-Case (capa alfa). Esa capa actúa como concentrador de tensiones e inicia microfisuras por fatiga cíclica. Al cortar en frío con AWJ (ZAC = 0,00 mm), no existe Alpha-Case y la pieza cumple directamente la norma aeroespacial AS9100.'
+    a: 'Porque por encima de los 450-500 °C el titanio reacciona ávidamente con el oxígeno y el nitrógeno del aire formando una costra dura y sumamente frágil llamada capa alfa fragilizada. Esa capa actúa como concentrador de tensiones e inicia microfisuras por fatiga cíclica. Al cortar en frío con AWJ (ZAC = 0,00 mm), no existe capa alfa fragilizada y la pieza cumple directamente la norma aeroespacial AS9100.'
   },
   {
     q: '6. ¿En qué consiste el protocolo médico WJTA ante un accidente de inyección por chorro de agua?',
