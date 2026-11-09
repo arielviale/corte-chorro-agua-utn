@@ -52,6 +52,11 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
     badge: string;
     specs: { label: string; value: string }[];
   } | null>(null);
+  const [previewImageError, setPreviewImageError] = useState<boolean>(false);
+
+  useEffect(() => {
+    setPreviewImageError(false);
+  }, [previewImage]);
 
   // Slide 2 (Slide ID 3) view mode toggle: Infographic vs 3-Column Cards
   const [slide2ViewMode, setSlide2ViewMode] = useState<'infographic' | 'cards'>('infographic');
@@ -1819,24 +1824,23 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
             </div>
 
             {/* Modal High-Res Photographic Container */}
-            <div className="relative bg-slate-950 flex items-center justify-center overflow-hidden max-h-[58vh]">
-              <img
-                src={previewImage.src}
-                alt={previewImage.title}
-                className="w-full h-auto max-h-[58vh] object-contain select-none"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  const fallback = e.currentTarget.parentElement?.querySelector('.image-fallback');
-                  if (fallback) fallback.classList.remove('hidden');
-                }}
-              />
-              <div className="image-fallback hidden absolute inset-0 flex items-center justify-center bg-slate-900 text-slate-400 text-center p-8">
-                <div>
-                  <Box className="w-12 h-12 text-rose-400 mx-auto mb-3" />
-                  <p className="font-mono text-sm">Imagen no disponible</p>
-                  <p className="text-xs mt-1">{previewImage.src}</p>
+            <div className="relative bg-slate-950 flex items-center justify-center overflow-hidden max-h-[58vh] min-h-[260px]">
+              {!previewImageError ? (
+                <img
+                  src={previewImage.src}
+                  alt={previewImage.title}
+                  className="w-full h-auto max-h-[58vh] object-contain select-none"
+                  onError={() => setPreviewImageError(true)}
+                />
+              ) : (
+                <div className="flex items-center justify-center bg-slate-900 text-slate-400 text-center p-8 w-full min-h-[260px]">
+                  <div>
+                    <Box className="w-12 h-12 text-rose-400 mx-auto mb-3" />
+                    <p className="font-mono text-sm">Imagen no disponible</p>
+                    <p className="text-xs mt-1">{previewImage.src}</p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Modal Telemetry Specs Grid */}

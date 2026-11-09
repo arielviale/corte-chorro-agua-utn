@@ -3,7 +3,7 @@
  * Precarga assets críticos para defensa sin conexión
  */
 
-const CACHE_NAME = 'awj-4.0-v1';
+const CACHE_NAME = 'awj-4.0-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -83,7 +83,7 @@ self.addEventListener('fetch', (event) => {
         const cached = await cache.match(request);
         const fetchPromise = fetch(request)
           .then((response) => {
-            if (response.ok) {
+            if (response.ok && response.status === 200) {
               cache.put(request, response.clone());
             }
             return response;
