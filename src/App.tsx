@@ -24,11 +24,23 @@ import {
 export default function App() {
   const [activeAnnexTab, setActiveAnnexTab] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    if (!activeAnnexTab) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setActiveAnnexTab(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeAnnexTab]);
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] flex flex-col font-sans antialiased selection:bg-[#EA580C] selection:text-white">
       {/* Primary Swiss Industrial Presentation Deck (Strictly follows AGENTS.md) */}
       <SwissPresentationDeck 
-        onOpenTechnicalAnnex={(tabId) => setActiveAnnexTab(tabId || 'simulator')}
+        onOpenTechnicalAnnex={(tabId) => setActiveAnnexTab(tabId ? tabId : null)}
       />
 
       {/* Technical Annex Modal / Interactive Sandbox for Tribunal Q&A */}

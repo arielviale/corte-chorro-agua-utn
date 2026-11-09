@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { RotateCw, Play, Pause, Layers, Sliders, ShieldCheck, Zap, Info } from 'lucide-react';
+import { ErrorBoundary, Head3DErrorFallback } from './ErrorBoundary';
 
 interface WaterjetHead3DProps {
   className?: string;
@@ -8,7 +9,7 @@ interface WaterjetHead3DProps {
   showControls?: boolean;
 }
 
-export default function WaterjetHead3D({
+function WaterjetHead3DInner({
   className = 'w-full h-full min-h-[300px]',
   theme = 'dark',
   showControls = true
@@ -18,6 +19,23 @@ export default function WaterjetHead3D({
   const [tiltAngle, setTiltAngle] = useState<number>(0); // 5-axis tilt in degrees
   const [activeComponent, setActiveComponent] = useState<string>('all');
   const [isWaterActive, setIsWaterActive] = useState<boolean>(true);
+
+  const isPlayingRef = useRef<boolean>(isPlaying);
+  const isWaterActiveRef = useRef<boolean>(isWaterActive);
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    isWaterActiveRef.current = isWaterActive;
+    if (jetMeshRef.current) {
+      jetMeshRef.current.visible = isWaterActive;
+    }
+    if (particlesRef.current) {
+      particlesRef.current.visible = isWaterActive;
+    }
+  }, [isWaterActive]);
 
   // References for animation
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -318,7 +336,7 @@ export default function WaterjetHead3D({
       time += 0.02;
 
       // Rotation damping
-      if (!isDragging && isPlaying) {
+      if (!isDragging && isPlayingRef.current) {
         targetRotationY += 0.004;
       }
 
@@ -326,13 +344,13 @@ export default function WaterjetHead3D({
       scene.rotation.x += (targetRotationX - scene.rotation.x) * 0.08;
 
       // Jet stream pulse animation
-      if (jetMeshRef.current) {
+      if (jetMeshRef.current && isWaterActiveRef.current) {
         jetMeshRef.current.scale.x = 0.95 + Math.sin(time * 30) * 0.08;
         jetMeshRef.current.scale.z = 0.95 + Math.cos(time * 30) * 0.08;
       }
 
       // Splash particles update
-      if (particlesRef.current && isWaterActive) {
+      if (particlesRef.current && isWaterActiveRef.current) {
         const posAttr = particlesRef.current.geometry.attributes.position as THREE.BufferAttribute;
         const posArray = posAttr.array as Float32Array;
 
@@ -385,7 +403,7 @@ export default function WaterjetHead3D({
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
     };
-  }, [theme, isPlaying, isWaterActive]);
+  }, [theme]);
 
   // Update Tilt Angle dynamically (5-Axis Demonstration)
   useEffect(() => {
@@ -486,5 +504,17 @@ export default function WaterjetHead3D({
         </div>
       )}
     </div>
+  );
+}
+
+export default function WaterjetHead3D(props: WaterjetHead3DProps) {
+  return (
+    <ErrorBoundary
+      contextName="Cabezal 3D AWJ"
+      fallback={<Head3DErrorFallback theme={props.theme} />}
+      showDetails={false}
+    >
+      <WaterjetHead3DInner {...props} />
+    </ErrorBoundary>
   );
 }

@@ -44,6 +44,11 @@
   color: #EA580C;
 }
 
+/* Image fallback styling */
+.image-fallback {
+  display: flex !important;
+}
+
 /* Print Styles for PDF Academic Report Generation */
 @media print {
   @page {

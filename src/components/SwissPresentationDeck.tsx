@@ -25,12 +25,13 @@ import {
 } from 'lucide-react';
 import SplineScene from './SplineScene';
 import WaterjetHead3D from './WaterjetHead3D';
+import { ErrorBoundary, AnnexErrorFallback } from './ErrorBoundary';
 
 interface SwissPresentationDeckProps {
   onOpenTechnicalAnnex?: (tabId: string) => void;
 }
 
-export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPresentationDeckProps) {
+function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationDeckProps) {
   const [currentSlide, setCurrentSlide] = useState<number>(1);
   const totalSlides = 11;
 
@@ -91,9 +92,36 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
     setCurrentSlide((prev) => Math.max(prev - 1, 1));
   }, []);
 
+  // Fullscreen toggle
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => { });
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => { });
+        setIsFullscreen(false);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignorar si el usuario está escribiendo en un input
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+        return;
+      }
+
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         handleNext();
@@ -109,25 +137,37 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
       } else if (e.key === 'Escape') {
         setShowDrawer(false);
         setPreviewImage(null);
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 't' || e.key === 'T') {
+        e.preventDefault();
+        setIsTimerRunning((prev) => !prev);
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        setIsTimerRunning(false);
+        setTimerSeconds(0);
+      } else if (e.key === 'h' || e.key === 'H') {
+        e.preventDefault();
+        setShowDrawer((prev) => !prev);
+      } else if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        onOpenTechnicalAnnex?.('simulator');
+      } else if (e.shiftKey && /^Digit[1-7]$/.test(e.code)) {
+        e.preventDefault();
+        const tabIndex = parseInt(e.code.replace('Digit', ''), 10) - 1;
+        const tabs = ['simulator', 'head', 'head3d', 'technologies', 'defects', 'safety', 'academic'];
+        if (tabs[tabIndex]) onOpenTechnicalAnnex?.(tabs[tabIndex]);
+      } else if (!e.shiftKey && !e.ctrlKey && !e.altKey && e.key >= '1' && e.key <= '9') {
+        e.preventDefault();
+        const slideNum = parseInt(e.key, 10);
+        if (slideNum <= totalSlides) setCurrentSlide(slideNum);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleNext, handlePrev, totalSlides]);
-
-  // Fullscreen toggle
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => { });
-      setIsFullscreen(true);
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => { });
-        setIsFullscreen(false);
-      }
-    }
-  };
+  }, [handleNext, handlePrev, totalSlides, onOpenTechnicalAnnex, toggleFullscreen]);
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] flex flex-col font-sans select-none overflow-x-hidden">
@@ -171,14 +211,14 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
             <button
               onClick={() => setIsTimerRunning(!isTimerRunning)}
               className="ml-1 p-0.5 hover:text-[#EA580C] transition-colors"
-              title={isTimerRunning ? "Pausar cronómetro" : "Iniciar cronómetro"}
+              title={isTimerRunning ? "Pausar cronómetro [T]" : "Iniciar cronómetro [T]"}
             >
               {isTimerRunning ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
             </button>
             <button
               onClick={() => { setIsTimerRunning(false); setTimerSeconds(0); }}
               className="p-0.5 hover:text-[#EA580C] transition-colors"
-              title="Reiniciar cronómetro"
+              title="Reiniciar cronómetro [R]"
             >
               <RotateCcw className="w-3 h-3" />
             </button>
@@ -189,6 +229,7 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
             <button
               onClick={() => onOpenTechnicalAnnex('simulator')}
               className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-medium border border-[#CBD5E1] transition-colors"
+              title="Anexo Técnico [M]"
             >
               <Sliders className="w-3.5 h-3.5 text-[#EA580C]" />
               <span>Anexo Técnico</span>
@@ -199,25 +240,93 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
           <button
             onClick={toggleFullscreen}
             className="p-1.5 rounded text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
-            title="Pantalla Completa (F)"
+            title="Pantalla Completa [F]"
           >
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+          </button>
+
+          {/* Help Overlay Trigger */}
+          <button
+            onClick={() => setShowDrawer(!showDrawer)}
+            className="p-1.5 rounded text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
+            title="Atajos de teclado [H]"
+          >
+            <HelpCircle className="w-4 h-4" />
           </button>
         </div>
       </header>
 
-      {/* Slide Index Drawer Overlay */}
+      {/* Slide Index Drawer Overlay - también sirve como Help Overlay */}
       {showDrawer && (
-        <div className="fixed inset-0 z-50 bg-[#0F172A]/40 backdrop-blur-sm flex justify-center items-start pt-16 px-4">
+        <div className="fixed inset-0 z-50 bg-[#0F172A]/40 backdrop-blur-sm flex justify-center items-start pt-16 px-4" role="dialog" aria-modal="true" aria-label="Atajos de teclado y navegación">
           <div className="bg-white rounded-xl shadow-swiss-lg border border-[#E2E8F0] p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-4 border-b border-[#E2E8F0]">
-              <h3 className="text-base font-bold text-[#0F172A]">Índice de la Defensa Técnica (11 Slides)</h3>
+              <h3 className="text-base font-bold text-[#0F172A]">Navegación y Atajos [H]</h3>
               <button
                 onClick={() => setShowDrawer(false)}
                 className="text-xs font-mono text-[#64748B] hover:text-[#0F172A] px-2 py-1 rounded bg-[#F1F5F9]"
               >
                 Cerrar [ESC]
               </button>
+            </div>
+            <div className="space-y-4 text-xs font-mono">
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
+                <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
+                  <HelpCircle className="w-4 h-4 text-[#EA580C]" />
+                  Navegación Principal
+                </h4>
+                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">→ / Espacio</kbd> Siguiente slide</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">←</kbd> Slide anterior</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">1-9</kbd> Saltar a slide N</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">Home / End</kbd> Primera / Última</div>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
+                <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-[#EA580C]" />
+                  Cronómetro Defensa
+                </h4>
+                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">T</kbd> Iniciar/Pausar</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">R</kbd> Reiniciar</div>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
+                <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
+                  <Maximize2 className="w-4 h-4 text-[#EA580C]" />
+                  Pantalla y Vistas
+                </h4>
+                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">F</kbd> Pantalla completa</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">H</kbd> Mostrar/ocultar esta ayuda</div>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74]">
+                <h4 className="font-bold text-[#9A3412] mb-2 flex items-center gap-1.5">
+                  <Sliders className="w-4 h-4 text-[#EA580C]" />
+                  Anexo Técnico (Shift+1-7)
+                </h4>
+                <div className="grid grid-cols-2 gap-2 text-[#9A3412] text-[10px]">
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+1</kbd> Simulador CNC</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+2</kbd> Cabezal & Venturi</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+3</kbd> Cabezal 3D</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+4</kbd> Láser vs Plasma</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+5</kbd> Defectología</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+6</kbd> Seguridad UHP</div>
+                  <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Shift+7</kbd> Memoria Técnica</div>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
+                <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
+                  <X className="w-4 h-4 text-rose-500" />
+                  Emergency
+                </h4>
+                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                  <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">ESC</kbd> Cerrar modales/drawer</div>
+                  <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">F5</kbd> Recargar página completa</div>
+                </div>
+              </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 text-xs font-medium">
               {[
@@ -1715,7 +1824,19 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
                 src={previewImage.src}
                 alt={previewImage.title}
                 className="w-full h-auto max-h-[58vh] object-contain select-none"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = e.currentTarget.parentElement?.querySelector('.image-fallback');
+                  if (fallback) fallback.classList.remove('hidden');
+                }}
               />
+              <div className="image-fallback hidden absolute inset-0 flex items-center justify-center bg-slate-900 text-slate-400 text-center p-8">
+                <div>
+                  <Box className="w-12 h-12 text-rose-400 mx-auto mb-3" />
+                  <p className="font-mono text-sm">Imagen no disponible</p>
+                  <p className="text-xs mt-1">{previewImage.src}</p>
+                </div>
+              </div>
             </div>
 
             {/* Modal Telemetry Specs Grid */}
@@ -1731,5 +1852,17 @@ export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPre
         </div>
       )}
     </div>
+  );
+}
+
+export default function SwissPresentationDeck({ onOpenTechnicalAnnex }: SwissPresentationDeckProps) {
+  return (
+    <ErrorBoundary
+      contextName="Anexo Técnico"
+      fallback={<AnnexErrorFallback onClose={() => onOpenTechnicalAnnex?.('')} />}
+      showDetails={false}
+    >
+      <SwissPresentationDeckInner onOpenTechnicalAnnex={onOpenTechnicalAnnex} />
+    </ErrorBoundary>
   );
 }

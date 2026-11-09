@@ -168,7 +168,7 @@ export default function SafetyEnvironment() {
             <p className="text-xs text-center text-slate-400 max-w-sm">
               {isSubmerged
                 ? '✅ Ambiente confortable en taller: La columna de agua absorbe la onda de choque supersónica y confina toda la niebla abrasiva.'
-                : '⚠️ Excede el umbral seguro (&gt;85 dBA). Requiere protección auditiva de copa (NRR &ge; 25 dB) y cerramiento acústico integral.'}
+                : '⚠️ Excede el umbral seguro (>85 dBA). Requiere protección auditiva de copa (NRR ≥ 25 dB) y cerramiento acústico integral.'}
             </p>
           </div>
 

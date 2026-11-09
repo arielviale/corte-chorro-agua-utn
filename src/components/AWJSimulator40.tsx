@@ -17,8 +17,9 @@ import {
   X
 } from 'lucide-react';
 import { MATERIALS, QUALITY_LEVELS } from '../data/waterjetData';
+import { ErrorBoundary, SimulatorErrorFallback } from './ErrorBoundary';
 
-export default function AWJSimulator40() {
+function AWJSimulatorInner() {
   const [materialId, setMaterialId] = useState<string>('aisi304');
   const [thicknessMm, setThicknessMm] = useState<number>(20);
   const [pressureBar, setPressureBar] = useState<number>(6200); // 3800 a 6500 bar
@@ -760,5 +761,17 @@ export default function AWJSimulator40() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AWJSimulator40() {
+  return (
+    <ErrorBoundary
+      contextName="Simulador AWJ 4.0"
+      fallback={<SimulatorErrorFallback />}
+      showDetails={false}
+    >
+      <AWJSimulatorInner />
+    </ErrorBoundary>
   );
 }
