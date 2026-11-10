@@ -94,54 +94,90 @@ export default function DefectsAnalysis() {
             Esquema Físico: {currentDefect.name} ({showCompensated ? 'Compensado por Software / 5 Ejes' : 'Comportamiento Natural'})
           </span>
 
-          <div className="w-full max-w-[420px] h-64 bg-slate-950 rounded-lg border border-slate-900 p-2 flex items-center justify-center">
+          <div className="w-full h-64 bg-slate-950 rounded-lg border border-slate-900 p-2 flex items-center justify-center">
             {selectedDefectId === 'taper' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                {/* Plate material */}
-                <rect x="30" y="40" width="110" height="120" fill="#334155" stroke="#475569" strokeWidth="1" />
-                <rect x="210" y="40" width="110" height="120" fill="#334155" stroke="#475569" strokeWidth="1" />
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                {/* Plate material: Left (Useful Piece) & Right (Scrap) */}
+                <rect x="24" y="48" width="140" height="114" rx="2" fill="#334155" stroke="#475569" strokeWidth="1" />
+                <rect x="234" y="48" width="162" height="114" rx="2" fill="#334155" stroke="#475569" strokeWidth="1" />
 
                 {/* Kerf Slot */}
                 {showCompensated ? (
                   // 5-Axis compensated: straight wall on the piece (left side) and extra angle on scrap (right side)
                   <g>
                     <polygon
-                      points="140,40 210,40 190,160 140,160"
+                      points="164,48 234,48 210,162 164,162"
                       fill="#00F0FF"
-                      fillOpacity="0.2"
+                      fillOpacity="0.18"
                       stroke="#00F0FF"
                       strokeWidth="2"
                     />
-                    <line x1="140" y1="40" x2="140" y2="160" stroke="#10B981" strokeWidth="2.5" />
-                    <text x="145" y="105" fill="#10B981" fontSize="10" fontFamily="monospace" fontWeight="bold">
-                      90,00° PIEZA ÚTIL
+                    {/* Highlighted 90 deg wall */}
+                    <line x1="164" y1="48" x2="164" y2="162" stroke="#10B981" strokeWidth="3" />
+                    {/* Highlighted angled scrap wall */}
+                    <line x1="234" y1="48" x2="210" y2="162" stroke="#F59E0B" strokeWidth="2.5" strokeDasharray="4 2" />
+
+                    {/* Left Box Label (Useful Piece) */}
+                    <rect x="34" y="84" width="120" height="42" rx="5" fill="#0f172a" fillOpacity="0.9" stroke="#10B981" strokeWidth="1.2" />
+                    <text x="94" y="101" fill="#10B981" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      PIEZA ÚTIL
                     </text>
-                    <text x="215" y="105" fill="#F59E0B" fontSize="9" fontFamily="monospace">
-                      ◄ Conicidad volcada al descarte
+                    <text x="94" y="117" fill="#e2e8f0" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Pared a 90,00°
                     </text>
+
+                    {/* Right Box Label (Scrap) */}
+                    <rect x="244" y="84" width="142" height="42" rx="5" fill="#0f172a" fillOpacity="0.9" stroke="#F59E0B" strokeWidth="1.2" />
+                    <text x="315" y="101" fill="#F59E0B" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ZONA DE DESCARTE
+                    </text>
+                    <text x="315" y="117" fill="#fde68a" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      ◄ Conicidad desviada
+                    </text>
+
                     {/* Inclined nozzle above */}
-                    <line x1="172" y1="10" x2="175" y2="40" stroke="#00F0FF" strokeWidth="4" />
-                    <text x="175" y="25" fill="#38bdf8" fontSize="9" fontFamily="monospace">
+                    <line x1="194" y1="10" x2="199" y2="48" stroke="#00F0FF" strokeWidth="4.5" strokeLinecap="round" />
+                    <rect x="208" y="11" width="150" height="22" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#0284c7" strokeWidth="1" />
+                    <text x="283" y="25" fill="#38bdf8" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Cabezal inclinado θ_c
+                    </text>
+
+                    {/* Bottom summary */}
+                    <text x="210" y="190" fill="#10B981" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ✓ Compensación 5 ejes activa: pared útil 100% perpendicular
                     </text>
                   </g>
                 ) : (
                   // Uncompensated V-Taper
                   <g>
                     <polygon
-                      points="140,40 210,40 185,160 165,160"
+                      points="164,48 234,48 212,162 186,162"
                       fill="#EF4444"
                       fillOpacity="0.2"
                       stroke="#EF4444"
                       strokeWidth="2"
                     />
-                    <line x1="140" y1="40" x2="165" y2="160" stroke="#EF4444" strokeWidth="2" strokeDasharray="4 2" />
-                    <line x1="210" y1="40" x2="185" y2="160" stroke="#EF4444" strokeWidth="2" strokeDasharray="4 2" />
-                    <text x="175" y="100" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      Conicidad V Natural (θ_t &gt; 0,8°)
+                    <line x1="164" y1="48" x2="186" y2="162" stroke="#EF4444" strokeWidth="2.5" strokeDasharray="4 2" />
+                    <line x1="234" y1="48" x2="212" y2="162" stroke="#EF4444" strokeWidth="2.5" strokeDasharray="4 2" />
+
+                    {/* Vertical nozzle above */}
+                    <line x1="199" y1="10" x2="199" y2="48" stroke="#EF4444" strokeWidth="4.5" strokeLinecap="round" />
+                    <rect x="208" y="11" width="150" height="22" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#EF4444" strokeWidth="1" />
+                    <text x="283" y="25" fill="#fca5a5" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      Cabezal fijo a 0°
                     </text>
-                    <text x="175" y="180" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="middle">
-                      Ancho Sup. &gt; Ancho Inf. por disipación cinética
+
+                    {/* Central pill with dark backdrop so lines don't cross text */}
+                    <rect x="85" y="84" width="250" height="42" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.5" />
+                    <text x="210" y="102" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Conicidad en V Natural (θ_t &gt; 0,8°)
+                    </text>
+                    <text x="210" y="117" fill="#fca5a5" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Pared inclinada tanto en pieza como en descarte
+                    </text>
+
+                    <text x="210" y="190" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      Ancho Sup. &gt; Ancho Inf. por disipación cinética al profundizar
                     </text>
                   </g>
                 )}
@@ -149,38 +185,52 @@ export default function DefectsAnalysis() {
             )}
 
             {selectedDefectId === 'draglines' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                <rect x="40" y="40" width="270" height="120" fill="#1e293b" stroke="#334155" strokeWidth="1" />
-                <line x1="60" y1="28" x2="280" y2="28" stroke="#F59E0B" strokeWidth="2" />
-                <text x="175" y="20" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
-                  Sentido de avance rápido ──►
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                <rect x="35" y="42" width="350" height="120" rx="3" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+                <line x1="70" y1="28" x2="350" y2="28" stroke="#F59E0B" strokeWidth="2" />
+                <text x="210" y="19" fill="#F59E0B" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                  Sentido de avance del cabezal ──►
                 </text>
 
                 {showCompensated ? (
                   <g>
                     {/* Controlled speed: vertical smooth striations */}
-                    <line x1="100" y1="40" x2="100" y2="160" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.5" />
-                    <line x1="140" y1="40" x2="140" y2="160" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.5" />
-                    <line x1="180" y1="40" x2="180" y2="160" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.5" />
-                    <line x1="220" y1="40" x2="220" y2="160" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.5" />
-                    <text x="175" y="105" fill="#10B981" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      Acabado Q4-Q5 Homogéneo
+                    <line x1="95" y1="42" x2="95" y2="162" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.45" />
+                    <line x1="150" y1="42" x2="150" y2="162" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.45" />
+                    <line x1="210" y1="42" x2="210" y2="162" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.45" />
+                    <line x1="270" y1="42" x2="270" y2="162" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.45" />
+                    <line x1="325" y1="42" x2="325" y2="162" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.45" />
+
+                    <rect x="80" y="78" width="260" height="46" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#10B981" strokeWidth="1.5" />
+                    <text x="210" y="98" fill="#10B981" fontSize="10.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Acabado Q4–Q5 Homogéneo
                     </text>
-                    <text x="175" y="125" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                    <text x="210" y="114" fill="#cbd5e1" fontSize="9" fontFamily="monospace" textAnchor="middle">
                       Ra 1,4 – 3,2 µm • Sin estriado curvo inferior
+                    </text>
+
+                    <text x="210" y="188" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      ✓ Velocidad de avance regulada: columna de corte vertical
                     </text>
                   </g>
                 ) : (
                   <g>
                     {/* Uncompensated drag lines: curved striations in bottom half */}
-                    <path d="M 80,40 Q 80,90 45,160" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <path d="M 130,40 Q 130,90 95,160" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <path d="M 180,40 Q 180,90 145,160" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <path d="M 230,40 Q 230,90 195,160" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <text x="175" y="80" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                    <path d="M 105,42 Q 105,95 65,162" fill="none" stroke="#EF4444" strokeWidth="2" />
+                    <path d="M 165,42 Q 165,95 125,162" fill="none" stroke="#EF4444" strokeWidth="2" />
+                    <path d="M 225,42 Q 225,95 185,162" fill="none" stroke="#EF4444" strokeWidth="2" />
+                    <path d="M 285,42 Q 285,95 245,162" fill="none" stroke="#EF4444" strokeWidth="2" />
+                    <path d="M 345,42 Q 345,95 305,162" fill="none" stroke="#EF4444" strokeWidth="2" />
+
+                    <rect x="70" y="78" width="280" height="44" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.5" />
+                    <text x="210" y="97" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Marcas de Estriado (Líneas de Arrastre)
                     </text>
-                    <text x="175" y="178" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                    <text x="210" y="113" fill="#fca5a5" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Rugosidad severa Ra &gt; 12 µm en tercio inferior
+                    </text>
+
+                    <text x="210" y="188" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
                       Avance excesivo: la cola del chorro se curva hacia atrás
                     </text>
                   </g>
@@ -189,33 +239,37 @@ export default function DefectsAnalysis() {
             )}
 
             {selectedDefectId === 'incomplete' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                <rect x="40" y="40" width="270" height="120" fill="#1e293b" stroke="#334155" strokeWidth="1" />
-                <line x1="175" y1="10" x2="175" y2="40" stroke="#00F0FF" strokeWidth="4" />
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                <rect x="35" y="42" width="350" height="120" rx="3" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+                <line x1="150" y1="10" x2="150" y2="42" stroke="#00F0FF" strokeWidth="4.5" strokeLinecap="round" />
 
                 {showCompensated ? (
                   <g>
                     {/* Complete through cut */}
-                    <line x1="175" y1="40" x2="175" y2="185" stroke="#10B981" strokeWidth="3" />
-                    <circle cx="175" cy="185" r="5" fill="#10B981" />
-                    <text x="190" y="105" fill="#10B981" fontSize="10" fontFamily="monospace" fontWeight="bold">
+                    <line x1="150" y1="42" x2="150" y2="188" stroke="#10B981" strokeWidth="3.5" />
+                    <circle cx="150" cy="188" r="5" fill="#10B981" />
+
+                    <rect x="172" y="76" width="198" height="48" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#10B981" strokeWidth="1.5" />
+                    <text x="271" y="96" fill="#10B981" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Corte Pasante 100% Completo
                     </text>
-                    <text x="190" y="125" fill="#94a3b8" fontSize="9" fontFamily="monospace">
-                      Presión UHP óptima y granate seco fluido
+                    <text x="271" y="113" fill="#cbd5e1" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Presión UHP óptima y granate seco
                     </text>
                   </g>
                 ) : (
                   <g>
                     {/* Incomplete cut: jet stops halfway and splashes back */}
-                    <path d="M 175,40 L 175,100" stroke="#EF4444" strokeWidth="4" />
-                    <path d="M 175,100 Q 155,75 140,50" fill="none" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 2" />
-                    <path d="M 175,100 Q 195,75 210,50" fill="none" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 2" />
-                    <rect x="40" y="100" width="270" height="60" fill="#EF4444" fillOpacity="0.15" />
-                    <text x="175" y="130" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                    <path d="M 150,42 L 150,102" stroke="#EF4444" strokeWidth="4.5" />
+                    <path d="M 150,102 Q 128,76 112,50" fill="none" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 2" />
+                    <path d="M 150,102 Q 172,76 188,50" fill="none" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 2" />
+                    <rect x="35" y="102" width="350" height="60" fill="#EF4444" fillOpacity="0.15" />
+
+                    <rect x="80" y="108" width="260" height="46" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.5" />
+                    <text x="210" y="127" fill="#EF4444" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Corte Incompleto / No Perfora
                     </text>
-                    <text x="175" y="150" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                    <text x="210" y="143" fill="#F59E0B" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
                       Baja presión o abrasivo atascado por humedad
                     </text>
                   </g>
@@ -224,31 +278,44 @@ export default function DefectsAnalysis() {
             )}
 
             {selectedDefectId === 'jetlag' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                <rect x="40" y="40" width="270" height="120" fill="#1e293b" stroke="#334155" strokeWidth="1" />
-                <line x1="60" y1="28" x2="280" y2="28" stroke="#F59E0B" strokeWidth="2" />
-                <text x="175" y="20" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                <rect x="35" y="42" width="350" height="120" rx="3" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+                <line x1="70" y1="28" x2="350" y2="28" stroke="#F59E0B" strokeWidth="2" />
+                <text x="210" y="19" fill="#F59E0B" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                   Sentido de avance CNC ──►
                 </text>
 
                 {showCompensated ? (
                   <g>
                     {/* Compensated look-ahead: straight column */}
-                    <line x1="240" y1="40" x2="240" y2="160" stroke="#10B981" strokeWidth="3" />
-                    <text x="235" y="100" fill="#10B981" fontSize="10" fontFamily="monospace" textAnchor="end" fontWeight="bold">
+                    <line x1="305" y1="42" x2="305" y2="162" stroke="#10B981" strokeWidth="3.5" />
+                    <rect x="52" y="76" width="235" height="48" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#10B981" strokeWidth="1.5" />
+                    <text x="169" y="96" fill="#10B981" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Algoritmo Paso de Esquina:
                     </text>
-                    <text x="235" y="115" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="end">
-                      Desacelera en esquinas y verticaliza la columna
+                    <text x="169" y="113" fill="#cbd5e1" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Desacelera y verticaliza la columna
+                    </text>
+                    <text x="210" y="188" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      ✓ Vértices y esquinas a 90° sin deformación inferior
                     </text>
                   </g>
                 ) : (
                   <g>
                     {/* Uncompensated lag: curved stream */}
-                    <path d="M 240,40 Q 230,100 160,160" fill="none" stroke="#EF4444" strokeWidth="3" />
-                    <line x1="240" y1="40" x2="240" y2="160" stroke="#64748b" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="160" y1="165" x2="240" y2="165" stroke="#F59E0B" strokeWidth="2" />
-                    <text x="200" y="180" fill="#F59E0B" fontSize="10" fontFamily="monospace" textAnchor="middle">
+                    <path d="M 305,42 Q 295,102 215,162" fill="none" stroke="#EF4444" strokeWidth="3.5" />
+                    <line x1="305" y1="42" x2="305" y2="162" stroke="#64748b" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <line x1="215" y1="168" x2="305" y2="168" stroke="#F59E0B" strokeWidth="2" />
+
+                    <rect x="50" y="76" width="215" height="46" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.5" />
+                    <text x="157" y="95" fill="#EF4444" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Retardo de Cola (Desviación)
+                    </text>
+                    <text x="157" y="111" fill="#fca5a5" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Desfase entre entrada y salida
+                    </text>
+
+                    <text x="210" y="190" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle">
                       Inercia en esquinas: cola atrasada genera sub-corte
                     </text>
                   </g>
@@ -257,31 +324,55 @@ export default function DefectsAnalysis() {
             )}
 
             {selectedDefectId === 'rollover' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                <rect x="40" y="50" width="120" height="110" fill="#334155" stroke="#475569" strokeWidth="1" />
-                <rect x="190" y="50" width="120" height="110" fill="#334155" stroke="#475569" strokeWidth="1" />
-                <line x1="175" y1="10" x2="175" y2="180" stroke="#00F0FF" strokeWidth="3" />
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                <rect x="45" y="62" width="145" height="104" rx="2" fill="#334155" stroke="#475569" strokeWidth="1" />
+                <rect x="230" y="62" width="145" height="104" rx="2" fill="#334155" stroke="#475569" strokeWidth="1" />
 
                 {showCompensated ? (
                   <g>
-                    <rect x="155" y="10" width="40" height="25" fill="#0f172a" stroke="#10B981" strokeWidth="1.5" />
-                    <text x="175" y="27" fill="#10B981" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                      Dist. = 1,5 mm
+                    {/* Jet column */}
+                    <line x1="210" y1="42" x2="210" y2="174" stroke="#00F0FF" strokeWidth="3.5" />
+                    {/* Nozzle close to plate (1.5 mm) */}
+                    <rect x="192" y="18" width="36" height="28" rx="3" fill="#0f172a" stroke="#10B981" strokeWidth="2" />
+                    {/* Callout pill on right */}
+                    <rect x="238" y="18" width="142" height="26" rx="4" fill="#0f172a" fillOpacity="0.92" stroke="#10B981" strokeWidth="1.2" />
+                    <text x="309" y="34" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ◄ Distancia = 1,5 mm
                     </text>
-                    <text x="175" y="195" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      Filo vivo nítido a 90° sin arenado
+
+                    <rect x="60" y="96" width="115" height="34" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#10B981" strokeWidth="1" />
+                    <text x="117" y="117" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Arista viva 90°
+                    </text>
+
+                    <text x="210" y="192" fill="#10B981" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ✓ Filo superior nítido a 90° sin arenado periférico
                     </text>
                   </g>
                 ) : (
                   <g>
-                    <rect x="155" y="-10" width="40" height="25" fill="#0f172a" stroke="#EF4444" strokeWidth="1.5" />
-                    <text x="175" y="7" fill="#EF4444" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                      Distancia &gt; 4,5 mm (Lejos)
+                    {/* Jet column with divergent spray cone */}
+                    <polygon points="207,32 213,32 232,68 188,68" fill="#EF4444" fillOpacity="0.28" />
+                    <line x1="210" y1="32" x2="210" y2="174" stroke="#00F0FF" strokeWidth="3.5" />
+                    {/* Nozzle high up (> 4.5 mm) */}
+                    <rect x="192" y="6" width="36" height="26" rx="3" fill="#0f172a" stroke="#EF4444" strokeWidth="2" />
+                    {/* Callout pill on right */}
+                    <rect x="238" y="6" width="158" height="26" rx="4" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.2" />
+                    <text x="317" y="22" fill="#EF4444" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ◄ Distancia &gt; 4,5 mm (Lejos)
                     </text>
-                    <path d="M 150,50 Q 160,50 160,65" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <path d="M 200,50 Q 190,50 190,65" fill="none" stroke="#EF4444" strokeWidth="2" />
-                    <text x="175" y="195" fill="#EF4444" fontSize="9" fontFamily="monospace" textAnchor="middle">
-                      Niebla periférica erosiona arista (Redondeo de Borde)
+
+                    {/* Rounded top edges */}
+                    <path d="M 170,62 Q 190,62 190,82" fill="none" stroke="#EF4444" strokeWidth="3" />
+                    <path d="M 250,62 Q 230,62 230,82" fill="none" stroke="#EF4444" strokeWidth="3" />
+
+                    <rect x="55" y="96" width="125" height="34" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#EF4444" strokeWidth="1" />
+                    <text x="117" y="117" fill="#fca5a5" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Borde redondeado
+                    </text>
+
+                    <text x="210" y="192" fill="#EF4444" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      Niebla periférica erosiona la arista (Redondeo de Borde)
                     </text>
                   </g>
                 )}
@@ -289,29 +380,57 @@ export default function DefectsAnalysis() {
             )}
 
             {selectedDefectId === 'blowout' && (
-              <svg viewBox="0 0 350 200" className="w-full h-full">
-                <rect x="40" y="30" width="270" height="140" rx="8" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+              <svg viewBox="0 0 420 210" className="w-full h-full">
+                <rect x="25" y="25" width="370" height="155" rx="8" fill="#1e293b" stroke="#334155" strokeWidth="1" />
 
                 {showCompensated ? (
                   <g>
-                    {/* Circle piece boundary */}
-                    <circle cx="175" cy="100" r="45" fill="#0f172a" stroke="#00F0FF" strokeWidth="2" />
-                    {/* Lead-in tangent curve from outside */}
-                    <path d="M 240,150 Q 220,110 220,100" fill="none" stroke="#10B981" strokeWidth="2.5" strokeDasharray="3 2" />
-                    <circle cx="240" cy="150" r="4" fill="#F59E0B" />
-                    <text x="245" y="155" fill="#F59E0B" fontSize="9" fontFamily="monospace">
-                      Perforación en Chatarra (Asistida por Vacío)
+                    {/* Circle piece boundary shifted left so callout fits cleanly on right */}
+                    <circle cx="115" cy="102" r="46" fill="#0f172a" stroke="#00F0FF" strokeWidth="2.5" />
+                    <text x="115" y="99" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      PIEZA ÚTIL
                     </text>
-                    <text x="175" y="105" fill="#10B981" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
-                      Perímetro libre de marcas
+                    <text x="115" y="112" fill="#cbd5e1" fontSize="8" fontFamily="monospace" textAnchor="middle">
+                      Sin marcas
+                    </text>
+
+                    {/* Lead-in tangent curve from outside */}
+                    <path d="M 192,145 Q 165,112 161,102" fill="none" stroke="#10B981" strokeWidth="2.5" strokeDasharray="4 2" />
+                    <circle cx="192" cy="145" r="5" fill="#F59E0B" />
+
+                    {/* Callout box on the right */}
+                    <rect x="206" y="72" width="176" height="62" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#10B981" strokeWidth="1.5" />
+                    <text x="294" y="92" fill="#F59E0B" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      ● Inicio en Zona de Descarte
+                    </text>
+                    <text x="294" y="108" fill="#10B981" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Entrada tangencial + vacío
+                    </text>
+                    <text x="294" y="122" fill="#94a3b8" fontSize="8" fontFamily="monospace" textAnchor="middle">
+                      Perímetro 100% libre de cráter
                     </text>
                   </g>
                 ) : (
                   <g>
-                    <circle cx="175" cy="100" r="45" fill="#0f172a" stroke="#00F0FF" strokeWidth="2" />
-                    <circle cx="220" cy="100" r="8" fill="#EF4444" fillOpacity="0.5" stroke="#EF4444" strokeWidth="2" />
-                    <text x="235" y="95" fill="#EF4444" fontSize="9" fontFamily="monospace">
-                      Cráter de perforación directo en la pieza
+                    <circle cx="115" cy="102" r="46" fill="#0f172a" stroke="#00F0FF" strokeWidth="2.5" />
+                    <text x="115" y="105" fill="#94a3b8" fontSize="9" fontFamily="monospace" textAnchor="middle">
+                      PIEZA ÚTIL
+                    </text>
+
+                    {/* Direct pierce crater right on the contour */}
+                    <circle cx="161" cy="102" r="9" fill="#EF4444" fillOpacity="0.55" stroke="#EF4444" strokeWidth="2.5" />
+                    <line x1="172" y1="102" x2="202" y2="102" stroke="#EF4444" strokeWidth="1.5" strokeDasharray="3 2" />
+
+                    {/* Callout box on the right */}
+                    <rect x="206" y="74" width="176" height="56" rx="6" fill="#0f172a" fillOpacity="0.92" stroke="#EF4444" strokeWidth="1.5" />
+                    <text x="294" y="95" fill="#EF4444" fontSize="9.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+                      Cráter de Perforación
+                    </text>
+                    <text x="294" y="111" fill="#fca5a5" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      Impacto directo sobre el
+                    </text>
+                    <text x="294" y="123" fill="#fca5a5" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                      borde útil de la pieza
                     </text>
                   </g>
                 )}

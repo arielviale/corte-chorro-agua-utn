@@ -653,10 +653,12 @@ function AWJSimulatorInner() {
                       strokeWidth="1.5"
                     />
 
-                    <text x="75" y="56" fill="#00F0FF" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                    <rect x="18" y="44" width="114" height="18" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#0284c7" strokeWidth="1" />
+                    <text x="75" y="56" fill="#00F0FF" fontSize="8.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Ancho Sup.: {metrics.topKerfMm} mm
                     </text>
-                    <text x="75" y="132" fill="#38bdf8" fontSize="8.5" fontFamily="monospace" textAnchor="middle">
+                    <rect x="18" y="119" width="114" height="18" rx="4" fill="#0f172a" fillOpacity="0.9" stroke="#0284c7" strokeWidth="1" />
+                    <text x="75" y="131" fill="#38bdf8" fontSize="8.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
                       Ancho Inf.: {metrics.bottomKerfMm} mm
                     </text>
 
