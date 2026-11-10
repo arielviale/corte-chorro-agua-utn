@@ -47,17 +47,18 @@ export default function App() {
       {activeAnnexTab && (
         <div className="fixed inset-0 z-50 bg-[#0F172A]/70 backdrop-blur-md flex flex-col overflow-hidden animate-fadeIn">
           {/* Top Annex Header */}
-          <div className="h-16 bg-[#0F172A] border-b border-slate-800 px-6 flex items-center justify-between text-white shrink-0">
-            <div className="flex items-center gap-3">
+          <div className="min-h-16 py-2 sm:py-0 h-auto sm:h-16 bg-[#0F172A] border-b border-slate-800 px-3 sm:px-6 flex flex-wrap sm:flex-nowrap items-center justify-between text-white shrink-0 gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setActiveAnnexTab(null)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-semibold transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-semibold transition-colors"
               >
                 <ArrowLeft className="w-4 h-4 text-[#EA580C]" />
-                <span>Volver a la Presentación [ESC]</span>
+                <span className="hidden sm:inline">Volver a la Presentación [ESC]</span>
+                <span className="sm:hidden">Volver</span>
               </button>
-              <div className="h-4 w-px bg-slate-700 hidden sm:block" />
-              <div className="hidden sm:flex items-center gap-2">
+              <div className="h-4 w-px bg-slate-700 hidden md:block" />
+              <div className="hidden md:flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#EA580C]" />
                 <span className="text-xs font-mono text-slate-400 uppercase font-semibold">
                   Anexo Técnico Interactivo • AWJ 4.0
@@ -66,7 +67,7 @@ export default function App() {
             </div>
 
             {/* Annex Navigation Tabs */}
-            <div className="flex items-center gap-1 overflow-x-auto max-w-xl py-1 text-xs font-medium">
+            <div className="flex items-center gap-1 overflow-x-auto max-w-full sm:max-w-xl py-1 text-xs font-medium order-3 sm:order-2 w-full sm:w-auto scrollbar-none">
               {[
                 { id: 'simulator', label: 'Simulador CNC', icon: Sliders },
                 { id: 'head', label: 'Cabezal & Venturi', icon: Crosshair },
@@ -82,7 +83,7 @@ export default function App() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveAnnexTab(tab.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs whitespace-nowrap ${
+                    className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg transition-all text-xs whitespace-nowrap shrink-0 ${
                       isActive
                         ? 'bg-[#EA580C] text-white font-bold shadow-sm'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
@@ -98,7 +99,7 @@ export default function App() {
             {/* Close Button */}
             <button
               onClick={() => setActiveAnnexTab(null)}
-              className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-rose-950/80 hover:text-rose-400 transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-rose-950/80 hover:text-rose-400 transition-colors order-2 sm:order-3 ml-auto sm:ml-0"
               title="Cerrar Anexo Técnico"
             >
               <X className="w-5 h-5" />
@@ -106,7 +107,7 @@ export default function App() {
           </div>
 
           {/* Annex Body Content */}
-          <div className="flex-1 overflow-y-auto bg-[#0B0F19] text-slate-100 p-4 sm:p-6 lg:p-8">
+          <div className="flex-1 overflow-y-auto bg-[#0B0F19] text-slate-100 p-3 sm:p-6 lg:p-8">
             <div className="max-w-7xl mx-auto space-y-8">
               {activeAnnexTab === 'simulator' && <AWJSimulator40 />}
               {activeAnnexTab === 'head' && <HeadDiagramInteractive />}

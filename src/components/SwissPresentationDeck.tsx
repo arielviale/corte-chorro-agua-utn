@@ -97,6 +97,44 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
     setCurrentSlide((prev) => Math.max(prev - 1, 1));
   }, []);
 
+  // Scroll to top on slide change (helpful on mobile viewports)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentSlide]);
+
+  // Mobile Touch Swipe Navigation (Horizontal swipe left/right)
+  const touchStartRef = React.useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('canvas') || target.closest('button') || target.closest('input') || target.closest('select')) {
+      touchStartRef.current = null;
+      return;
+    }
+    if (e.touches.length === 1) {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current || e.changedTouches.length === 0) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartRef.current.x;
+    const deltaY = e.changedTouches[0].clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+
+    // Trigger slide change only on clear horizontal swipe (>65px and horizontal dominant)
+    if (Math.abs(deltaX) > 65 && Math.abs(deltaX) > Math.abs(deltaY) * 1.6) {
+      if (deltaX < 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+  };
+
   // Fullscreen toggle
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
@@ -177,30 +215,30 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#0F172A] flex flex-col font-sans select-none overflow-x-hidden">
       {/* Precision Top Presenter Bar (Ultra-clean Swiss Layout) */}
-      <header className="h-14 border-b border-[#E2E8F0] bg-white px-6 flex items-center justify-between text-xs z-30 sticky top-0 shadow-swiss">
+      <header className="min-h-14 h-auto py-1.5 sm:py-0 sm:h-14 border-b border-[#E2E8F0] bg-white px-3 sm:px-6 flex items-center justify-between gap-2 text-xs z-30 sticky top-0 shadow-swiss">
         {/* Left: Academic Badge */}
-        <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 bg-[#EA580C] rounded-sm" />
-          <span className="font-semibold tracking-tight text-[#0F172A] text-sm">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="w-2.5 h-2.5 bg-[#EA580C] rounded-sm shrink-0" />
+          <span className="font-semibold tracking-tight text-[#0F172A] text-xs sm:text-sm truncate">
             AWJ 4.0 • UTN FRP
           </span>
-          <span className="text-[#94A3B8] hidden sm:inline">|</span>
-          <span className="text-[#64748B] hidden sm:inline font-medium">
+          <span className="text-[#94A3B8] hidden md:inline">|</span>
+          <span className="text-[#64748B] hidden md:inline font-medium">
             Mecatrónica Viale
           </span>
-          <span className="bg-[#F1F5F9] text-[#475569] font-mono px-2 py-0.5 rounded text-[11px] font-semibold">
+          <span className="hidden lg:inline-block bg-[#F1F5F9] text-[#475569] font-mono px-2 py-0.5 rounded text-[11px] font-semibold">
             Diego Francisconi & Ariel Martinez
           </span>
         </div>
 
         {/* Center: Slide Navigator & Progress */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={() => setShowDrawer(!showDrawer)}
-            className="flex items-center gap-1.5 px-3 py-1 rounded bg-[#F8F9FA] hover:bg-[#F1F5F9] border border-[#E2E8F0] font-mono text-[12px] font-semibold text-[#0F172A] transition-colors"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 rounded bg-[#F8F9FA] hover:bg-[#F1F5F9] border border-[#E2E8F0] font-mono text-[11px] sm:text-[12px] font-semibold text-[#0F172A] transition-colors"
             title="Ver índice de diapositivas"
           >
-            <span>Diapositiva</span>
+            <span className="hidden sm:inline">Diapositiva</span>
             <span className="text-[#EA580C] font-bold">{currentSlide}</span>
             <span className="text-[#94A3B8]">/</span>
             <span>{totalSlides}</span>
@@ -208,14 +246,14 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
         </div>
 
         {/* Right: Defense Timer & Tools */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           {/* Defense Timer (15-20 min target) */}
-          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded border font-mono text-[12px] ${getTimerBadgeStyle()}`}>
-            <Clock className="w-3.5 h-3.5" />
+          <div className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 rounded border font-mono text-[11px] sm:text-[12px] ${getTimerBadgeStyle()}`}>
+            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 hidden xs:inline sm:inline" />
             <span>{formatTime(timerSeconds)}</span>
             <button
               onClick={() => setIsTimerRunning(!isTimerRunning)}
-              className="ml-1 p-0.5 hover:text-[#EA580C] transition-colors"
+              className="ml-0.5 sm:ml-1 p-0.5 hover:text-[#EA580C] transition-colors"
               title={isTimerRunning ? "Pausar cronómetro [T]" : "Iniciar cronómetro [T]"}
             >
               {isTimerRunning ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -229,22 +267,23 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
             </button>
           </div>
 
-          {/* Technical Annex Trigger */}
+          {/* Technical Annex Trigger (Visible on both Mobile and Web) */}
           {onOpenTechnicalAnnex && (
             <button
               onClick={() => onOpenTechnicalAnnex('simulator')}
-              className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-medium border border-[#CBD5E1] transition-colors"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 rounded bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#334155] font-medium border border-[#CBD5E1] transition-colors text-[11px] sm:text-xs"
               title="Anexo Técnico [M]"
             >
-              <Sliders className="w-3.5 h-3.5 text-[#EA580C]" />
-              <span>Anexo Técnico</span>
+              <Sliders className="w-3.5 h-3.5 text-[#EA580C] shrink-0" />
+              <span className="hidden md:inline">Anexo Técnico</span>
+              <span className="md:hidden font-semibold">Anexo</span>
             </button>
           )}
 
           {/* Fullscreen Button */}
           <button
             onClick={toggleFullscreen}
-            className="p-1.5 rounded text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
+            className="hidden sm:inline-flex p-1.5 rounded text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
             title="Pantalla Completa [F]"
           >
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -254,7 +293,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           <button
             onClick={() => setShowDrawer(!showDrawer)}
             className="p-1.5 rounded text-[#475569] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
-            title="Atajos de teclado [H]"
+            title="Índice y Atajos de teclado [H]"
           >
             <HelpCircle className="w-4 h-4" />
           </button>
@@ -278,13 +317,13 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
                 <h4 className="font-bold text-[#0F172A] mb-2 flex items-center gap-1.5">
                   <HelpCircle className="w-4 h-4 text-[#EA580C]" />
-                  Navegación Principal
+                  Navegación Principal (Web y Táctil)
                 </h4>
-                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#334155]">
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">→ / Espacio</kbd> Siguiente diapositiva</div>
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">←</kbd> Diapositiva anterior</div>
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">1-9</kbd> Saltar a diapositiva N</div>
-                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">Inicio / Fin</kbd> Primera / Última</div>
+                  <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">Deslizar ◄ ►</kbd> Cambiar en celular</div>
                 </div>
               </div>
               <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0]">
@@ -292,7 +331,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                   <Clock className="w-4 h-4 text-[#EA580C]" />
                   Cronómetro Defensa
                 </h4>
-                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#334155]">
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">T</kbd> Iniciar/Pausar</div>
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">R</kbd> Reiniciar</div>
                 </div>
@@ -302,7 +341,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                   <Maximize2 className="w-4 h-4 text-[#EA580C]" />
                   Pantalla y Vistas
                 </h4>
-                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#334155]">
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">F</kbd> Pantalla completa</div>
                   <div><kbd className="bg-[#E2E8F0] px-1.5 py-0.5 rounded">H</kbd> Mostrar/ocultar esta ayuda</div>
                 </div>
@@ -312,7 +351,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                   <Sliders className="w-4 h-4 text-[#EA580C]" />
                   Anexo Técnico (Mayús+1-7)
                 </h4>
-                <div className="grid grid-cols-2 gap-2 text-[#9A3412] text-[10px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#9A3412] text-[10px]">
                   <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+1</kbd> Simulador CNC</div>
                   <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+2</kbd> Cabezal y Venturi</div>
                   <div><kbd className="bg-[#FED7AA] px-1.5 py-0.5 rounded">Mayús+3</kbd> Cabezal 3D</div>
@@ -327,7 +366,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                   <X className="w-4 h-4 text-rose-500" />
                   Emergencia
                 </h4>
-                <div className="grid grid-cols-2 gap-2 text-[#334155]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#334155]">
                   <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">ESC</kbd> Cerrar ventanas/índice</div>
                   <div><kbd className="bg-[#FECACA] px-1.5 py-0.5 rounded">F5</kbd> Recargar página completa</div>
                 </div>
@@ -369,15 +408,19 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
         </div>
       )}
 
-      {/* Main Slide Presentation Stage (16:9 projection friendly) */}
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-10 relative">
-        <div className="w-full max-w-6xl min-h-[580px] lg:min-h-[640px] flex flex-col justify-between transition-all duration-300">
+      {/* Main Slide Presentation Stage (16:9 projection friendly + Mobile Optimized) */}
+      <main
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="flex-1 flex items-center justify-center p-3 sm:p-6 lg:p-10 relative"
+      >
+        <div className="w-full max-w-6xl min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] flex flex-col justify-between transition-all duration-300">
 
           {/* ========================================================================= */}
           {/* SLIDE 1: [DARK CANVAS #1] Portada Institucional UTN FRP                  */}
           {/* ========================================================================= */}
           {currentSlide === 1 && (
-            <div className="h-full w-full rounded-2xl bg-[#0F172A] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-lg border border-slate-800 relative overflow-hidden">
+            <div className="h-full w-full rounded-2xl bg-[#0F172A] text-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-lg border border-slate-800 relative overflow-hidden">
               {/* Subtle Swiss precision grid lines */}
               <div className="absolute inset-0 bg-technical-grid opacity-10 pointer-events-none" />
 
@@ -455,20 +498,20 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                 </div>
 
                 {/* 3 Non-negotiable physical metric highlights */}
-                <div className="flex items-center gap-6 font-mono text-xs">
+                <div className="grid grid-cols-3 gap-2 w-full sm:w-auto sm:flex sm:items-center sm:gap-6 font-mono text-xs pt-2 sm:pt-0 border-t border-slate-800/80 sm:border-none">
                   <div>
-                    <span className="text-slate-400 block text-[10px] uppercase">Zona Afectada Calor</span>
-                    <span className="text-lg sm:text-xl font-bold text-[#EA580C]">ZAC = 0,00 mm</span>
+                    <span className="text-slate-400 block text-[9px] sm:text-[10px] uppercase">Zona Afectada Calor</span>
+                    <span className="text-sm sm:text-xl font-bold text-[#EA580C]">ZAC = 0,00 mm</span>
                   </div>
-                  <div className="w-px h-8 bg-slate-800" />
+                  <div className="hidden sm:block w-px h-8 bg-slate-800" />
                   <div>
-                    <span className="text-slate-400 block text-[10px] uppercase">Presión UHP</span>
-                    <span className="text-lg sm:text-xl font-bold text-white">6.480 bar</span>
+                    <span className="text-slate-400 block text-[9px] sm:text-[10px] uppercase">Presión UHP</span>
+                    <span className="text-sm sm:text-xl font-bold text-white">6.480 bar</span>
                   </div>
-                  <div className="w-px h-8 bg-slate-800" />
+                  <div className="hidden sm:block w-px h-8 bg-slate-800" />
                   <div>
-                    <span className="text-slate-400 block text-[10px] uppercase">Velocidad</span>
-                    <span className="text-lg sm:text-xl font-bold text-white">Mach 3.06</span>
+                    <span className="text-slate-400 block text-[9px] sm:text-[10px] uppercase">Velocidad</span>
+                    <span className="text-sm sm:text-xl font-bold text-white">Mach 3.06</span>
                   </div>
                 </div>
               </div>
@@ -479,7 +522,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 2: [LIGHT] Layout A: Big Metric Callouts — Principio Físico         */}
           {/* ========================================================================= */}
           {currentSlide === 2 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -576,7 +619,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 3: [LIGHT] Layout B: 3-Column Feature Cards — PWJ vs AWJ 4.0        */}
           {/* ========================================================================= */}
           {currentSlide === 3 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header with View Switcher */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#E2E8F0] pb-4 gap-3">
                 <div>
@@ -871,7 +914,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 4: [LIGHT] Layout C: Graphic & Metric Split — Cabezal AWJ & Venturi */}
           {/* ========================================================================= */}
           {currentSlide === 4 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -983,7 +1026,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               </div>
 
               {/* Bottom bar */}
-              <div className="text-xs font-mono text-[#64748B] flex justify-between items-center border-t border-[#E2E8F0] pt-3">
+              <div className="text-xs font-mono text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 border-t border-[#E2E8F0] pt-3">
                 <span>Concentración típica: 10% abrasivo en masa por volumen de agua</span>
                 <span className="text-[#EA580C] font-bold">Ancho de sangría: 0,80 a 1,10 mm</span>
               </div>
@@ -994,7 +1037,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 5: [LIGHT] Layout D: Horizontal Process Timeline — Cadena UHP       */}
           {/* ========================================================================= */}
           {currentSlide === 5 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1085,7 +1128,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 6: [LIGHT] Layout B: 3-Column Feature Cards — AWJ vs Térmicos       */}
           {/* ========================================================================= */}
           {currentSlide === 6 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1217,7 +1260,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               </div>
 
               {/* Bottom Takeaway */}
-              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] flex justify-between items-center">
+              <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
                 <span>Criterio Técnico: Si el costo de la alteración térmica supera el costo operativo del granate → <strong>AWJ es insustituible</strong>.</span>
                 <span className="text-[#EA580C] font-bold">Sin cambio de fase metalúrgica</span>
               </div>
@@ -1228,7 +1271,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 7: [LIGHT] Layout A: Big Metric & Cinemática — Compensación 5 Ejes  */}
           {/* ========================================================================= */}
           {currentSlide === 7 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1274,8 +1317,8 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
                 </div>
 
                 {/* Right: Interactive Cinemática Comparison */}
-                <div className="lg:col-span-7 bg-[#F8F9FA] rounded-xl border border-[#E2E8F0] p-6 space-y-4">
-                  <div className="flex justify-between items-center border-b border-[#E2E8F0] pb-3">
+                <div className="lg:col-span-7 bg-[#F8F9FA] rounded-xl border border-[#E2E8F0] p-4 sm:p-6 space-y-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-[#E2E8F0] pb-3">
                     <span className="text-xs font-mono font-bold text-[#0F172A] uppercase">
                       Demostración Cinemática en Tiempo Real
                     </span>
@@ -1374,7 +1417,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               </div>
 
               {/* Bottom bar */}
-              <div className="text-xs font-mono text-[#64748B] flex justify-between items-center border-t border-[#E2E8F0] pt-3">
+              <div className="text-xs font-mono text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 border-t border-[#E2E8F0] pt-3">
                 <span>Control Predictivo CNC: Regulación anticipada de avance para eliminar el desvío en vértices a 90°</span>
                 <span className="text-[#EA580C] font-bold">Tolerancia dimensional: ±0,05 mm</span>
               </div>
@@ -1385,7 +1428,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 8: [LIGHT] Layout B: 3-Column Feature Cards — Materiales Críticos  */}
           {/* ========================================================================= */}
           {currentSlide === 8 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1468,7 +1511,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               </div>
 
               {/* Bottom Takeaway */}
-              <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74] text-xs font-mono text-[#9A3412] flex justify-between items-center">
+              <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FDBA74] text-xs font-mono text-[#9A3412] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
                 <span>Materiales Compuestos y Laminados: Fibra de carbono, kevlar y caucho sin delaminación mediante perforación suave asistida por vacío.</span>
                 <span className="text-[#EA580C] font-bold">1 Única Máquina para Todo</span>
               </div>
@@ -1479,7 +1522,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 9: [LIGHT] Layout C: Graphic/Metric Split — Calidades Q1-Q5 y Defectos*/}
           {/* ========================================================================= */}
           {currentSlide === 9 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1578,7 +1621,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
               </div>
 
               {/* Bottom bar */}
-              <div className="text-xs font-mono text-[#64748B] flex justify-between items-center border-t border-[#E2E8F0] pt-3">
+              <div className="text-xs font-mono text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 border-t border-[#E2E8F0] pt-3">
                 <span>Compensación algorítmica: El software regula velocidad automáticamente en función de la calidad Q seleccionada.</span>
                 <span className="text-[#EA580C] font-bold">Cero rebabas en corte sumergido</span>
               </div>
@@ -1589,7 +1632,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 10: [LIGHT] Layout D: Horizontal Process Timeline — Industria 4.0   */}
           {/* ========================================================================= */}
           {currentSlide === 10 && (
-            <div className="h-full w-full rounded-2xl bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
+            <div className="h-full w-full rounded-2xl bg-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-card border border-[#E2E8F0]">
               {/* Header */}
               <div className="flex justify-between items-start border-b border-[#E2E8F0] pb-4">
                 <div>
@@ -1680,7 +1723,7 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
           {/* SLIDE 11: [DARK CANVAS #2] Closing / Q&A Slide                            */}
           {/* ========================================================================= */}
           {currentSlide === 11 && (
-            <div className="h-full w-full rounded-2xl bg-[#0F172A] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-lg border border-slate-800 relative overflow-hidden">
+            <div className="h-full w-full rounded-2xl bg-[#0F172A] text-white p-5 sm:p-12 lg:p-16 flex flex-col justify-between shadow-swiss-lg border border-slate-800 relative overflow-hidden">
               <div className="absolute inset-0 bg-technical-grid opacity-10 pointer-events-none" />
 
               {/* Header */}
@@ -1748,29 +1791,30 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
       </main>
 
       {/* Swiss Precision Bottom Navigation Bar */}
-      <footer className="h-14 border-t border-[#E2E8F0] bg-white px-6 flex items-center justify-between z-20 sticky bottom-0 shadow-swiss">
+      <footer className="h-14 border-t border-[#E2E8F0] bg-white px-3 sm:px-6 flex items-center justify-between gap-2 z-20 sticky bottom-0 shadow-swiss">
         {/* Previous Button */}
         <button
           onClick={handlePrev}
           disabled={currentSlide === 1}
-          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === 1
+          className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 rounded-lg border font-mono text-[11px] sm:text-xs font-semibold transition-all shrink-0 ${currentSlide === 1
             ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
             : 'border-[#E2E8F0] bg-white hover:bg-[#F8F9FA] text-[#0F172A] shadow-swiss'
             }`}
         >
           <ChevronLeft className="w-4 h-4" />
-          <span>Anterior [←]</span>
+          <span>Anterior</span>
+          <span className="hidden sm:inline">[←]</span>
         </button>
 
         {/* Slide Indicator Dots */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1">
           {Array.from({ length: totalSlides }).map((_, idx) => (
             <button
               key={idx + 1}
               onClick={() => setCurrentSlide(idx + 1)}
-              className={`h-2 rounded-full transition-all ${currentSlide === idx + 1
-                ? 'w-7 bg-[#EA580C]'
-                : 'w-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]'
+              className={`h-2 rounded-full transition-all shrink-0 ${currentSlide === idx + 1
+                ? 'w-4 sm:w-7 bg-[#EA580C]'
+                : 'w-1.5 sm:w-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]'
                 }`}
               title={`Ir a diapositiva ${idx + 1}`}
             />
@@ -1781,12 +1825,13 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
         <button
           onClick={handleNext}
           disabled={currentSlide === totalSlides}
-          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border font-mono text-xs font-semibold transition-all ${currentSlide === totalSlides
+          className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 rounded-lg border font-mono text-[11px] sm:text-xs font-semibold transition-all shrink-0 ${currentSlide === totalSlides
             ? 'border-transparent text-[#CBD5E1] cursor-not-allowed'
             : 'border-[#EA580C] bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-swiss'
             }`}
         >
-          <span>Siguiente [→ / Espacio]</span>
+          <span>Siguiente</span>
+          <span className="hidden sm:inline">[→ / Espacio]</span>
           <ChevronRight className="w-4 h-4" />
         </button>
       </footer>
@@ -1794,11 +1839,11 @@ function SwissPresentationDeckInner({ onOpenTechnicalAnnex }: SwissPresentationD
       {/* High-Resolution Real Cutting Inspection Modal */}
       {previewImage && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-8 animate-fadeIn"
           onClick={() => setPreviewImage(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-[#CBD5E1] flex flex-col max-h-[92vh]"
+            className="bg-white rounded-2xl max-w-4xl w-full overflow-x-hidden overflow-y-auto shadow-2xl border border-[#CBD5E1] flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
